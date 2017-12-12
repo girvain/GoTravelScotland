@@ -13,36 +13,15 @@ import java.util.ArrayList;
 
 public class InstructionsPage extends AppCompatActivity {
 
-    private ArrayList<MessageData> messageItems; // list of fragments to be made into pages
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_container);
 
-        // create the messages array
-        messageItems = new ArrayList<>();
-        // creates a messageData object, adds it to the array, and adds the string to it from res
-
-        // create messageData objects, set the messages from res, then add to array
-        MessageData m1 = new MessageData();
-        m1.setMessage(getString(R.string.instructions_msg_one));
-        MessageData m2 = new MessageData();
-        m2.setMessage(getString(R.string.instructions_msg_two));
-        MessageData m3 = new MessageData();
-        m3.setMessage(getString(R.string.instructions_msg_three));
-        MessageData m4 = new MessageData();
-        m4.setVideoFilePath(R.raw.intro_tour);
-
-        messageItems.add(m1);
-        messageItems.add(m2);
-        messageItems.add(m3);
-        messageItems.add(m4);
-
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), messageItems);
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);

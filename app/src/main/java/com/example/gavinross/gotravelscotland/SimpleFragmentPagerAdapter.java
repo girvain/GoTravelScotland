@@ -4,7 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import java.util.ArrayList;
+import com.example.gavinross.gotravelscotland.fragments.MessageFragmentOne;
+import com.example.gavinross.gotravelscotland.fragments.MessageFragmentThree;
+import com.example.gavinross.gotravelscotland.fragments.MessageFragmentTwo;
+import com.example.gavinross.gotravelscotland.fragments.VideoFragment;
 
 /**
  * Created by gavinross on 12/12/2017.
@@ -12,27 +15,24 @@ import java.util.ArrayList;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter{
 
-    private ArrayList<MessageData> messageDataArrayList;
-
-    public SimpleFragmentPagerAdapter(FragmentManager fm, ArrayList<MessageData> messageItemArray) {
+    public SimpleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        messageDataArrayList = messageItemArray;
+
     }
 
 
     public Fragment getItem(int position) {
-        if (messageDataArrayList.get(position).isVideo()) {
-            VideoFragment fragmentVid = new VideoFragment();
-            fragmentVid.setVideoFilePath(messageDataArrayList.get(position).getVideoFilePath());
-            return fragmentVid;
+        if (position == 0) {
+            return new MessageFragmentOne();
         }
-        else {
-            MessageFragment fragmentMsg = new MessageFragment();
-            fragmentMsg.setMessage(messageDataArrayList.get(position).getMessage());
-            return fragmentMsg;
+        else if (position == 1) {
+            return new MessageFragmentTwo();
         }
-
-
+        else if (position == 2) {
+            return new MessageFragmentThree();
+        }
+        else
+            return new VideoFragment();
     }
 
     public int getCount() {
