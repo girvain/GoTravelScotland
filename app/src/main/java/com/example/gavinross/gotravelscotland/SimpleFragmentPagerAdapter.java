@@ -21,15 +21,21 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter{
 
 
     public Fragment getItem(int position) {
+        if (messageDataArrayList.get(position).isVideo()) {
+            VideoFragment fragmentVid = new VideoFragment();
+            return fragmentVid;
+        }
+        else {
+            MessageFragment fragmentMsg = new MessageFragment();
+            fragmentMsg.setMessage(messageDataArrayList.get(position).getMessage());
+            return fragmentMsg;
+        }
 
-        MessageFragment fragmentMsg = new MessageFragment();
-        fragmentMsg.setMessage(messageDataArrayList.get(position).getMessage());
-        return fragmentMsg;
 
     }
 
     public int getCount() {
-        return 3;
+        return 4;
     }
 
 

@@ -31,10 +31,13 @@ public class InstructionsPage extends AppCompatActivity {
         m2.setMessage(getString(R.string.instructions_msg_two));
         MessageData m3 = new MessageData();
         m3.setMessage(getString(R.string.instructions_msg_three));
+        MessageData m4 = new MessageData();
+        m4.setVideoFilePath(R.raw.intro_tour);
 
         messageItems.add(m1);
         messageItems.add(m2);
         messageItems.add(m3);
+        messageItems.add(m4);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 

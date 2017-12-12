@@ -9,9 +9,8 @@ package com.example.gavinross.gotravelscotland;
 public class MessageData {
 
     private String message;
-    private String videoFilePath;
+    private String videoFileName;
     private boolean isVideo = false;
-
 
 
     // getters and the is video set and get
@@ -25,12 +24,12 @@ public class MessageData {
     }
 
     public String getVideoFilePath() {
-        return videoFilePath;
+        return videoFileName;
     }
 
     // this method will set isVideo to true as it's the only on that will make it true
-    public void setVideoFilePath(String videoFilePath, boolean isVideo) {
-        this.videoFilePath = videoFilePath;
+    public void setVideoFilePath(int videoFileName) {
+        this.videoFileName = "android.resource://com.example.gavinross.gotravelscotland/" + videoFileName;
         this.isVideo = true;
     }
 
