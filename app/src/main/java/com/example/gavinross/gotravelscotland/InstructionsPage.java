@@ -23,10 +23,18 @@ public class InstructionsPage extends AppCompatActivity {
         // create the messages array
         messageItems = new ArrayList<>();
         // creates a messageData object, adds it to the array, and adds the string to it from res
-        messageItems.add(new MessageData(getString(R.string.instructions_msg_one)));
-        messageItems.add(new MessageData(getString(R.string.instructions_msg_two)));
-        messageItems.add(new MessageData(getString(R.string.instructions_msg_three)));
 
+        // create messageData objects, set the messages from res, then add to array
+        MessageData m1 = new MessageData();
+        m1.setMessage(getString(R.string.instructions_msg_one));
+        MessageData m2 = new MessageData();
+        m2.setMessage(getString(R.string.instructions_msg_two));
+        MessageData m3 = new MessageData();
+        m3.setMessage(getString(R.string.instructions_msg_three));
+
+        messageItems.add(m1);
+        messageItems.add(m2);
+        messageItems.add(m3);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
