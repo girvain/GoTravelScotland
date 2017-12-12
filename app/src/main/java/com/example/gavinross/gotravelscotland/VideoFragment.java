@@ -7,16 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 /**
  * Created by gavinross on 12/12/2017.
  */
 
 public class VideoFragment extends Fragment{
-    @Nullable
+
+    private String videoFilePath; // the input from the adapter
+    private VideoView videoView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragment = inflater.inflate(R.layout.video_fragment, container, false);
+        videoView = (VideoView) fragment.findViewById(R.id.fragmentVideoView);
+        videoView.setVideoURI(videoFilePath);
         return fragment;
+    }
+
+    public String getVideoFilePath() {
+        return videoFilePath;
     }
 }

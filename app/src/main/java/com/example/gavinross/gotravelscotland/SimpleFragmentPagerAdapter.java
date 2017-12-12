@@ -23,6 +23,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter{
     public Fragment getItem(int position) {
         if (messageDataArrayList.get(position).isVideo()) {
             VideoFragment fragmentVid = new VideoFragment();
+            fragmentVid.setVideoFilePath(messageDataArrayList.get(position).getVideoFilePath());
             return fragmentVid;
         }
         else {
