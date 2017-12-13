@@ -3,6 +3,7 @@ package com.example.gavinross.gotravelscotland;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.gavinross.gotravelscotland.fragments.MessageFragmentOne;
 import com.example.gavinross.gotravelscotland.fragments.MessageFragmentThree;
@@ -13,7 +14,7 @@ import com.example.gavinross.gotravelscotland.fragments.VideoFragment;
  * Created by gavinross on 12/12/2017.
  */
 
-public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter{
+public class SimpleFragmentPagerAdapter extends FragmentStatePagerAdapter{
 
     public SimpleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);

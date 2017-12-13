@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
@@ -19,18 +20,48 @@ import com.example.gavinross.gotravelscotland.R;
 
 public class VideoFragment extends Fragment{
 
+    private VideoView videoView;
+    private MediaController mc;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.video_fragment, container, false);
-        VideoView videoView =(VideoView) getActivity().findViewById(R.id.fragmentVideoView);
+        videoView =(VideoView) rootView.findViewById(R.id.fragmentVideoView);
 
-//        String s = "android.resource://" + getActivity().getPackageName() + "/" +
-//                R.raw.intro_tour;
-//        videoView.setVideoPath(s);
-//        videoView.setMediaController(new MediaController(getActivity()));
-//        videoView.requestFocus();
-//        videoView.start();
+        String s = "android.resource://" + getActivity().getPackageName() + "/" +
+                R.raw.intro_tour;
+        videoView.setVideoPath(s);
+        videoView.requestFocus();
+
+        //mc = new MediaController(getActivity());
+        //mc.setAnchorView(videoView);
+        //videoView.setMediaController(mc);
+
+
+        //videoView.start();
+
+        videoView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (videoView.isPlaying()) {
+                    videoView.pause();
+                }
+                else if (!videoView.hasFocus()) {
+                    videoView.pause();
+                }
+                else
+                    videoView.start();
+
+                return false;
+            }
+        });
+
+
         return rootView;
+    }
+
+    public void onTouchEvent(View v) {
+        videoView.start();
     }
 }
