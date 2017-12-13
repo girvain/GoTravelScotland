@@ -50,6 +50,9 @@ public class VideoFragment extends Fragment{
                 else if (!videoView.hasFocus()) {
                     videoView.pause();
                 }
+                else if (!videoView.isShown()){
+                    videoView.pause();
+                }
                 else
                     videoView.start();
 
