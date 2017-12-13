@@ -1,5 +1,6 @@
 package com.example.gavinross.gotravelscotland.fragments;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,11 +23,12 @@ public class VideoFragment extends Fragment{
 
     private VideoView videoView;
     private MediaController mc;
+    private View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.video_fragment, container, false);
+        rootView = inflater.inflate(R.layout.video_fragment, container, false);
         videoView =(VideoView) rootView.findViewById(R.id.fragmentVideoView);
 
         String s = "android.resource://" + getActivity().getPackageName() + "/" +
@@ -34,12 +36,10 @@ public class VideoFragment extends Fragment{
         videoView.setVideoPath(s);
         videoView.requestFocus();
 
-        //mc = new MediaController(getActivity());
-        //mc.setAnchorView(videoView);
-        //videoView.setMediaController(mc);
+        mc = new MediaController(this.getActivity());
+        mc.setAnchorView(videoView);
+        videoView.setMediaController(mc);
 
-
-        //videoView.start();
 
         videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -60,11 +60,28 @@ public class VideoFragment extends Fragment{
             }
         });
 
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                /*
+                 * add media controller
+                 */
+                        mc = new MediaController(getActivity());
+                        videoView.setMediaController(mc);
+                /*
+                 * and set its position on screen
+                 */
+                        mc.setAnchorView(videoView);
+                    }
+                });
+            }
+        });
+
 
         return rootView;
     }
 
-    public void onTouchEvent(View v) {
-        videoView.start();
-    }
 }
