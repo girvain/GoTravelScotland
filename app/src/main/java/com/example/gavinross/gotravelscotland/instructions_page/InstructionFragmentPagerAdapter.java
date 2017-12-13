@@ -1,14 +1,13 @@
-package com.example.gavinross.gotravelscotland;
+package com.example.gavinross.gotravelscotland.instructions_page;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.gavinross.gotravelscotland.fragments.MessageFragmentOne;
-import com.example.gavinross.gotravelscotland.fragments.MessageFragmentThree;
-import com.example.gavinross.gotravelscotland.fragments.MessageFragmentTwo;
-import com.example.gavinross.gotravelscotland.fragments.VideoFragment;
+import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentOne;
+import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentThree;
+import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentTwo;
+import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
 
 /**
  * Created by gavinross on 12/12/2017.

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.gavinross.gotravelscotland.tour_one.TourOneContainer;
+
 /**
  * Created by gavinross on 13/12/2017.
  */
