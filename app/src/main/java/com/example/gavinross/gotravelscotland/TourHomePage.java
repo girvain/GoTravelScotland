@@ -1,7 +1,9 @@
 package com.example.gavinross.gotravelscotland;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 /**
@@ -15,6 +17,15 @@ public class TourHomePage extends AppCompatActivity {
 
         setButtonText("Start Here", "Into The Highlands", "The Journey Home");
 
+        // button listener for Start Here button
+        Button startTour = (Button) findViewById(R.id.button_one);
+        startTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Intent = new Intent(TourHomePage.this, TourOneContainer.class);
+                startActivity(Intent);
+            }
+        });
 
     }
 
