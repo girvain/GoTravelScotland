@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -15,14 +14,14 @@ import android.widget.VideoView;
 import com.example.gavinross.gotravelscotland.R;
 
 /**
- * Created by gavinross on 13/12/2017.
+ * Created by gavinross on 14/12/2017.
  */
 
-public class TourSlidePage extends Fragment{
-
-    private VideoView videoView;
+public class TourSlideEndPage extends Fragment {
+    //private VideoView videoView;
     private MediaController mc;
     private View rootView;
+    private MediaPlayer.OnPreparedListener onPreparedListener;
 
     private String headingText; // for holding text from newInstance to bundle
     private String paragraphText; // to then be passed to textViews
@@ -31,14 +30,14 @@ public class TourSlidePage extends Fragment{
     private TextView mHeadingTextView;
     private TextView mParagraphView;
 
-    public static TourSlidePage newInstance(String headingText, String paragraphText, int resId) {
+    public static TourSlideEndPage newInstance(String headingText, String paragraphText, int resId) {
 
         Bundle bundle = new Bundle();
         bundle.putString("heading", headingText);
         bundle.putString("paragraph", paragraphText);
         bundle.putInt("resId", resId);
 
-        TourSlidePage fragment = new TourSlidePage();
+        TourSlideEndPage fragment = new TourSlideEndPage();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -56,13 +55,12 @@ public class TourSlidePage extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        View rootView = inflater.inflate(R.layout.tour_silde_page, container, false);
+        View rootView = inflater.inflate(R.layout.tour_slide_end_page, container, false);
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
-        String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
-                resId;
+        //String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+                //resId;
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
@@ -70,12 +68,13 @@ public class TourSlidePage extends Fragment{
         mParagraphView.setText(paragraphText);
 
 
-        videoView =(VideoView) rootView.findViewById(R.id.videoView);
-        videoView.setVideoPath(videoFilePath);
-        videoView.requestFocus();
+        VideoView videoView =(VideoView) rootView.findViewById(R.id.videoView1);
+//        videoView.setVideoPath(videoFilePath);
+//        videoFilePathoView.requestFocus();
+
 
         // This sets the media controller to be the same size as the video when its resized
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        onPreparedListener = new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
@@ -85,16 +84,18 @@ public class TourSlidePage extends Fragment{
                  * add media controller
                  */
                         mc = new MediaController(getActivity());
-                        videoView.setMediaController(mc);
+                        //videoView.setMediaController(mc);
                 /*
                  * and set its position on screen
                  */
-                        mc.setAnchorView(videoView);
+                        //mc.setAnchorView(videoView);
                     }
                 });
             }
-        });
 
+        };
+
+        /*
         videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -112,8 +113,23 @@ public class TourSlidePage extends Fragment{
 
                 return false;
             }
-        });
+        }); */
+
+        //setUpVideoClip(videoView, R.id.videoView1);
 
         return rootView;
+    }
+
+    public void setUpVideoClip(VideoView videoView, int viewId) {
+        String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+                viewId;
+
+        //videoView = (VideoView)rootView.findViewById(viewId);
+        videoView.setVideoPath(videoFilePath);
+        //videoView.requestFocus();
+
+        videoView.setOnPreparedListener(onPreparedListener);
+        videoView.setMediaController(mc);
+        mc.setAnchorView(videoView);
     }
 }

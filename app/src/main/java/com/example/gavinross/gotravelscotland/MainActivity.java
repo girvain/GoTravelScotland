@@ -7,6 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * To do list:
+ * > fix media controller traveling around the slides
+ * > clear resources from the video player after each slide
+ * > try and make the main classes use only one three button class with intents and
+ *   use this.finish() to close current activity while moving to the next
+ * > get multi language support
+ * > get fullscreen feature on videos
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
