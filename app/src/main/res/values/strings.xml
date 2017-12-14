@@ -4,4 +4,7 @@
     <string name="instructions_msg_two">Sit comfortably</string>
     <string name="instructions_msg_three">Begin your very own tour experience</string>
     <string name="the_departure">The Departure</string>
+    <string name="place_holder_para">This is some text that has been typed up to give an example
+    of the type of stuff that will be going into this app. It has become very complicated to so this
+    and I have lost the desire to ever become an app developer so Android can suck my balls.</string>
 </resources>

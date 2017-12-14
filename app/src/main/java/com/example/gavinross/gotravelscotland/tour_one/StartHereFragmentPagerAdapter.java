@@ -6,11 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.gavinross.gotravelscotland.R;
-import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentOne;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentThree;
-import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentTwo;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
-import com.example.gavinross.gotravelscotland.tour_one.fragments.DeparturePage;
+import com.example.gavinross.gotravelscotland.tour_one.fragments.TourSlide;
 import com.example.gavinross.gotravelscotland.tour_one.fragments.TourSlidePage;
 
 /**
@@ -32,12 +30,15 @@ public class StartHereFragmentPagerAdapter extends FragmentPagerAdapter{
 
     public Fragment getItem(int position) {
         if (position == 0) {
-
-            Fragment fragOne = DeparturePage.newInstance(context.getString(R.string.the_departure));
+            // gets a ref to the activity through context then gets the string.
+            Fragment fragOne = TourSlide.newInstance(context.getString(R.string.the_departure),
+                    context.getString(R.string.place_holder_para), R.drawable.dragon, 1);
             return fragOne;
         }
         else if (position == 1) {
-            return new TourSlidePage();
+            Fragment fragTwo = TourSlide.newInstance(context.getString(R.string.the_departure),
+                    context.getString(R.string.place_holder_para), R.raw.intro_tour, 2);
+            return fragTwo;
         }
         else if (position == 2) {
             return new MessageFragmentThree();

@@ -1,6 +1,5 @@
 package com.example.gavinross.gotravelscotland.tour_one.fragments;
 
-import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +24,7 @@ public class TourSlidePage extends android.support.v4.app.Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.tour_silde_page, container, false);
-        videoView =(VideoView) rootView.findViewById(R.id.tour_info_video);
+        videoView =(VideoView) rootView.findViewById(R.id.videoView);
 
         // insert the video name here!
         String s = "android.resource://" + getActivity().getPackageName() + "/" +

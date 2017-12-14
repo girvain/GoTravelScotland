@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <VideoView
-        android:id="@+id/tour_info_video"
+        android:id="@+id/videoView"
         android:layout_width="387dp"
         android:layout_height="213dp"
         android:layout_marginEnd="8dp"
@@ -18,20 +18,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tour_info_heading"
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/tour_info_video"
-        tools:layout_editor_absoluteX="452dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videoView" />
 
     <TextView
-        android:id="@+id/tour_info_paragraph"
+        android:id="@+id/paragraph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/tour_info_heading"
-        tools:layout_editor_absoluteX="452dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="79dp" />
 </android.support.constraint.ConstraintLayout>
