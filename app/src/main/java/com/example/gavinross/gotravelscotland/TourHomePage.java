@@ -24,8 +24,9 @@ public class TourHomePage extends AppCompatActivity {
         startTour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(TourHomePage.this, TourOneContainer.class);
-                startActivity(Intent);
+                Intent intent = new Intent(TourHomePage.this, TourOneContainer.class);
+                intent.putExtra("departurePic", R.drawable.dragon);
+                startActivity(intent);
             }
         });
 

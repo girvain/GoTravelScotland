@@ -1,9 +1,11 @@
 package com.example.gavinross.gotravelscotland.tour_one;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentOne;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentThree;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentTwo;
@@ -16,14 +18,23 @@ import com.example.gavinross.gotravelscotland.tour_one.fragments.TourSlidePage;
  */
 
 public class StartHereFragmentPagerAdapter extends FragmentPagerAdapter{
-    public StartHereFragmentPagerAdapter(FragmentManager fm) {
-        super(fm);
 
+    private Context context; // set from the constructor
+
+    /*
+        Uses a Context obejct to pass in the activity using it. This is so the getString() will work
+     */
+    public StartHereFragmentPagerAdapter(FragmentManager fm, Context context) {
+        super(fm);
+        this.context = context;
     }
+
 
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new DeparturePage();
+
+            Fragment fragOne = DeparturePage.newInstance(context.getString(R.string.the_departure));
+            return fragOne;
         }
         else if (position == 1) {
             return new TourSlidePage();
@@ -34,6 +45,7 @@ public class StartHereFragmentPagerAdapter extends FragmentPagerAdapter{
         else
             return new VideoFragment();
     }
+
 
     public int getCount(){
         return 4;
