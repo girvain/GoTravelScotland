@@ -18,7 +18,7 @@ import com.example.gavinross.gotravelscotland.R;
  */
 
 public class TourSlideEndPage extends Fragment {
-    private VideoView videoView1;
+    private VideoView videoView;
     private MediaController mc;
     private View rootView;
     private MediaPlayer.OnPreparedListener onPreparedListener;
@@ -55,7 +55,7 @@ public class TourSlideEndPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.tour_slide_end_page, container, false);
+        rootView = inflater.inflate(R.layout.tour_slide_end_page, container, false);
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
@@ -68,9 +68,9 @@ public class TourSlideEndPage extends Fragment {
         mParagraphView.setText(paragraphText);
 
 
-        videoView1 =(VideoView) rootView.findViewById(R.id.videoView1);
-        videoView1.setVideoPath(videoFilePath);
-        videoView1.requestFocus();
+        videoView =(VideoView) rootView.findViewById(R.id.videoView3);
+        videoView.setVideoPath(videoFilePath);
+        videoView.requestFocus();
 
 
         // This sets the media controller to be the same size as the video when its resized
@@ -84,40 +84,40 @@ public class TourSlideEndPage extends Fragment {
                  * add media controller
                  */
                         mc = new MediaController(getActivity());
-                        videoView1.setMediaController(mc);
+                        videoView.setMediaController(mc);
                 /*
                  * and set its position on screen
                  */
-                        mc.setAnchorView(videoView1);
+                        mc.setAnchorView(videoView);
                     }
                 });
             }
 
         };
         // using the anon with name
-        videoView1.setOnPreparedListener(onPreparedListener);
+        videoView.setOnPreparedListener(onPreparedListener);
 
 
-        videoView1.setOnTouchListener(new View.OnTouchListener() {
+        videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (videoView1.isPlaying()) {
-                    videoView1.pause();
+                if (videoView.isPlaying()) {
+                    videoView.pause();
                 }
-                else if (!videoView1.hasFocus()) {
-                    videoView1.pause();
+                else if (!videoView.hasFocus()) {
+                    videoView.pause();
                 }
-                else if (!videoView1.isShown()){
-                    videoView1.pause();
+                else if (!videoView.isShown()){
+                    videoView.pause();
                 }
                 else
-                    videoView1.start();
+                    videoView.start();
 
                 return false;
             }
         });
 
-        //setUpVideoClip(videoView1, R.id.videoView1);
+        //setUpVideoClip(videoView, R.id.videoView);
 
         return rootView;
     }
@@ -126,7 +126,7 @@ public class TourSlideEndPage extends Fragment {
         String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
                 viewId;
 
-        //videoView1 = (VideoView)rootView.findViewById(viewId);
+        //videoView = (VideoView)rootView.findViewById(viewId);
         videoView.setVideoPath(videoFilePath);
         videoView.requestFocus();
 
