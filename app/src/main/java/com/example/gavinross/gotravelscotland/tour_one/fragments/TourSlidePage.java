@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -70,7 +69,7 @@ public class TourSlidePage extends Fragment{
         mParagraphView.setText(paragraphText);
 
 
-        videoView =(VideoView) rootView.findViewById(R.id.videoView);
+        videoView =(VideoView) rootView.findViewById(R.id.videoView1);
         videoView.setVideoPath(videoFilePath);
         videoView.requestFocus();
 
