@@ -31,13 +31,5 @@ public class InstructionsPage extends AppCompatActivity {
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
 
-        Button startTour = (Button) findViewById(R.id.start_tour_button);
-        startTour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent HomePageIntent = new Intent(InstructionsPage.this, HomePage.class);
-                startActivity(HomePageIntent);
-            }
-        });
     }
 }

@@ -16,6 +16,8 @@ import android.widget.Button;
  * > get multi language support
  * > get fullscreen feature on videos
  * > set to permently in landscape
+ * > add all the content
+ * > style the beast
  */
 
 public class MainActivity extends AppCompatActivity {

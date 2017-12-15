@@ -3,7 +3,11 @@ package com.example.gavinross.gotravelscotland.instructions_page;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.View;
+import android.widget.Button;
 
+import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragWithButton;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentOne;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentThree;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.MessageFragmentTwo;
@@ -21,6 +25,8 @@ public class InstructionFragmentPagerAdapter extends FragmentStatePagerAdapter{
     }
 
 
+
+
     public Fragment getItem(int position) {
         if (position == 0) {
             return new MessageFragmentOne();
@@ -31,12 +37,15 @@ public class InstructionFragmentPagerAdapter extends FragmentStatePagerAdapter{
         else if (position == 2) {
             return new MessageFragmentThree();
         }
-        else
+        else if (position == 3) {
             return new VideoFragment();
+        }
+        else
+            return new MessageFragWithButton();
     }
 
     public int getCount() {
-        return 4;
+        return 5;
     }
 
 

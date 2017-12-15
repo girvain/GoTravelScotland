@@ -10,14 +10,20 @@ import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
+ * This class contains the buttons that create a TourFragContainer object. a number must be
+ * passed in as an intent to declare what custom PagerAdapter to use which is what identifies
+ * what tour it is.
  */
 
 public class TourHomePage extends AppCompatActivity {
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.three_page_ui);
 
         setButtonText("Start Here", "Into The Highlands", "The Journey Home");
+
 
         // button listener for Start Here button
         Button startTour = (Button) findViewById(R.id.button_one);
@@ -25,7 +31,29 @@ public class TourHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TourHomePage.this, TourFragContainer.class);
-                intent.putExtra("departurePic", R.drawable.dragon);
+                intent.putExtra("adapterTourOption", 1);
+                startActivity(intent);
+            }
+        });
+
+        // button listener for Start Here button
+        Button intoTheHighlands = (Button) findViewById(R.id.button_two);
+        intoTheHighlands.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TourHomePage.this, TourFragContainer.class);
+                intent.putExtra("adapterTourOption", 2);
+                startActivity(intent);
+            }
+        });
+
+        // button listener for Start Here button
+        Button tourHomePage = (Button) findViewById(R.id.button_three);
+        tourHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TourHomePage.this, TourFragContainer.class);
+                intent.putExtra("adapterTourOption", 2);
                 startActivity(intent);
             }
         });
