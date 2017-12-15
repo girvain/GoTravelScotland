@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.gavinross.gotravelscotland.tour_one.TourOneContainer;
+import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
@@ -24,7 +24,7 @@ public class TourHomePage extends AppCompatActivity {
         startTour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TourHomePage.this, TourOneContainer.class);
+                Intent intent = new Intent(TourHomePage.this, TourFragContainer.class);
                 intent.putExtra("departurePic", R.drawable.dragon);
                 startActivity(intent);
             }

@@ -36,7 +36,7 @@
             android:parentActivityName=".HomePage">
 
         </activity>
-        <activity android:name=".tour_one.TourOneContainer"
+        <activity android:name=".tours.TourFragContainer"
             android:label="@string/app_name"
             android:parentActivityName=".TourHomePage">
 

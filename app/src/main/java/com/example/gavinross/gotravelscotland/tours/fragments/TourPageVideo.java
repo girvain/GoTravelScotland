@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tour_one.fragments;
+package com.example.gavinross.gotravelscotland.tours.fragments;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import com.example.gavinross.gotravelscotland.R;
  * Created by gavinross on 13/12/2017.
  */
 
-public class TourSlidePage extends Fragment{
+public class TourPageVideo extends Fragment{
 
     private VideoView videoView;
     private MediaController mc;
@@ -30,14 +30,14 @@ public class TourSlidePage extends Fragment{
     private TextView mHeadingTextView;
     private TextView mParagraphView;
 
-    public static TourSlidePage newInstance(String headingText, String paragraphText, int resId) {
+    public static TourPageVideo newInstance(String headingText, String paragraphText, int resId) {
 
         Bundle bundle = new Bundle();
         bundle.putString("heading", headingText);
         bundle.putString("paragraph", paragraphText);
         bundle.putInt("resId", resId);
 
-        TourSlidePage fragment = new TourSlidePage();
+        TourPageVideo fragment = new TourPageVideo();
         fragment.setArguments(bundle);
         return fragment;
     }

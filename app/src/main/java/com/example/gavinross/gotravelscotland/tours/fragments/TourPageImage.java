@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tour_one.fragments;
+package com.example.gavinross.gotravelscotland.tours.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +14,7 @@ import com.example.gavinross.gotravelscotland.R;
  * Created by gavinross on 13/12/2017.
  */
 
-public class TourDeparturePage extends Fragment {
+public class TourPageImage extends Fragment {
 
     private String headingText; // for holding text from newInstance to bundle
     private String paragraphText; // to then be passed to textViews
@@ -24,14 +24,14 @@ public class TourDeparturePage extends Fragment {
     private TextView mHeadingTextView;
     private TextView mParagraphView;
 
-    public static TourDeparturePage newInstance(String headingText, String paragraphText, int resId) {
+    public static TourPageImage newInstance(String headingText, String paragraphText, int resId) {
 
         Bundle bundle = new Bundle();
         bundle.putString("heading", headingText);
         bundle.putString("paragraph", paragraphText);
         bundle.putInt("resId", resId);
 
-        TourDeparturePage fragment = new TourDeparturePage();
+        TourPageImage fragment = new TourPageImage();
         fragment.setArguments(bundle);
         return fragment;
     }

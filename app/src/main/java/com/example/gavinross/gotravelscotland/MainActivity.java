@@ -15,6 +15,7 @@ import android.widget.Button;
  *   use this.finish() to close current activity while moving to the next
  * > get multi language support
  * > get fullscreen feature on videos
+ * > set to permently in landscape
  */
 
 public class MainActivity extends AppCompatActivity {

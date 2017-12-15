@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tour_one;
+package com.example.gavinross.gotravelscotland.tours;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -8,9 +8,11 @@ import com.example.gavinross.gotravelscotland.R;
 
 /**
  * Created by gavinross on 13/12/2017.
+ * This is a container class that will take different custom made pagerAdapters for what ever tour
+ * the adapter is programed for.
  */
 
-public class TourOneContainer extends AppCompatActivity{
+public class TourFragContainer extends AppCompatActivity{
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,8 @@ public class TourOneContainer extends AppCompatActivity{
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        StartHereFragmentPagerAdapter adapter = new StartHereFragmentPagerAdapter(getSupportFragmentManager(), this);
+        StartHereAdapter adapter = new StartHereAdapter(
+                getSupportFragmentManager(), this);
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
@@ -29,7 +32,7 @@ public class TourOneContainer extends AppCompatActivity{
 //        startTour.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent HomePageIntent = new Intent(TourOneContainer.this, HomePage.class);
+//                Intent HomePageIntent = new Intent(TourFragContainer.this, HomePage.class);
 //                startActivity(HomePageIntent);
 //            }
 //        });
