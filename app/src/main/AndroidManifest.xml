@@ -41,6 +41,10 @@
             android:parentActivityName=".TourHomePage">
 
         </activity>
+        <activity android:name=".FullScreenVideoActivity"
+            android:label="@string/app_name">
+
+        </activity>
 
     </application>
 

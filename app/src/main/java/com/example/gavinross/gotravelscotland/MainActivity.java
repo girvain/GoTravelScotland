@@ -18,6 +18,7 @@ import android.widget.Button;
  * > set to permently in landscape
  * > add all the content
  * > style the beast
+ * > top graphic logo
  */
 
 public class MainActivity extends AppCompatActivity {

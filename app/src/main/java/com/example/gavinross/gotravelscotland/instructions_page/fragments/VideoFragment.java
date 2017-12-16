@@ -3,6 +3,7 @@ package com.example.gavinross.gotravelscotland.instructions_page.fragments;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
 
 /**
@@ -19,8 +21,9 @@ import com.example.gavinross.gotravelscotland.R;
 public class VideoFragment extends Fragment{
 
     private VideoView videoView;
-    private MediaController mc;
+    private FullScreenMediaController mc;
     private View rootView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +35,9 @@ public class VideoFragment extends Fragment{
                 R.raw.intro_tour;
         videoView.setVideoPath(s);
         videoView.requestFocus();
+
+
+
 
         //mc = new MediaController(this.getActivity());
         //mc.setAnchorView(videoView);
@@ -46,8 +52,9 @@ public class VideoFragment extends Fragment{
                 /*
                  * add media controller
                  */
-                        mc = new MediaController(getActivity());
+                        mc = new FullScreenMediaController(getActivity(),R.raw.intro_tour);
                         videoView.setMediaController(mc);
+
                 /*
                  * and set its position on screen
                  */
