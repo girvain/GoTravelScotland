@@ -21,6 +21,7 @@ public class FullScreenVideoActivity extends AppCompatActivity {
     private MediaController mediaController;
     private int assignedVideoName;
     private int videoPosition;
+    private int fragAdaptPos;
     private Intent intent;
 
 
@@ -33,11 +34,9 @@ public class FullScreenVideoActivity extends AppCompatActivity {
 
         assignedVideoName = getIntent().getIntExtra("fileId",0);
         videoPosition = getIntent().getIntExtra("videoPosition", 0);
+        fragAdaptPos = getIntent().getIntExtra("fragAdaptPos", 0);
 
         videoView = (VideoView)findViewById(R.id.videoView);
-
-
-
 
 
         String fullScreen =  getIntent().getStringExtra("fullScreenInd");
@@ -58,7 +57,7 @@ public class FullScreenVideoActivity extends AppCompatActivity {
         fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent.putExtra("fragAdaptPos", 3);
+                intent.putExtra("fragAdaptPos", fragAdaptPos);
                 intent.putExtra("videoPosition", videoView.getCurrentPosition());
                 startActivity(intent);
                 //finish();

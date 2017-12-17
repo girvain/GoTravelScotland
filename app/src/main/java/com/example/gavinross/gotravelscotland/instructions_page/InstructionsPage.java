@@ -33,7 +33,6 @@ public class InstructionsPage extends AppCompatActivity {
         int videoPosition = getIntent().getIntExtra("videoPosition", 0);
 
 
-
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
@@ -49,10 +48,11 @@ public class InstructionsPage extends AppCompatActivity {
 
         android.support.v4.app.Fragment fragment =(android.support.v4.app.Fragment) adapter.getItem(fragAdaptPos);
 
+        /*
         if (fragAdaptPos == 3) {
             VideoView videoView = findViewById(R.id.fragmentVideoView);
             //videoView.pause();
-        }
+        } */
 
 
     }

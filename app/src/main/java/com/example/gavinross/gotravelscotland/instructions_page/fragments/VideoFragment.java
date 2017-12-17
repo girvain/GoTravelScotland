@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class VideoFragment extends Fragment{
     private View rootView;
     private ImageButton fullscreenButton;
     private int videoPosition;
+    private int fragAdaptPos;
 
 
     @Override
@@ -45,6 +47,7 @@ public class VideoFragment extends Fragment{
         videoView.requestFocus();
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
+        fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
 
         videoView.seekTo(videoPosition);
         videoView.start();
@@ -98,6 +101,9 @@ public class VideoFragment extends Fragment{
 
 
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.imageButton2);
+        // get a reference to the activity hosting this fragment and find the item index num
+        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        fragAdaptPos = viewPager.getCurrentItem();
 
         fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +112,13 @@ public class VideoFragment extends Fragment{
                 videoPosition = videoView.getCurrentPosition();
                 Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
                 intent.putExtra("videoPosition", videoPosition);
+
+                // get a reference to the activity hosting this fragment and find the item index num
+                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+                intent.putExtra("fragAdaptPos", viewPager.getCurrentItem());
+
                 intent.putExtra("fileId", R.raw.intro_tour);
+                // then send the intent with the data to the FullScreenVideoActivity
                 startActivity(intent);
             }
         });
@@ -117,6 +129,8 @@ public class VideoFragment extends Fragment{
         return rootView;
     }
 
-
+    public int getFragAdaptPos() {
+        return fragAdaptPos;
+    }
 
 }
