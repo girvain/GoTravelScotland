@@ -7,6 +7,7 @@ package com.example.gavinross.gotravelscotland;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -50,7 +51,7 @@ public class FullScreenMediaController extends MediaController {
         if("y".equals(isFullScreen)){
             fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
         }else{
-            fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
+            fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
         }
 
         //add listener to image button to handle full screen and exit full screen events
@@ -59,16 +60,18 @@ public class FullScreenMediaController extends MediaController {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getContext(),FullScreenVideoActivity.class);
-
                 // put the file id in the intent  and pass to fullscreenVideoActivity
                 intent.putExtra("fileId", fileId);
 
                 if("y".equals(isFullScreen)){
                     intent.putExtra("fullScreenInd", "");
+                    Log.v("FullScreenMediaCont", "exit Full Screen Button");
+
                 }else{
                     intent.putExtra("fullScreenInd", "y");
+                    ((Activity)getContext()).startActivity(intent);
                 }
-                ((Activity)getContext()).startActivity(intent);
+                //((Activity)getContext()).startActivity(intent);
             }
         });
     }

@@ -1,18 +1,24 @@
 package com.example.gavinross.gotravelscotland.instructions_page.fragments;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
+import com.example.gavinross.gotravelscotland.FullScreenVideoActivity;
 import com.example.gavinross.gotravelscotland.R;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by gavinross on 12/12/2017.
@@ -23,6 +29,8 @@ public class VideoFragment extends Fragment{
     private VideoView videoView;
     private FullScreenMediaController mc;
     private View rootView;
+    private ImageButton fullscreenButton;
+    private int videoPosition;
 
 
     @Override
@@ -36,7 +44,10 @@ public class VideoFragment extends Fragment{
         videoView.setVideoPath(s);
         videoView.requestFocus();
 
+        videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
 
+        videoView.seekTo(videoPosition);
+        videoView.start();
 
 
         //mc = new MediaController(this.getActivity());
@@ -64,7 +75,7 @@ public class VideoFragment extends Fragment{
             }
         });
 
-
+        /*
         videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -83,11 +94,29 @@ public class VideoFragment extends Fragment{
                 return false;
             }
         });
+        */
+
+
+        fullscreenButton = (ImageButton)rootView.findViewById(R.id.imageButton2);
+
+        fullscreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //videoView.pause();
+                videoPosition = videoView.getCurrentPosition();
+                Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
+                intent.putExtra("videoPosition", videoPosition);
+                intent.putExtra("fileId", R.raw.intro_tour);
+                startActivity(intent);
+            }
+        });
 
 
 
 
         return rootView;
     }
+
+
 
 }
