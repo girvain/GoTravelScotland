@@ -65,7 +65,7 @@ public class FullScreenVideoActivity extends AppCompatActivity {
         });
 
         // make a new object and pass it the video file
-        mediaController = new FullScreenMediaController(this, assignedVideoName);
+        mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
 
         videoView.setMediaController(mediaController);

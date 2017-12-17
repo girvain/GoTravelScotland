@@ -28,7 +28,7 @@ import static android.app.Activity.RESULT_OK;
 public class VideoFragment extends Fragment{
 
     private VideoView videoView;
-    private FullScreenMediaController mc;
+    private MediaController mc;
     private View rootView;
     private ImageButton fullscreenButton;
     private int videoPosition;
@@ -66,7 +66,7 @@ public class VideoFragment extends Fragment{
                 /*
                  * add media controller
                  */
-                        mc = new FullScreenMediaController(getActivity(),R.raw.intro_tour);
+                        mc = new MediaController(getActivity());
                         videoView.setMediaController(mc);
 
                 /*
