@@ -59,6 +59,7 @@ public class FullScreenVideoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 intent.putExtra("fragAdaptPos", fragAdaptPos);
                 intent.putExtra("videoPosition", videoView.getCurrentPosition());
+                intent.putExtra("returnedFromFullscreen", true);
                 startActivity(intent);
                 //finish();
             }

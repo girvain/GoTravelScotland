@@ -21,6 +21,7 @@ import com.example.gavinross.gotravelscotland.FullScreenVideoActivity;
 import com.example.gavinross.gotravelscotland.R;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -31,12 +32,16 @@ import static android.app.Activity.RESULT_OK;
 public class VideoFragment extends Fragment{
 
     private VideoView videoView;
-    private MediaController mc;
     private View rootView;
     private ImageButton fullscreenButton;
     private ImageButton playButton;
+    private ImageButton largePlayButton;
+    private SeekBar seekBar;
     private int videoPosition;
     private int fragAdaptPos;
+    private Timer timer;
+    private boolean returnedFromFullscreen = false;
+
 
 
     @Override
@@ -45,6 +50,12 @@ public class VideoFragment extends Fragment{
         rootView = inflater.inflate(R.layout.video_fragment, container, false);
         videoView =(VideoView) rootView.findViewById(R.id.fragmentVideoView);
 
+        // get ref's to all the buttons
+        largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
+        playButton = (ImageButton)rootView.findViewById(R.id.playButton);
+        seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+        fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
+
         String s = "android.resource://" + getActivity().getPackageName() + "/" +
                 R.raw.intro_tour;
         videoView.setVideoPath(s);
@@ -52,14 +63,18 @@ public class VideoFragment extends Fragment{
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
+        returnedFromFullscreen = getActivity().getIntent().getBooleanExtra(
+                "returnedFromFullscreen", false);
 
-        videoView.seekTo(videoPosition);
-        //videoView.start();
+
+        if (returnedFromFullscreen) {
+            videoView.seekTo(videoPosition);
+            videoView.start();
+            largePlayButton.setVisibility(View.INVISIBLE);
+        }
 
 
-        //mc = new MediaController(this.getActivity());
-        //mc.setAnchorView(videoView);
-        //videoView.setMediaController(mc);
+
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -86,21 +101,41 @@ public class VideoFragment extends Fragment{
         videoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyTimer timer = new MyTimer();
-
+                displayMediaControls();
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        removeMediaControls();
+                    }
+                },4000);
 
             }
         });
 
 
+        if (videoView.isPlaying()) {
+            largePlayButton.setVisibility(View.INVISIBLE);
+        }
+        largePlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (videoView.isPlaying()) {
+                    largePlayButton.setVisibility(View.INVISIBLE);
+                }
+                else
+                    largePlayButton.setVisibility(View.INVISIBLE);
+                    videoView.start();
+            }
+        });
 
-        playButton = (ImageButton)rootView.findViewById(R.id.playButton);
+
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (videoView.isPlaying()) {
-                    playButton.setVisibility(View.INVISIBLE);
+                    //playButton.setVisibility(View.INVISIBLE);
                 }
                 else if (!videoView.hasFocus()) {
                     videoView.pause();
@@ -114,7 +149,7 @@ public class VideoFragment extends Fragment{
             }
         });
 
-        SeekBar seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progChanged = 0;
             @Override
@@ -136,7 +171,7 @@ public class VideoFragment extends Fragment{
         });
 
 
-        fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
+
         // get a reference to the activity hosting this fragment and find the item index num
         ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
@@ -159,9 +194,6 @@ public class VideoFragment extends Fragment{
             }
         });
 
-
-
-
         return rootView;
     }
 
@@ -169,22 +201,16 @@ public class VideoFragment extends Fragment{
         return fragAdaptPos;
     }
 
-    private class MyTimer implements java.lang.Runnable {
-        public void run() {
-            this.runTimer();
-        }
+    public void displayMediaControls() {
+        fullscreenButton.setVisibility(View.VISIBLE);
+        playButton.setVisibility(View.VISIBLE);
+        seekBar.setVisibility(View.VISIBLE);
+    }
 
-        public void runTimer() {
-            int i = 5;
-            while (i > 5) {
-                try{
-                    i--;
-                    Thread.sleep(1000L); // this is a second in ms
-                }catch(InterruptedException e) {
-                    // fill this in later!
-                }
-            }
-        }
+    public void removeMediaControls() {
+        fullscreenButton.setVisibility(View.INVISIBLE);
+        playButton.setVisibility(View.INVISIBLE);
+        seekBar.setVisibility(View.INVISIBLE);
     }
 
 }
