@@ -20,6 +20,8 @@ import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.FullScreenVideoActivity;
 import com.example.gavinross.gotravelscotland.R;
 
+import java.util.Timer;
+
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -80,6 +82,18 @@ public class VideoFragment extends Fragment{
             }
         });
 
+        // listener to display the media player
+        videoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyTimer timer = new MyTimer();
+
+
+            }
+        });
+
+
+
         playButton = (ImageButton)rootView.findViewById(R.id.playButton);
 
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -102,19 +116,22 @@ public class VideoFragment extends Fragment{
 
         SeekBar seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progChanged = 0;
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                progChanged = videoView.getCurrentPosition();
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                videoView.pause();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+                videoView.seekTo(progChanged);
+                videoView.start();
             }
         });
 
@@ -150,6 +167,24 @@ public class VideoFragment extends Fragment{
 
     public int getFragAdaptPos() {
         return fragAdaptPos;
+    }
+
+    private class MyTimer implements java.lang.Runnable {
+        public void run() {
+            this.runTimer();
+        }
+
+        public void runTimer() {
+            int i = 5;
+            while (i > 5) {
+                try{
+                    i--;
+                    Thread.sleep(1000L); // this is a second in ms
+                }catch(InterruptedException e) {
+                    // fill this in later!
+                }
+            }
+        }
     }
 
 }
