@@ -35,6 +35,7 @@ public class VideoFragment extends Fragment{
     private View rootView;
     private ImageButton fullscreenButton;
     private ImageButton playButton;
+    private ImageButton pauseButton;
     private ImageButton largePlayButton;
     private SeekBar seekBar;
     private int videoPosition;
@@ -53,6 +54,7 @@ public class VideoFragment extends Fragment{
         // get ref's to all the buttons
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
         playButton = (ImageButton)rootView.findViewById(R.id.playButton);
+        pauseButton = (ImageButton)rootView.findViewById(R.id.pauseButton);
         seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
 
@@ -114,18 +116,21 @@ public class VideoFragment extends Fragment{
         });
 
 
-        if (videoView.isPlaying()) {
-            largePlayButton.setVisibility(View.INVISIBLE);
-        }
         largePlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (videoView.isPlaying()) {
-                    largePlayButton.setVisibility(View.INVISIBLE);
-                }
-                else
-                    largePlayButton.setVisibility(View.INVISIBLE);
-                    videoView.start();
+                largePlayButton.setVisibility(View.INVISIBLE);
+                videoView.start();
+            }
+        });
+
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoView.pause();
+                // swap the pause and play
+                playButton.setVisibility(View.VISIBLE);
+                pauseButton.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -145,7 +150,9 @@ public class VideoFragment extends Fragment{
                 }
                 else
                     videoView.start();
-
+                // swap the pause and play
+                pauseButton.setVisibility(View.VISIBLE);
+                playButton.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -203,14 +210,19 @@ public class VideoFragment extends Fragment{
 
     public void displayMediaControls() {
         fullscreenButton.setVisibility(View.VISIBLE);
-        playButton.setVisibility(View.VISIBLE);
         seekBar.setVisibility(View.VISIBLE);
+        if (videoView.isPlaying()) {
+            pauseButton.setVisibility(View.VISIBLE);
+        }
+        else
+            playButton.setVisibility(View.VISIBLE);
     }
 
     public void removeMediaControls() {
         fullscreenButton.setVisibility(View.INVISIBLE);
         playButton.setVisibility(View.INVISIBLE);
         seekBar.setVisibility(View.INVISIBLE);
+        pauseButton.setVisibility(View.INVISIBLE);
     }
 
 }

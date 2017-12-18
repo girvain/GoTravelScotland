@@ -19,6 +19,9 @@ import android.widget.Button;
  * > add all the content
  * > style the beast
  * > top graphic logo
+ * > make my media controller into an interface
+ * > make fullscreen class use my media controller
+ * > get seek view working
  */
 
 public class MainActivity extends AppCompatActivity {
