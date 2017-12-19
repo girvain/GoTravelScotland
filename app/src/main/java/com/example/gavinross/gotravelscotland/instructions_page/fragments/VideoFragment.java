@@ -36,6 +36,7 @@ import static android.app.Activity.RESULT_OK;
 public class VideoFragment extends Fragment{
 
     private VideoView videoView;
+    private VideoView fullscreenVideoView;
     private View rootView;
     private ImageButton fullscreenButton;
     private ImageButton playButton;
@@ -53,6 +54,7 @@ public class VideoFragment extends Fragment{
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.video_fragment, container, false);
         videoView =(VideoView) rootView.findViewById(R.id.fragmentVideoView);
+        fullscreenVideoView =(VideoView) rootView.findViewById(R.id.fullscreenVideoView);
 
         // get ref's to all the buttons
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
@@ -167,16 +169,19 @@ public class VideoFragment extends Fragment{
             public void onClick(View view) {
                 //videoView.pause();
                 videoPosition = videoView.getCurrentPosition();
-                Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
-                intent.putExtra("videoPosition", videoPosition);
+                videoView.stopPlayback();
+                videoView.setVisibility(View.GONE);
 
-                // get a reference to the activity hosting this fragment and find the item index num
-                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-                intent.putExtra("fragAdaptPos", viewPager.getCurrentItem());
-
-                intent.putExtra("fileId", R.raw.intro_tour);
-                // then send the intent with the data to the FullScreenVideoActivity
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
+//                intent.putExtra("videoPosition", videoPosition);
+//
+//                // get a reference to the activity hosting this fragment and find the item index num
+//                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+//                intent.putExtra("fragAdaptPos", viewPager.getCurrentItem());
+//
+//                intent.putExtra("fileId", R.raw.intro_tour);
+//                // then send the intent with the data to the FullScreenVideoActivity
+//                startActivity(intent);
             }
         });
 
