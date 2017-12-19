@@ -37,17 +37,9 @@ public class FullScreenVideoActivity extends AppCompatActivity {
         fragAdaptPos = getIntent().getIntExtra("fragAdaptPos", 0);
 
         videoView = (VideoView)findViewById(R.id.videoView);
+        getSupportActionBar().hide();
 
-
-        String fullScreen =  getIntent().getStringExtra("fullScreenInd");
-        if("y".equals(fullScreen)){
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getSupportActionBar().hide();
-        }
-
-
-                Uri videoUri = Uri.parse("android.resource://"+getPackageName()+"/"+assignedVideoName);
+        Uri videoUri = Uri.parse("android.resource://"+getPackageName()+"/"+assignedVideoName);
 
         videoView.setVideoURI(videoUri);
 

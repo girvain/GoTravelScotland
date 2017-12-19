@@ -2,15 +2,18 @@ package com.example.gavinross.gotravelscotland.instructions_page.fragments;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.SeekBar;
@@ -19,6 +22,7 @@ import android.widget.VideoView;
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.FullScreenVideoActivity;
 import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.instructions_page.InstructionsPage;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,7 +46,6 @@ public class VideoFragment extends Fragment{
     private int fragAdaptPos;
     private Timer timer;
     private boolean returnedFromFullscreen = false;
-
 
 
     @Override
@@ -77,28 +80,6 @@ public class VideoFragment extends Fragment{
 
 
 
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-                /*
-                 * add media controller
-                 */
-                        //mc = new MediaController(getActivity());
-                        //videoView.setMediaController(mc);
-
-                /*
-                 * and set its position on screen
-                 */
-                        //mc.setAnchorView(videoView);
-                    }
-                });
-            }
-        });
-
         // listener to display the media player
         videoView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +92,6 @@ public class VideoFragment extends Fragment{
                         removeMediaControls();
                     }
                 },4000);
-
             }
         });
 
