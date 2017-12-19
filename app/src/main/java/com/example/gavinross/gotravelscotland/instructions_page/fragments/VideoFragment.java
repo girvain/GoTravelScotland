@@ -1,5 +1,6 @@
 package com.example.gavinross.gotravelscotland.instructions_page.fragments;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -63,9 +64,9 @@ public class VideoFragment extends Fragment{
         seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
 
-        String s = "android.resource://" + getActivity().getPackageName() + "/" +
+        final String videoPath = "android.resource://" + getActivity().getPackageName() + "/" +
                 R.raw.intro_tour;
-        videoView.setVideoPath(s);
+        videoView.setVideoPath(videoPath);
         videoView.requestFocus();
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
@@ -172,6 +173,23 @@ public class VideoFragment extends Fragment{
                 videoView.stopPlayback();
                 videoView.setVisibility(View.GONE);
 
+                fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                    }
+                });
+
+                MediaController mc = new MediaController(getContext());
+                fullscreenVideoView.setMediaController(mc);
+                mc.setAnchorView(fullscreenVideoView);
+
+                fullscreenVideoView.setVideoPath(videoPath);
+                fullscreenVideoView.setVisibility(View.VISIBLE);
+                fullscreenVideoView.seekTo(videoPosition);
+                fullscreenVideoView.start();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
 //                Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
 //                intent.putExtra("videoPosition", videoPosition);
 //
@@ -208,6 +226,7 @@ public class VideoFragment extends Fragment{
         seekBar.setVisibility(View.INVISIBLE);
         pauseButton.setVisibility(View.INVISIBLE);
     }
+
 
 
 

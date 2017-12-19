@@ -1,5 +1,6 @@
 package com.example.gavinross.gotravelscotland.instructions_page;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,5 +56,10 @@ public class InstructionsPage extends AppCompatActivity {
         } */
 
 
+    }
+
+    public void hideActionBar() {
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
     }
 }
