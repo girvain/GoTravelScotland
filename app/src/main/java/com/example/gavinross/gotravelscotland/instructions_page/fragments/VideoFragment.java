@@ -178,7 +178,6 @@ public class VideoFragment extends Fragment{
         });
 
 
-
         // get a reference to the activity hosting this fragment and find the item index num
         ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
@@ -224,5 +223,7 @@ public class VideoFragment extends Fragment{
         seekBar.setVisibility(View.INVISIBLE);
         pauseButton.setVisibility(View.INVISIBLE);
     }
+
+
 
 }
