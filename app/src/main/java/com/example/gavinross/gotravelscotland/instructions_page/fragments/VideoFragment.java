@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -39,15 +40,21 @@ public class VideoFragment extends Fragment{
     private VideoView videoView;
     private VideoView fullscreenVideoView;
     private View rootView;
+    private ImageButton largePlayButton;
     private ImageButton fullscreenButton;
     private ImageButton playButton;
     private ImageButton pauseButton;
-    private ImageButton largePlayButton;
     private SeekBar seekBar;
+    private ImageButton fullscreenButtonLarge;
+    private ImageButton playButtonLarge;
+    private ImageButton pauseButtonLarge;
+    private SeekBar seekBarLarge;
+
     private int videoPosition;
     private int fragAdaptPos;
     private Timer timer;
-    private boolean returnedFromFullscreen = false;
+    private boolean fullscreenDisplay = false;
+    private boolean beenPlayed = false;
 
 
     @Override
@@ -59,32 +66,30 @@ public class VideoFragment extends Fragment{
 
         // get ref's to all the buttons
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
+        // standard media controls
         playButton = (ImageButton)rootView.findViewById(R.id.playButton);
         pauseButton = (ImageButton)rootView.findViewById(R.id.pauseButton);
         seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
+        // fullscreen media controls
+        playButtonLarge = (ImageButton)rootView.findViewById(R.id.playButtonLarge);
+        pauseButtonLarge = (ImageButton)rootView.findViewById(R.id.pauseButtonLarge);
+        seekBarLarge = (SeekBar) rootView.findViewById(R.id.seekBarLarge);
+        fullscreenButtonLarge = (ImageButton)rootView.findViewById(R.id.fullscreenButtonLarge);
+
+
 
         final String videoPath = "android.resource://" + getActivity().getPackageName() + "/" +
                 R.raw.intro_tour;
         videoView.setVideoPath(videoPath);
         videoView.requestFocus();
 
-        videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
-        fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
-        returnedFromFullscreen = getActivity().getIntent().getBooleanExtra(
-                "returnedFromFullscreen", false);
-
-
-        if (returnedFromFullscreen) {
-            videoView.seekTo(videoPosition);
-            videoView.start();
-            largePlayButton.setVisibility(View.INVISIBLE);
+        if (beenPlayed == true) {
+            largePlayButton.setVisibility(View.GONE);
         }
 
-
-
-        // listener to display the media player
-        videoView.setOnClickListener(new View.OnClickListener() {
+        // Listener to set and display the media controls
+        View.OnClickListener mediaControlsListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 displayMediaControls();
@@ -96,9 +101,28 @@ public class VideoFragment extends Fragment{
                     }
                 },4000);
             }
+        };
+
+
+        // listener to display the media player
+        videoView.setOnClickListener(mediaControlsListener);
+        fullscreenVideoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayMediaControlsLarge();
+                Log.v("VideoFragment", "LAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRGGGGGGEEE");
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        removeMediaControlsLarge();
+                    }
+                },4000);
+            }
         });
 
 
+        // The one off big play icon displayed before the video is played
         largePlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +131,17 @@ public class VideoFragment extends Fragment{
             }
         });
 
+        // Pause Listeners
         pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoView.pause();
+                // swap the pause and play
+                playButton.setVisibility(View.VISIBLE);
+                pauseButton.setVisibility(View.INVISIBLE);
+            }
+        });
+        pauseButtonLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 videoView.pause();
@@ -118,29 +152,47 @@ public class VideoFragment extends Fragment{
         });
 
 
-
+        // Play listeners
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (videoView.isPlaying()) {
-                    //playButton.setVisibility(View.INVISIBLE);
-                }
-                else if (!videoView.hasFocus()) {
-                    videoView.pause();
-                }
-                else if (!videoView.isShown()){
-                    videoView.pause();
-                }
-                else
-                    videoView.start();
+                videoView.start();
+                // swap the pause and play
+                pauseButton.setVisibility(View.VISIBLE);
+                playButton.setVisibility(View.INVISIBLE);
+            }
+        });
+        playButtonLarge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoView.start();
                 // swap the pause and play
                 pauseButton.setVisibility(View.VISIBLE);
                 playButton.setVisibility(View.INVISIBLE);
             }
         });
 
-
+        // SeekBar listeners
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progChanged = 0;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                progChanged = videoView.getCurrentPosition();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                videoView.pause();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                videoView.seekTo(progChanged);
+                videoView.start();
+            }
+        });
+        seekBarLarge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progChanged = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -165,24 +217,33 @@ public class VideoFragment extends Fragment{
         ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
 
+        // fullScreen listeners
         fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //videoView.pause();
-                videoPosition = videoView.getCurrentPosition();
-                videoView.stopPlayback();
-                videoView.setVisibility(View.GONE);
 
-                fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mediaPlayer) {
+                if (fullscreenDisplay == false) {
+                    // handle current video view
+                    videoPosition = videoView.getCurrentPosition();
+                    videoView.stopPlayback();
+                    videoView.setVisibility(View.GONE);
+                    removeMediaControls();
+                    // prepare new video view
+                    fullscreenVideoView.seekTo(videoPosition);
+                    fullscreenVideoView.start();
+                    fullscreenDisplay = true;
+                }
+                else {
+                    videoPosition = videoView.getCurrentPosition();
+                    fullscreenVideoView.stopPlayback();
+                    fullscreenVideoView.setVisibility(View.GONE);
+                    removeMediaControlsLarge();
+                    // prepare new video
+                    videoView.seekTo(videoPosition);
+                    videoView.start();
+                    fullscreenDisplay = false;
+                }
 
-                    }
-                });
-
-                MediaController mc = new MediaController(getContext());
-                fullscreenVideoView.setMediaController(mc);
-                mc.setAnchorView(fullscreenVideoView);
 
                 fullscreenVideoView.setVideoPath(videoPath);
                 fullscreenVideoView.setVisibility(View.VISIBLE);
@@ -190,16 +251,41 @@ public class VideoFragment extends Fragment{
                 fullscreenVideoView.start();
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-//                Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
-//                intent.putExtra("videoPosition", videoPosition);
-//
-//                // get a reference to the activity hosting this fragment and find the item index num
-//                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-//                intent.putExtra("fragAdaptPos", viewPager.getCurrentItem());
-//
-//                intent.putExtra("fileId", R.raw.intro_tour);
-//                // then send the intent with the data to the FullScreenVideoActivity
-//                startActivity(intent);
+            }
+        });
+        fullscreenButtonLarge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (fullscreenDisplay == false) {
+                    // handle current video view
+                    videoPosition = videoView.getCurrentPosition();
+                    videoView.stopPlayback();
+                    videoView.setVisibility(View.GONE);
+                    removeMediaControls();
+                    // prepare new video view
+                    fullscreenVideoView.seekTo(videoPosition);
+                    fullscreenVideoView.start();
+                    fullscreenDisplay = true;
+                }
+                else {
+                    videoPosition = videoView.getCurrentPosition();
+                    fullscreenVideoView.stopPlayback();
+                    fullscreenVideoView.setVisibility(View.GONE);
+                    removeMediaControlsLarge();
+                    // prepare new video
+                    videoView.seekTo(videoPosition);
+                    videoView.start();
+                    fullscreenDisplay = false;
+                }
+
+
+                videoView.setVideoPath(videoPath);
+                videoView.setVisibility(View.VISIBLE);
+                videoView.seekTo(videoPosition);
+                videoView.start();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
             }
         });
 
@@ -220,11 +306,28 @@ public class VideoFragment extends Fragment{
             playButton.setVisibility(View.VISIBLE);
     }
 
+    public void displayMediaControlsLarge() {
+        fullscreenButtonLarge.setVisibility(View.VISIBLE);
+        seekBarLarge.setVisibility(View.VISIBLE);
+        if (fullscreenVideoView.isPlaying()) {
+            pauseButtonLarge.setVisibility(View.VISIBLE);
+        }
+        else
+            playButton.setVisibility(View.VISIBLE);
+    }
+
     public void removeMediaControls() {
         fullscreenButton.setVisibility(View.INVISIBLE);
         playButton.setVisibility(View.INVISIBLE);
         seekBar.setVisibility(View.INVISIBLE);
         pauseButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void removeMediaControlsLarge() {
+        fullscreenButtonLarge.setVisibility(View.INVISIBLE);
+        playButtonLarge.setVisibility(View.INVISIBLE);
+        seekBarLarge.setVisibility(View.INVISIBLE);
+        pauseButtonLarge.setVisibility(View.INVISIBLE);
     }
 
 

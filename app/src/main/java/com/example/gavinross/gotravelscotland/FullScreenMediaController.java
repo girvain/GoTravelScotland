@@ -21,7 +21,7 @@ public class FullScreenMediaController extends MediaController {
     private int fileId;
 
 
-    public FullScreenMediaController(Context context, int fileId) {
+    public FullScreenMediaController(Context context) {
         super(context);
         this.fileId = fileId;
     }
