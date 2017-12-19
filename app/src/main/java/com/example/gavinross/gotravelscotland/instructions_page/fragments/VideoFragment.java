@@ -53,7 +53,6 @@ public class VideoFragment extends Fragment{
     private int videoPosition;
     private int fragAdaptPos;
     private Timer timer;
-    private boolean fullscreenDisplay = false;
     private boolean beenPlayed = false;
 
 
@@ -71,6 +70,7 @@ public class VideoFragment extends Fragment{
         pauseButton = (ImageButton)rootView.findViewById(R.id.pauseButton);
         seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
+
         // fullscreen media controls
         playButtonLarge = (ImageButton)rootView.findViewById(R.id.playButtonLarge);
         pauseButtonLarge = (ImageButton)rootView.findViewById(R.id.pauseButtonLarge);
@@ -90,8 +90,11 @@ public class VideoFragment extends Fragment{
             largePlayButton.setVisibility(View.GONE);
         }
 
-        // Listener to set and display the media controls
-        View.OnClickListener mediaControlsListener = new View.OnClickListener() {
+
+        /*---------------------------------LISTENERS----------------------------------*/
+
+        // Listeners to set and display the media controls
+        videoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 displayMediaControls();
@@ -103,11 +106,7 @@ public class VideoFragment extends Fragment{
                     }
                 },4000);
             }
-        };
-
-
-        // listener to display the media player
-        videoView.setOnClickListener(mediaControlsListener);
+        });
         fullscreenVideoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,9 +220,11 @@ public class VideoFragment extends Fragment{
         fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // handle current video view
+                boolean isPlaying = false; // determine if the video was paused before fullscreen
                 videoPosition = videoView.getCurrentPosition();
+                if (videoView.isPlaying()) {
+                    isPlaying = true;
+                }
                 videoView.stopPlayback();
                 videoView.setVisibility(View.GONE);
                 removeMediaControls();
@@ -232,26 +233,32 @@ public class VideoFragment extends Fragment{
                 fullscreenVideoView.setVideoPath(videoPath);
                 fullscreenVideoView.setVisibility(View.VISIBLE);
                 fullscreenVideoView.seekTo(videoPosition);
-                fullscreenVideoView.start();
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+                if (isPlaying) {
+                    fullscreenVideoView.start();
+                    displayMediaControlsTimer();
+                }
             }
         });
         fullscreenButtonLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // handle current video view
-                videoPosition = videoView.getCurrentPosition();
+                boolean isPlaying = false;
+                videoPosition = fullscreenVideoView.getCurrentPosition();
+                if (fullscreenVideoView.isPlaying()) {
+                    isPlaying = true;
+                }
                 videoView.stopPlayback();
-                videoView.setVisibility(View.GONE);
-                removeMediaControls();
+                fullscreenVideoView.setVisibility(View.GONE);
+                removeMediaControlsLarge();
 
                 videoView.setVideoPath(videoPath);
                 videoView.setVisibility(View.VISIBLE);
                 videoView.seekTo(videoPosition);
-                videoView.start();
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
+                if (isPlaying) {
+                    videoView.start();
+                }
             }
         });
 
@@ -303,6 +310,15 @@ public class VideoFragment extends Fragment{
     }
 
 
-
+    public void displayMediaControlsTimer() {
+        displayMediaControlsLarge();
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                removeMediaControlsLarge();
+            }
+        },4000);
+    }
 
 }
