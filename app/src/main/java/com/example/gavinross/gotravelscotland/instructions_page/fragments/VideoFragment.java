@@ -77,6 +77,8 @@ public class VideoFragment extends Fragment{
         seekBarLarge = (SeekBar) rootView.findViewById(R.id.seekBarLarge);
         fullscreenButtonLarge = (ImageButton)rootView.findViewById(R.id.fullscreenButtonLarge);
 
+        // needed this to display the play icon
+        largePlayButton.bringToFront();
 
 
         final String videoPath = "android.resource://" + getActivity().getPackageName() + "/" +
@@ -144,10 +146,10 @@ public class VideoFragment extends Fragment{
         pauseButtonLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                videoView.pause();
+                fullscreenVideoView.pause();
                 // swap the pause and play
-                playButton.setVisibility(View.VISIBLE);
-                pauseButton.setVisibility(View.INVISIBLE);
+                playButtonLarge.setVisibility(View.VISIBLE);
+                pauseButtonLarge.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -165,10 +167,10 @@ public class VideoFragment extends Fragment{
         playButtonLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                videoView.start();
+                fullscreenVideoView.start();
                 // swap the pause and play
-                pauseButton.setVisibility(View.VISIBLE);
-                playButton.setVisibility(View.INVISIBLE);
+                pauseButtonLarge.setVisibility(View.VISIBLE);
+                playButtonLarge.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -188,8 +190,7 @@ public class VideoFragment extends Fragment{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
-                videoView.seekTo(progChanged);
-                videoView.start();
+
             }
         });
         seekBarLarge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -207,8 +208,7 @@ public class VideoFragment extends Fragment{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
-                videoView.seekTo(progChanged);
-                videoView.start();
+
             }
         });
 
@@ -222,63 +222,29 @@ public class VideoFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                if (fullscreenDisplay == false) {
-                    // handle current video view
-                    videoPosition = videoView.getCurrentPosition();
-                    videoView.stopPlayback();
-                    videoView.setVisibility(View.GONE);
-                    removeMediaControls();
-                    // prepare new video view
-                    fullscreenVideoView.seekTo(videoPosition);
-                    fullscreenVideoView.start();
-                    fullscreenDisplay = true;
-                }
-                else {
-                    videoPosition = videoView.getCurrentPosition();
-                    fullscreenVideoView.stopPlayback();
-                    fullscreenVideoView.setVisibility(View.GONE);
-                    removeMediaControlsLarge();
-                    // prepare new video
-                    videoView.seekTo(videoPosition);
-                    videoView.start();
-                    fullscreenDisplay = false;
-                }
+                // handle current video view
+                videoPosition = videoView.getCurrentPosition();
+                videoView.stopPlayback();
+                videoView.setVisibility(View.GONE);
+                removeMediaControls();
 
-
+                // prepare new video view
                 fullscreenVideoView.setVideoPath(videoPath);
                 fullscreenVideoView.setVisibility(View.VISIBLE);
                 fullscreenVideoView.seekTo(videoPosition);
                 fullscreenVideoView.start();
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-
             }
         });
         fullscreenButtonLarge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (fullscreenDisplay == false) {
-                    // handle current video view
-                    videoPosition = videoView.getCurrentPosition();
-                    videoView.stopPlayback();
-                    videoView.setVisibility(View.GONE);
-                    removeMediaControls();
-                    // prepare new video view
-                    fullscreenVideoView.seekTo(videoPosition);
-                    fullscreenVideoView.start();
-                    fullscreenDisplay = true;
-                }
-                else {
-                    videoPosition = videoView.getCurrentPosition();
-                    fullscreenVideoView.stopPlayback();
-                    fullscreenVideoView.setVisibility(View.GONE);
-                    removeMediaControlsLarge();
-                    // prepare new video
-                    videoView.seekTo(videoPosition);
-                    videoView.start();
-                    fullscreenDisplay = false;
-                }
-
+                // handle current video view
+                videoPosition = videoView.getCurrentPosition();
+                videoView.stopPlayback();
+                videoView.setVisibility(View.GONE);
+                removeMediaControls();
 
                 videoView.setVideoPath(videoPath);
                 videoView.setVisibility(View.VISIBLE);
@@ -301,9 +267,12 @@ public class VideoFragment extends Fragment{
         seekBar.setVisibility(View.VISIBLE);
         if (videoView.isPlaying()) {
             pauseButton.setVisibility(View.VISIBLE);
+            playButton.setVisibility(View.INVISIBLE);
         }
-        else
+        else {
             playButton.setVisibility(View.VISIBLE);
+            pauseButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void displayMediaControlsLarge() {
@@ -311,9 +280,12 @@ public class VideoFragment extends Fragment{
         seekBarLarge.setVisibility(View.VISIBLE);
         if (fullscreenVideoView.isPlaying()) {
             pauseButtonLarge.setVisibility(View.VISIBLE);
+            playButtonLarge.setVisibility(View.INVISIBLE);
         }
-        else
-            playButton.setVisibility(View.VISIBLE);
+        else {
+            playButtonLarge.setVisibility(View.VISIBLE);
+            pauseButtonLarge.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void removeMediaControls() {
