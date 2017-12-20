@@ -56,6 +56,7 @@ public class VideoFragment extends Fragment{
     private Timer timer;
     private boolean beenPlayed = false;
     private Handler handler = new Handler();
+    OnEverySecond onEverySecond;
 
 
     @Override
@@ -92,7 +93,42 @@ public class VideoFragment extends Fragment{
             largePlayButton.setVisibility(View.GONE);
         }
 
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override public void onPrepared(MediaPlayer mediaPlayer) {
+                int duration = videoView.getDuration();
+                Log.v(String.format("VIDEO LENGTH: %d ", duration), " HELLO");
+                seekBar.setMax(duration);
+                onEverySecond = new OnEverySecond();
+                onEverySecond.run();
+                seekBar.postDelayed(onEverySecond, 1000);
 
+
+            }
+        });
+
+        // SeekBar listeners
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(fromUser) {
+                    // this is when actually seekbar has been seeked to a new position
+                    videoView.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int progress = seekBar.getProgress();
+                if (videoView != null && videoView.isPlaying()) {
+                    //videoView.seekTo(progress);
+                }
+            }
+        });
 
         /*---------------------------------LISTENERS----------------------------------*/
 
@@ -117,6 +153,7 @@ public class VideoFragment extends Fragment{
             public void onClick(View view) {
                 largePlayButton.setVisibility(View.INVISIBLE);
                 videoView.start();
+
             }
         });
 
@@ -162,25 +199,7 @@ public class VideoFragment extends Fragment{
         });
 
         // SeekBar listeners
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progChanged = 0;
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progChanged = progress;
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                int current = videoView.getCurrentPosition();
-                videoView.seekTo(progChanged+current);
-
-            }
-        });
         seekBarLarge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progChanged = 0;
             @Override
@@ -253,6 +272,7 @@ public class VideoFragment extends Fragment{
         });
 
         seekBar.setMax(videoView.getDuration());
+
 
 
         return rootView;
@@ -329,6 +349,22 @@ public class VideoFragment extends Fragment{
                 removeMediaControlsLarge();
             }
         },4000);
+    }
+
+    final class OnEverySecond implements Runnable{
+
+        @Override
+        public void run() {
+
+            if(seekBar != null) {
+                seekBar.setProgress(videoView.getCurrentPosition());
+            }
+
+            //if(videoView.isPlaying()) {
+                seekBar.postDelayed(this, 1000);
+            //}
+
+        }
     }
 
 
