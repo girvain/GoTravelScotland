@@ -67,6 +67,7 @@ public class VideoFragment extends Fragment{
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+        mc.show(5);
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -74,6 +75,7 @@ public class VideoFragment extends Fragment{
                  // change this to an intent passed from the adapter
                 videoView.setMediaController(mc);
                 mc.setAnchorView(videoView);
+                ((AppCompatActivity) getActivity()).getSupportActionBar().show();
             }
         });
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -82,6 +84,8 @@ public class VideoFragment extends Fragment{
                 // change this to an intent passed from the adapter
                 fullscreenVideoView.setMediaController(mc);
                 mc.setAnchorView(fullscreenVideoView);
+                // remove the action bar!!!
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             }
         });
 
@@ -101,31 +105,24 @@ public class VideoFragment extends Fragment{
         ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
 
-        viewPager.setOnDragListener(new View.OnDragListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 mc.hide();
-                return false;
-            }
-        });
 
-        fullscreenButton.setOnClickListener(new View.OnClickListener() {
+            }
+
             @Override
-            public void onClick(View view) {
-                //videoView.pause();
-                videoPosition = videoView.getCurrentPosition();
-                Intent intent = new Intent(getContext(), FullScreenVideoActivity.class);
-                intent.putExtra("videoPosition", videoPosition);
+            public void onPageSelected(int position) {
 
-                // get a reference to the activity hosting this fragment and find the item index num
-                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-                intent.putExtra("fragAdaptPos", viewPager.getCurrentItem());
+            }
 
-                intent.putExtra("fileId", R.raw.intro_tour);
-                // then send the intent with the data to the FullScreenVideoActivity
-                startActivity(intent);
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                videoView.pause();
             }
         });
+
 
         return rootView;
     }
@@ -134,4 +131,11 @@ public class VideoFragment extends Fragment{
         return fragAdaptPos;
     }
 
+    public VideoView getVideoView() {
+        return videoView;
+    }
+
+    public VideoView getFullscreenVideoView() {
+        return fullscreenVideoView;
+    }
 }

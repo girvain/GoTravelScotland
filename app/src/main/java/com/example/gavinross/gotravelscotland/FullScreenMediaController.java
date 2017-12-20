@@ -4,10 +4,12 @@ package com.example.gavinross.gotravelscotland;
  * Created by gavinross on 16/12/2017.
  */
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -68,16 +70,24 @@ public class FullScreenMediaController extends MediaController {
             @Override
             public void onClick(View v) {
                 if(isFullScreen){
-                    videoView.stopPlayback();
-                    videoView.setVisibility(View.INVISIBLE);
-                    fullscreenVideo.setVisibility(View.VISIBLE);
+                    int current = fullscreenVideo.getCurrentPosition();
+                    fullscreenVideo.clearFocus();
+                    fullscreenVideo.setVisibility(View.GONE);
+                    videoView.setVisibility(View.VISIBLE);
+
+                    videoView.seekTo(current);
+                    videoView.start();
+                    isFullScreen = false;
                 }else{
                     //fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
-                    videoView.stopPlayback();
-                    videoView.setVisibility(View.INVISIBLE);
+                    int current = videoView.getCurrentPosition();
+                    videoView.clearFocus();
+                    videoView.setVisibility(View.GONE);
                     fullscreenVideo.setVisibility(View.VISIBLE);
-                    fullscreenVideo.start();
 
+                    fullscreenVideo.seekTo(current);
+                    fullscreenVideo.start();
+                    isFullScreen = true;
                 }
 
 
