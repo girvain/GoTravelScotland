@@ -7,23 +7,33 @@ package com.example.gavinross.gotravelscotland;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.MediaController;
+import android.widget.VideoView;
+
+import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
+
+import java.io.Serializable;
 
 public class FullScreenMediaController extends MediaController {
 
     private ImageButton fullScreen;
-    private String isFullScreen;
+    private boolean isFullScreen = false;
     private int fileId;
+    private VideoView fullscreenVideo;
+    private VideoView videoView;
 
+    public FullScreenMediaController(Context context, VideoView videoView,
+                                     VideoView fullscreenVideo) {
 
-    public FullScreenMediaController(Context context, int fileId) {
         super(context);
-        this.fileId = fileId;
+        this.fullscreenVideo = fullscreenVideo;
+        this.videoView = videoView;
     }
 
     @Override
@@ -43,35 +53,25 @@ public class FullScreenMediaController extends MediaController {
         params.gravity = Gravity.RIGHT;
         params.rightMargin = 80;
         addView(fullScreen, params);
+        fullScreen.bringToFront();
 
-        //fullscreen indicator from intent
-        isFullScreen =  ((Activity)getContext()).getIntent().
-                getStringExtra("fullScreenInd");
 
-        if("y".equals(isFullScreen)){
-            fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
-        }else{
-            fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
-        }
 
         //add listener to image button to handle full screen and exit full screen events
         fullScreen.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(),FullScreenVideoActivity.class);
-                // put the file id in the intent  and pass to fullscreenVideoActivity
-                intent.putExtra("fileId", fileId);
-
-                if("y".equals(isFullScreen)){
-                    intent.putExtra("fullScreenInd", "");
-                    Log.v("FullScreenMediaCont", "exit Full Screen Button");
-
+                if(isFullScreen){
+                    fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
+                    videoView.stopPlayback();
+                    videoView.setVisibility(View.INVISIBLE);
+                    fullscreenVideo.setVisibility(View.VISIBLE);
                 }else{
-                    intent.putExtra("fullScreenInd", "y");
-                    ((Activity)getContext()).startActivity(intent);
+                    fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
                 }
-                //((Activity)getContext()).startActivity(intent);
+
+
+
             }
         });
     }

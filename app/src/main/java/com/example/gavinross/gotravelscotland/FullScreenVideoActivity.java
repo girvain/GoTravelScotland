@@ -18,11 +18,12 @@ import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoF
 public class FullScreenVideoActivity extends AppCompatActivity {
 
     private VideoView videoView;
-    private MediaController mediaController;
+    private FullScreenMediaController mc;
     private int assignedVideoName;
     private int videoPosition;
     private int fragAdaptPos;
     private Intent intent;
+
 
 
 

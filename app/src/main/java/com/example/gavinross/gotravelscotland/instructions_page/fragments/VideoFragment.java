@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,15 +39,11 @@ public class VideoFragment extends Fragment{
     private VideoView videoView;
     private View rootView;
     private ImageButton fullscreenButton;
-    private ImageButton playButton;
-    private ImageButton pauseButton;
     private ImageButton largePlayButton;
-    private SeekBar seekBar;
     private int videoPosition;
     private int fragAdaptPos;
-    private Timer timer;
     private boolean returnedFromFullscreen = false;
-
+    private FullScreenMediaController mc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,10 +53,9 @@ public class VideoFragment extends Fragment{
 
         // get ref's to all the buttons
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
-        playButton = (ImageButton)rootView.findViewById(R.id.playButton);
-        pauseButton = (ImageButton)rootView.findViewById(R.id.pauseButton);
-        seekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
+        VideoView fullscreenVideoView = (VideoView) rootView.findViewById(R.id.videoView5);
 
         String s = "android.resource://" + getActivity().getPackageName() + "/" +
                 R.raw.intro_tour;
@@ -68,30 +64,15 @@ public class VideoFragment extends Fragment{
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
-        returnedFromFullscreen = getActivity().getIntent().getBooleanExtra(
-                "returnedFromFullscreen", false);
 
+        mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
 
-        if (returnedFromFullscreen) {
-            videoView.seekTo(videoPosition);
-            videoView.start();
-            largePlayButton.setVisibility(View.INVISIBLE);
-        }
-
-
-
-        // listener to display the media player
-        videoView.setOnClickListener(new View.OnClickListener() {
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onClick(View view) {
-                displayMediaControls();
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        removeMediaControls();
-                    }
-                },4000);
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                 // change this to an intent passed from the adapter
+                videoView.setMediaController(mc);
+                mc.setAnchorView(videoView);
             }
         });
 
@@ -104,63 +85,19 @@ public class VideoFragment extends Fragment{
             }
         });
 
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                videoView.pause();
-                // swap the pause and play
-                playButton.setVisibility(View.VISIBLE);
-                pauseButton.setVisibility(View.INVISIBLE);
-            }
-        });
-
-
-
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (videoView.isPlaying()) {
-                    //playButton.setVisibility(View.INVISIBLE);
-                }
-                else if (!videoView.hasFocus()) {
-                    videoView.pause();
-                }
-                else if (!videoView.isShown()){
-                    videoView.pause();
-                }
-                else
-                    videoView.start();
-                // swap the pause and play
-                pauseButton.setVisibility(View.VISIBLE);
-                playButton.setVisibility(View.INVISIBLE);
-            }
-        });
-
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progChanged = 0;
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progChanged = videoView.getCurrentPosition();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                videoView.pause();
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-                videoView.seekTo(progChanged);
-                videoView.start();
-            }
-        });
 
 
         // get a reference to the activity hosting this fragment and find the item index num
         ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
+
+        viewPager.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                mc.hide();
+                return false;
+            }
+        });
 
         fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,24 +123,5 @@ public class VideoFragment extends Fragment{
     public int getFragAdaptPos() {
         return fragAdaptPos;
     }
-
-    public void displayMediaControls() {
-        fullscreenButton.setVisibility(View.VISIBLE);
-        seekBar.setVisibility(View.VISIBLE);
-        if (videoView.isPlaying()) {
-            pauseButton.setVisibility(View.VISIBLE);
-        }
-        else
-            playButton.setVisibility(View.VISIBLE);
-    }
-
-    public void removeMediaControls() {
-        fullscreenButton.setVisibility(View.INVISIBLE);
-        playButton.setVisibility(View.INVISIBLE);
-        seekBar.setVisibility(View.INVISIBLE);
-        pauseButton.setVisibility(View.INVISIBLE);
-    }
-
-
 
 }
