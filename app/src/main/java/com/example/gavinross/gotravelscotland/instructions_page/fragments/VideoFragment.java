@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,7 @@ public class VideoFragment extends Fragment{
     private int fragAdaptPos;
     private Timer timer;
     private boolean beenPlayed = false;
+    private Handler handler = new Handler();
 
 
     @Override
@@ -91,34 +93,22 @@ public class VideoFragment extends Fragment{
         }
 
 
+
+
+
         /*---------------------------------LISTENERS----------------------------------*/
 
         // Listeners to set and display the media controls
         videoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayMediaControls();
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        removeMediaControls();
-                    }
-                },4000);
+                displayMediaControlsTimer();
             }
         });
         fullscreenVideoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayMediaControlsLarge();
-                Log.v("VideoFragment", "LAAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRGGGGGGEEE");
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        removeMediaControlsLarge();
-                    }
-                },4000);
+                displayMediaControlsTimerLarge();
             }
         });
 
@@ -196,7 +186,7 @@ public class VideoFragment extends Fragment{
             int progChanged = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progChanged = videoView.getCurrentPosition();
+
             }
 
             @Override
@@ -225,9 +215,9 @@ public class VideoFragment extends Fragment{
                 if (videoView.isPlaying()) {
                     isPlaying = true;
                 }
+                removeMediaControls();
                 videoView.stopPlayback();
                 videoView.setVisibility(View.GONE);
-                removeMediaControls();
 
                 // prepare new video view
                 fullscreenVideoView.setVideoPath(videoPath);
@@ -236,8 +226,8 @@ public class VideoFragment extends Fragment{
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
                 if (isPlaying) {
                     fullscreenVideoView.start();
-                    displayMediaControlsTimer();
                 }
+                displayMediaControlsTimerLarge();
             }
         });
         fullscreenButtonLarge.setOnClickListener(new View.OnClickListener() {
@@ -248,9 +238,9 @@ public class VideoFragment extends Fragment{
                 if (fullscreenVideoView.isPlaying()) {
                     isPlaying = true;
                 }
+                removeMediaControlsLarge();
                 videoView.stopPlayback();
                 fullscreenVideoView.setVisibility(View.GONE);
-                removeMediaControlsLarge();
 
                 videoView.setVideoPath(videoPath);
                 videoView.setVisibility(View.VISIBLE);
@@ -259,11 +249,25 @@ public class VideoFragment extends Fragment{
                 if (isPlaying) {
                     videoView.start();
                 }
+                displayMediaControlsTimer();
+            }
+        });
+
+        seekBar.setMax(videoView.getDuration());
+        getActivity().runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                if(videoView != null){
+                    seekBar.setProgress(videoView.getCurrentPosition());
+                }
+                handler.postDelayed(this, 1000);
             }
         });
 
         return rootView;
-    }
+    } // end of onCreate()
+
 
     public int getFragAdaptPos() {
         return fragAdaptPos;
@@ -309,8 +313,23 @@ public class VideoFragment extends Fragment{
         pauseButtonLarge.setVisibility(View.INVISIBLE);
     }
 
-
+    /**
+     * These methods are used to generate a timer for how long to display the media controls. They
+     * are used in mainly by the onclick listeners for the video screens but can/ are used to
+     * manually trigger the display.
+     */
     public void displayMediaControlsTimer() {
+        displayMediaControls();
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                removeMediaControls();
+            }
+        },4000);
+    }
+
+    public void displayMediaControlsTimerLarge() {
         displayMediaControlsLarge();
         timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -320,5 +339,28 @@ public class VideoFragment extends Fragment{
             }
         },4000);
     }
+
+
+    //Make sure you update Seekbar on UI thread
+    public class SeekBarRunner implements Runnable {
+        // seekbar setup
+        final Handler mHandler = new Handler();
+        long length = videoView.getDuration();
+
+        @Override
+        public void run() {
+            if(videoView != null){
+
+                int mCurrentPosition = videoView.getCurrentPosition() / 1000;
+                seekBar.setProgress(mCurrentPosition);
+            }
+            mHandler.postDelayed(this, 1000);
+        }
+    }
+
+
+
+
+
 
 }
