@@ -77,6 +77,7 @@ public class FullScreenMediaController extends MediaController {
                     videoView.setVisibility(View.INVISIBLE);
                     fullscreenVideo.setVisibility(View.VISIBLE);
                     fullscreenVideo.start();
+
                 }
 
 
