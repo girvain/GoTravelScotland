@@ -94,8 +94,6 @@ public class VideoFragment extends Fragment{
 
 
 
-
-
         /*---------------------------------LISTENERS----------------------------------*/
 
         // Listeners to set and display the media controls
@@ -168,17 +166,18 @@ public class VideoFragment extends Fragment{
             int progChanged = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progChanged = videoView.getCurrentPosition();
+                progChanged = progress;
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                videoView.pause();
+
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                int current = videoView.getCurrentPosition();
+                videoView.seekTo(progChanged+current);
 
             }
         });
@@ -254,18 +253,10 @@ public class VideoFragment extends Fragment{
         });
 
         seekBar.setMax(videoView.getDuration());
-        getActivity().runOnUiThread(new Runnable() {
 
-            @Override
-            public void run() {
-                if(videoView != null){
-                    seekBar.setProgress(videoView.getCurrentPosition());
-                }
-                handler.postDelayed(this, 1000);
-            }
-        });
 
         return rootView;
+
     } // end of onCreate()
 
 
@@ -339,27 +330,6 @@ public class VideoFragment extends Fragment{
             }
         },4000);
     }
-
-
-    //Make sure you update Seekbar on UI thread
-    public class SeekBarRunner implements Runnable {
-        // seekbar setup
-        final Handler mHandler = new Handler();
-        long length = videoView.getDuration();
-
-        @Override
-        public void run() {
-            if(videoView != null){
-
-                int mCurrentPosition = videoView.getCurrentPosition() / 1000;
-                seekBar.setProgress(mCurrentPosition);
-            }
-            mHandler.postDelayed(this, 1000);
-        }
-    }
-
-
-
 
 
 
