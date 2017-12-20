@@ -73,6 +73,7 @@ public class VideoFragment extends Fragment{
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                  // change this to an intent passed from the adapter
+                videoView.requestFocus();
                 videoView.setMediaController(mc);
                 mc.setAnchorView(videoView);
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
@@ -82,6 +83,7 @@ public class VideoFragment extends Fragment{
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 // change this to an intent passed from the adapter
+                videoView.clearFocus();
                 fullscreenVideoView.setMediaController(mc);
                 mc.setAnchorView(fullscreenVideoView);
                 // remove the action bar!!!
