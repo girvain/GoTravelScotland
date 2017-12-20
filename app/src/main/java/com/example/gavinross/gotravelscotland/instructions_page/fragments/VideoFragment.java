@@ -53,8 +53,6 @@ public class VideoFragment extends Fragment{
 
         // get ref's to all the buttons
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
-
-        fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
         fullscreenVideoView = (VideoView) rootView.findViewById(R.id.videoView5);
 
         String s = "android.resource://" + getActivity().getPackageName() + "/" +
