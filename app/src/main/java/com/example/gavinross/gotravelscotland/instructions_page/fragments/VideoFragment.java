@@ -42,7 +42,7 @@ public class VideoFragment extends Fragment{
     private ImageButton largePlayButton;
     private int videoPosition;
     private int fragAdaptPos;
-    private boolean returnedFromFullscreen = false;
+    VideoView fullscreenVideoView;
     private FullScreenMediaController mc;
 
     @Override
@@ -55,12 +55,13 @@ public class VideoFragment extends Fragment{
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
 
         fullscreenButton = (ImageButton)rootView.findViewById(R.id.fullscreenButton);
-        VideoView fullscreenVideoView = (VideoView) rootView.findViewById(R.id.videoView5);
+        fullscreenVideoView = (VideoView) rootView.findViewById(R.id.videoView5);
 
         String s = "android.resource://" + getActivity().getPackageName() + "/" +
                 R.raw.intro_tour;
         videoView.setVideoPath(s);
-        videoView.requestFocus();
+        fullscreenVideoView.setVideoPath(s);
+        //videoView.requestFocus();
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
@@ -75,6 +76,15 @@ public class VideoFragment extends Fragment{
                 mc.setAnchorView(videoView);
             }
         });
+        fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                // change this to an intent passed from the adapter
+                fullscreenVideoView.setMediaController(mc);
+                mc.setAnchorView(fullscreenVideoView);
+            }
+        });
+
 
 
         largePlayButton.setOnClickListener(new View.OnClickListener() {

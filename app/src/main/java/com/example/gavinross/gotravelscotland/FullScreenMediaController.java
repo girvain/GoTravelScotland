@@ -55,6 +55,12 @@ public class FullScreenMediaController extends MediaController {
         addView(fullScreen, params);
         fullScreen.bringToFront();
 
+        if(isFullScreen){
+            fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
+
+        }else{
+            fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
+        }
 
 
         //add listener to image button to handle full screen and exit full screen events
@@ -62,12 +68,15 @@ public class FullScreenMediaController extends MediaController {
             @Override
             public void onClick(View v) {
                 if(isFullScreen){
-                    fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
                     videoView.stopPlayback();
                     videoView.setVisibility(View.INVISIBLE);
                     fullscreenVideo.setVisibility(View.VISIBLE);
                 }else{
-                    fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
+                    //fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
+                    videoView.stopPlayback();
+                    videoView.setVisibility(View.INVISIBLE);
+                    fullscreenVideo.setVisibility(View.VISIBLE);
+                    fullscreenVideo.start();
                 }
 
 
