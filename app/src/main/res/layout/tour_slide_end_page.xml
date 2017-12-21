@@ -84,7 +84,7 @@
                 android:layout_weight="1" />
 
             <VideoView
-                android:id="@+id/videoView1"
+                android:id="@+id/videoView"
                 android:layout_width="240dp"
                 android:layout_height="130dp"
                 android:layout_margin="10dp"

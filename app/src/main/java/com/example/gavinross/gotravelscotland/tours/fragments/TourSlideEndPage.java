@@ -86,7 +86,7 @@ public class TourSlideEndPage extends Fragment {
         String videoFilePath4 = "android.resource://" + getActivity().getPackageName() + "/" +
                 resId4;
 
-        videoViewOne =(VideoView) rootView.findViewById(R.id.videoView1);
+        videoViewOne =(VideoView) rootView.findViewById(R.id.videoView);
         videoViewOne.setVideoPath(videoFilePath1);
         videoViewTwo =(VideoView) rootView.findViewById(R.id.videoView2);
         videoViewTwo.setVideoPath(videoFilePath1);

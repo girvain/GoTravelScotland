@@ -131,11 +131,4 @@ public class VideoFragment extends Fragment{
         return fragAdaptPos;
     }
 
-    public VideoView getVideoView() {
-        return videoView;
-    }
-
-    public VideoView getFullscreenVideoView() {
-        return fullscreenVideoView;
-    }
 }
