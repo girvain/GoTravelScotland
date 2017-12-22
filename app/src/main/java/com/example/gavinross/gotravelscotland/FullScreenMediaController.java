@@ -53,7 +53,8 @@ public class FullScreenMediaController extends MediaController {
                 new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                         LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.RIGHT;
-        params.rightMargin = 80;
+        params.rightMargin = 70;
+        params.topMargin = 5;
         addView(fullScreen, params);
         fullScreen.bringToFront();
 
