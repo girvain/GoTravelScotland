@@ -8,27 +8,58 @@
         <item name="colorAccent">#ffffff</item>
     </style>
 
+
+    <!-- ======================= title style ========================= -->
+    <style name="paragraphTitleText">
+        <item name="android:textSize">14dp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:maxWidth">500dp</item>
+    </style>
+
+    <style name="headingTitleText">
+        <item name="android:textSize">36dp</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <!-- ======================= inner styles ======================== -->
     <style name="CustomButtonStyle">
         <item name="android:typeface">monospace</item>
         <item name="android:background">@drawable/my_button_background</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginRight">15dp</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginLeft">45dp</item>
+        <item name="android:layout_marginRight">45dp</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:width">40dp</item>
 
     </style>
 
     <style name="paragraphText">
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:typeface">sans</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:maxWidth">500dp</item>
     </style>
 
     <style name="headingText">
-        <item name="android:textSize">30dp</item>
+        <item name="android:textSize">28dp</item>
         <item name="android:typeface">sans</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="headingTextNotBold">
+        <item name="android:textSize">28dp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:width">500dp</item>
+    </style>
+
+    <style name="videoStyle">
+        <item name="android:background">#616161</item>
     </style>
 
     <style name="slideTheme" parent="Theme.AppCompat.Light.DarkActionBar">

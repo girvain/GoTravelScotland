@@ -21,14 +21,8 @@ import android.widget.SeekBar;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
-import com.example.gavinross.gotravelscotland.FullScreenVideoActivity;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.instructions_page.InstructionsPage;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by gavinross on 12/12/2017.
@@ -66,6 +60,7 @@ public class VideoFragment extends Fragment{
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
+        //videoView.bringToFront();
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override

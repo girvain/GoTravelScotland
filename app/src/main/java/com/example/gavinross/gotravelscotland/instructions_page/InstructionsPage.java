@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.VideoView;
 
-import com.example.gavinross.gotravelscotland.FullScreenVideoActivity;
 import com.example.gavinross.gotravelscotland.HomePage;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
