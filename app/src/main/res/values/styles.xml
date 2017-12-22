@@ -3,17 +3,32 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+
         <item name="colorPrimary">#212121</item>
         <item name="colorPrimaryDark">#000000</item>
-        <item name="colorAccent">#303030</item>
+        <item name="colorAccent">#ffffff</item>
 
+
+    </style>
+    
+    <style name="Theme.AppCompat.Light.DarkActionBar.Logo">
+        <item name="android:logo">@drawable/dragon</item>
+        <item name="android:displayOptions">useLogo|showHome</item>
     </style>
 
     <style name="CustomButtonStyle">
         <item name="android:typeface">monospace</item>
+        <!-- <item name="android:background">@android:color/transparent</item> -->
+        <item name="android:background">@drawable/my_button_background</item>
 
-        <item name="android:textColor"></item>
+        <item name="android:textColor">@android:color/white</item>
 
+    </style>
+
+    <style name="slideTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">#424242</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:font">italic</item>
     </style>
 
 </resources>

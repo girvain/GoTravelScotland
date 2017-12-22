@@ -22,8 +22,9 @@
 
     <Button
         android:id="@+id/lets_start_button"
-        android:layout_width="209dp"
-        android:layout_height="45dp"
+        style="@style/CustomButtonStyle"
+        android:layout_width="321dp"
+        android:layout_height="66dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -31,10 +32,10 @@
         android:text="Let's Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.064"
-        style="@style/CustomButtonStyle"/>
+        app:layout_constraintVertical_bias="0.058" />
 
     <TextView
         android:id="@+id/textView"
