@@ -1,28 +1,21 @@
 package com.example.gavinross.gotravelscotland.instructions_page.fragments;
 
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.MediaController;
-import android.widget.SeekBar;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
-import com.example.gavinross.gotravelscotland.instructions_page.InstructionsPage;
 
 /**
  * Created by gavinross on 12/12/2017.
@@ -32,6 +25,7 @@ public class VideoFragment extends Fragment{
 
     private VideoView videoView;
     private View rootView;
+    private String filePath;
     private ImageButton fullscreenButton;
     private ImageButton largePlayButton;
     private int videoPosition;
@@ -45,15 +39,15 @@ public class VideoFragment extends Fragment{
         rootView = inflater.inflate(R.layout.video_fragment, container, false);
         videoView =(VideoView) rootView.findViewById(R.id.fragmentVideoView);
 
-        // get ref's to all the buttons
+        // get ref'filePath to all the buttons
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
         fullscreenVideoView = (VideoView) rootView.findViewById(R.id.videoView5);
 
-        String s = "android.resource://" + getActivity().getPackageName() + "/" +
+        filePath = "android.resource://" + getActivity().getPackageName() + "/" +
                 R.raw.intro_tour;
-        videoView.setVideoPath(s);
-        fullscreenVideoView.setVideoPath(s);
-        //videoView.requestFocus();
+        videoView.setVideoPath(filePath);
+        fullscreenVideoView.setVideoPath(filePath);
+        //videoView.seekTo(100);
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
@@ -61,6 +55,7 @@ public class VideoFragment extends Fragment{
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
         //videoView.bringToFront();
+        //videoView.start();
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -104,7 +99,6 @@ public class VideoFragment extends Fragment{
                 });
             }
         });
-
 
 
 

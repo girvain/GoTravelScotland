@@ -34,8 +34,8 @@
 
     <ImageButton
         android:id="@+id/largePlayButton"
-        android:layout_width="468dp"
-        android:layout_height="231dp"
+        android:layout_width="492dp"
+        android:layout_height="228dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
