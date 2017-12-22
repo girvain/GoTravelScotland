@@ -65,45 +65,51 @@ public class VideoFragment extends Fragment{
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
-        //mc.show(5);
+        mc.show(5); // how long controls are displayed
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
-                videoView.requestFocus();
-                videoView.setMediaController(mc);
-                mc.setAnchorView(videoView);
+                /*
+                This has been put before the size change listener (which was not actually nessesary)
+                so that the getActivity.getSupportActionBar().show() can act first which solves the
+                media controller displaying above the video.
+                 */
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+                //mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+
+                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
+                        fullscreenVideoView.clearFocus();
+                        videoView.requestFocus();
+                        videoView.setMediaController(mc);
+                        mc.setAnchorView(videoView);
+                    }
+                });
+
             }
         });
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
+                // remove the action bar!!!
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
+
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
-                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-                /*
-                 * add media controller
-                 */
-                        //mc = new FullScreenMediaController(getContext(), videoView,
-                        //     fullscreenVideoView);
+                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
+                        videoView.clearFocus();
+                        fullscreenVideoView.requestFocus();
                         fullscreenVideoView.setMediaController(mc);
-                /*
-                 * and set its position on screen
-                 */
                         mc.setAnchorView(fullscreenVideoView);
+                        mc.show(5); // how long controls are displayed
                     }
                 });
-                /*
-                //videoView.clearFocus();
-                fullscreenVideoView.setMediaController(mc);
-                mc.setAnchorView(fullscreenVideoView);
-                // remove the action bar!!!
-                */
-                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             }
         });
+
 
 
 
@@ -124,7 +130,9 @@ public class VideoFragment extends Fragment{
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mc.hide();
+                if (mc != null) {
+                    mc.hide();
+                }
 
             }
 
