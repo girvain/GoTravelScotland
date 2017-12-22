@@ -85,13 +85,15 @@ public class TourPageVideo extends Fragment{
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                // change this to an intent passed from the adapter
+                mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
                 videoView.requestFocus();
                 videoView.setMediaController(mc);
                 mc.setAnchorView(videoView);
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
             }
         });
+
+
         // But not this ...................
         /*
         // This sets the media controller to be the same size as the video when its resized
@@ -102,11 +104,11 @@ public class TourPageVideo extends Fragment{
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
 
-                        mc = new FullScreenMediaController(getContext(), videoView,
-                                fullscreenVideoView);
-                        videoView.setMediaController(mc);
-
-                        mc.setAnchorView(videoView);
+                        //mc = new FullScreenMediaController(getContext(), videoView,
+                               // fullscreenVideoView);
+                        //videoView.requestFocus();
+                        //videoView.setMediaController(mc);
+                        //mc.setAnchorView(videoView);
                     }
                 });
             }
@@ -121,8 +123,8 @@ public class TourPageVideo extends Fragment{
                 /*
                  * add media controller
                  */
-                        mc = new FullScreenMediaController(getContext(), videoView,
-                                fullscreenVideoView);
+                        //mc = new FullScreenMediaController(getContext(), videoView,
+                           //     fullscreenVideoView);
                         fullscreenVideoView.setMediaController(mc);
                 /*
                  * and set its position on screen
@@ -141,7 +143,7 @@ public class TourPageVideo extends Fragment{
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                //mc.hide();
+                mc.hide();
 
             }
 

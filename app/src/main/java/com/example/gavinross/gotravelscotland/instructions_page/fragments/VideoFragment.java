@@ -65,12 +65,12 @@ public class VideoFragment extends Fragment{
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
-        mc.show(5);
+        //mc.show(5);
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                 // change this to an intent passed from the adapter
+                mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
                 videoView.requestFocus();
                 videoView.setMediaController(mc);
                 mc.setAnchorView(videoView);
@@ -80,11 +80,27 @@ public class VideoFragment extends Fragment{
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                // change this to an intent passed from the adapter
-                videoView.clearFocus();
+                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                /*
+                 * add media controller
+                 */
+                        //mc = new FullScreenMediaController(getContext(), videoView,
+                        //     fullscreenVideoView);
+                        fullscreenVideoView.setMediaController(mc);
+                /*
+                 * and set its position on screen
+                 */
+                        mc.setAnchorView(fullscreenVideoView);
+                    }
+                });
+                /*
+                //videoView.clearFocus();
                 fullscreenVideoView.setMediaController(mc);
                 mc.setAnchorView(fullscreenVideoView);
                 // remove the action bar!!!
+                */
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             }
         });
