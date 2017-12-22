@@ -9,7 +9,6 @@ import android.widget.Button;
 
 /**
  * To do list:
- * > clear resources from the video player after each slide
  * > try and make the main classes use only one three button class with intents and
  *   use this.finish() to close current activity while moving to the next
  * > get multi language support
@@ -17,6 +16,11 @@ import android.widget.Button;
  * > add all the content
  * > style the beast
  * > top graphic logo
+ * > videoView borders
+ * > apply text styles
+ * > put flags on buttons
+ * > scroll dot things
+ *
  */
 
 public class MainActivity extends AppCompatActivity {

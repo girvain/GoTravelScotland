@@ -47,7 +47,7 @@ public class VideoFragment extends Fragment{
                 R.raw.intro_tour;
         videoView.setVideoPath(filePath);
         fullscreenVideoView.setVideoPath(filePath);
-        //videoView.seekTo(100);
+        videoView.seekTo(2000);
 
         videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
         fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
@@ -106,6 +106,7 @@ public class VideoFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 largePlayButton.setVisibility(View.INVISIBLE);
+                videoView.seekTo(0);
                 videoView.start();
             }
         });

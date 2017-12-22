@@ -79,7 +79,7 @@ public class TourPageVideo extends Fragment{
         videoView.setVideoPath(videoFilePath);
         fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);
-        videoView.requestFocus();
+        videoView.seekTo(2000);
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
@@ -156,6 +156,7 @@ public class TourPageVideo extends Fragment{
             @Override
             public void onClick(View view) {
                 largePlayButton.setVisibility(View.INVISIBLE);
+                videoView.seekTo(0);
                 videoView.start();
             }
         });
