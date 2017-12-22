@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -32,6 +33,7 @@ public class TourPageVideo extends Fragment{
     private TextView mHeadingTextView;
     private TextView mParagraphView;
     private VideoView fullscreenVideoView;
+    private ImageButton largePlayButton;
 
     public static TourPageVideo newInstance(String headingText, String paragraphText, int resId) {
 
@@ -68,6 +70,7 @@ public class TourPageVideo extends Fragment{
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
+        largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
         mHeadingTextView.setText(headingText);
         mParagraphView.setText(paragraphText);
 
@@ -132,6 +135,7 @@ public class TourPageVideo extends Fragment{
                         mc.setAnchorView(fullscreenVideoView);
                     }
                 });
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             }
         });
 
@@ -155,6 +159,14 @@ public class TourPageVideo extends Fragment{
             @Override
             public void onPageScrollStateChanged(int state) {
                 videoView.pause();
+            }
+        });
+
+        largePlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                largePlayButton.setVisibility(View.INVISIBLE);
+                videoView.start();
             }
         });
 
