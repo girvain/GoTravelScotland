@@ -38,16 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading" />
 
-    <VideoView
-        android:id="@+id/fullscreenVideoView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="523dp"
@@ -93,5 +83,15 @@
             app:layout_constraintVertical_bias="0.108"
             app:srcCompat="@drawable/large_play_icon" />
     </android.support.constraint.ConstraintLayout>
+
+    <VideoView
+        android:id="@+id/fullscreenVideoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

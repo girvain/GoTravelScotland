@@ -14,7 +14,6 @@ import android.widget.Button;
  * > get multi language support
  * > set to permently in landscape
  * > add all the content
- * > style the beast
  * > top graphic logo
  * > videoView borders
  * > apply text styles
