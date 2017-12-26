@@ -12,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.instructions_page.InstructionsPage;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 /**
  * Created by gavinross on 12/12/2017.
@@ -26,12 +29,12 @@ public class VideoFragment extends Fragment{
     private VideoView videoView;
     private View rootView;
     private String filePath;
-    private ImageButton fullscreenButton;
     private ImageButton largePlayButton;
-    private int videoPosition;
     private int fragAdaptPos;
-    VideoView fullscreenVideoView;
+    private VideoView fullscreenVideoView;
     private FullScreenMediaController mc;
+    private boolean fullscreen;
+    private InkPageIndicator inkPageIndicator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,13 +52,10 @@ public class VideoFragment extends Fragment{
         fullscreenVideoView.setVideoPath(filePath);
         videoView.seekTo(2000);
 
-        videoPosition = getActivity().getIntent().getIntExtra("videoPosition", 0);
-        fragAdaptPos = getActivity().getIntent().getIntExtra("fragAdaptPos", 0);
-
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
-        //videoView.bringToFront();
-        //videoView.start();
+
+        inkPageIndicator = (InkPageIndicator) rootView.findViewById(R.id.indicator);
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -66,7 +66,7 @@ public class VideoFragment extends Fragment{
                 media controller displaying above the video.
                  */
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-                //mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+
 
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
@@ -75,6 +75,8 @@ public class VideoFragment extends Fragment{
                         videoView.requestFocus();
                         videoView.setMediaController(mc);
                         mc.setAnchorView(videoView);
+
+                        fullscreen = false;
                     }
                 });
 
@@ -95,6 +97,8 @@ public class VideoFragment extends Fragment{
                         fullscreenVideoView.setMediaController(mc);
                         mc.setAnchorView(fullscreenVideoView);
                         mc.show(5); // how long controls are displayed
+
+                        fullscreen = true;
                     }
                 });
             }
@@ -114,7 +118,7 @@ public class VideoFragment extends Fragment{
 
 
         // get a reference to the activity hosting this fragment and find the item index num
-        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -133,6 +137,9 @@ public class VideoFragment extends Fragment{
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                //inkPageIndicator.setVisibility(View.INVISIBLE);
+                //inkPageIndicator.setViewPager(null);
+                //inkPageIndicator.setActivated(false);
                 videoView.pause();
             }
         });
@@ -141,8 +148,7 @@ public class VideoFragment extends Fragment{
         return rootView;
     }
 
-    public int getFragAdaptPos() {
-        return fragAdaptPos;
+    public boolean isFullscreen() {
+        return fullscreen;
     }
-
 }

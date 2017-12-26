@@ -15,10 +15,10 @@ import android.widget.Button;
  * > set to permently in landscape
  * > add all the content
  * > top graphic logo
- * > videoView borders
  * > apply text styles
  * > put flags on buttons
  * > scroll dot things
+ * > update images
  *
  */
 
