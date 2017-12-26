@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.HomePage;
@@ -46,6 +47,7 @@ public class InstructionsPage extends AppCompatActivity {
 
 
         android.support.v4.app.Fragment fragment =(android.support.v4.app.Fragment) adapter.getItem(fragAdaptPos);
+
 
         /*
         if (fragAdaptPos == 3) {
