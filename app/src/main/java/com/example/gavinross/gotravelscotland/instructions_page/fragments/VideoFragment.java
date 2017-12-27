@@ -1,5 +1,6 @@
 package com.example.gavinross.gotravelscotland.instructions_page.fragments;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaMetadataRetriever;
@@ -35,6 +36,29 @@ public class VideoFragment extends Fragment{
     private FullScreenMediaController mc;
     private boolean fullscreen;
     private InkPageIndicator inkPageIndicator;
+    InstructionsPage instructionsPage;
+
+    OnHeadlineSelectedListener mCallback;
+
+    // Container Activity must implement this interface
+    public interface OnHeadlineSelectedListener {
+        public void onArticleSelected(int position);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnHeadlineSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +79,7 @@ public class VideoFragment extends Fragment{
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
 
-        inkPageIndicator = (InkPageIndicator) rootView.findViewById(R.id.indicator);
+        instructionsPage = (InstructionsPage)this.getActivity();
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -99,6 +123,10 @@ public class VideoFragment extends Fragment{
                         mc.show(5); // how long controls are displayed
 
                         fullscreen = true;
+                        instructionsPage.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
+                        if (inkPageIndicator != null){
+                            inkPageIndicator.setVisibility(View.INVISIBLE);
+                        }
                     }
                 });
             }
@@ -137,10 +165,7 @@ public class VideoFragment extends Fragment{
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                //inkPageIndicator.setVisibility(View.INVISIBLE);
-                //inkPageIndicator.setViewPager(null);
-                //inkPageIndicator.setActivated(false);
-                videoView.pause();
+
             }
         });
 
