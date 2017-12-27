@@ -28,14 +28,10 @@ import com.pixelcan.inkpageindicator.InkPageIndicator;
  * Created by gavinross on 12/12/2017.
  */
 
-public class InstructionsPage extends AppCompatActivity
-        implements VideoFragment.OnHeadlineSelectedListener {
+public class InstructionsPage extends AppCompatActivity {
 
-
-
-    InkPageIndicator inkPageIndicator;
-    ViewPager viewPager;
-    android.support.v4.app.Fragment fragment;
+    private InkPageIndicator inkPageIndicator;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +41,6 @@ public class InstructionsPage extends AppCompatActivity
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
 
-
         // Create an adapter that knows which fragment should be shown on each page
         final InstructionFragmentPagerAdapter adapter = new InstructionFragmentPagerAdapter(getSupportFragmentManager());
 
@@ -54,38 +49,9 @@ public class InstructionsPage extends AppCompatActivity
         inkPageIndicator.setViewPager(viewPager);
 
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                fragment = adapter.getItem(position);
-
-                onArticleSelected(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
     }
 
-    public void onArticleSelected(int position) {
-        final VideoView v = (VideoView)findViewById(R.id.videoView5);
-        final VideoView h = (VideoView)findViewById(R.id.fragmentVideoView);
-        if (v != null) {
-            Toast.makeText(this, "Article Selected", Toast.LENGTH_SHORT).show();
-            if (v.isShown()) {
-                //inkPageIndicator.setVisibility(View.INVISIBLE);
-            }
 
-        }
-    }
 
 
 }

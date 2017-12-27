@@ -15,6 +15,7 @@ import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
@@ -25,6 +26,8 @@ public class TourPageVideo extends Fragment{
     private VideoView videoView;
     private FullScreenMediaController mc;
     private View rootView;
+    private TourFragContainer tourFragContainer;
+    private ViewPager viewPager;
 
     private String headingText; // for holding text from newInstance to bundle
     private String paragraphText; // to then be passed to textViews
@@ -73,6 +76,8 @@ public class TourPageVideo extends Fragment{
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
         mHeadingTextView.setText(headingText);
         mParagraphView.setText(paragraphText);
+        // ref to the parent activity
+        tourFragContainer = (TourFragContainer)this.getActivity();
 
 
         videoView =(VideoView) rootView.findViewById(R.id.videoView);
@@ -102,6 +107,13 @@ public class TourPageVideo extends Fragment{
                         videoView.requestFocus();
                         videoView.setMediaController(mc);
                         mc.setAnchorView(videoView);
+
+                        // show the swipe dots
+                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+                        // stops the fake dragging to get the swipe going again if it was stopped
+                        if (viewPager.isFakeDragging()) {
+                            viewPager.endFakeDrag();
+                        }
                     }
                 });
 
@@ -122,6 +134,11 @@ public class TourPageVideo extends Fragment{
                         fullscreenVideoView.setMediaController(mc);
                         mc.setAnchorView(fullscreenVideoView);
                         mc.show(5); // how long controls are displayed
+
+                        // hides the swipe dots
+                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
+                        // stops the dragging
+                        viewPager.beginFakeDrag();
                     }
                 });
             }
@@ -129,7 +146,7 @@ public class TourPageVideo extends Fragment{
 
 
         // get a reference to the activity hosting this fragment and find the item index num
-        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         //fragAdaptPos = viewPager.getCurrentItem();
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -138,7 +155,7 @@ public class TourPageVideo extends Fragment{
                 if (mc != null) {
                     mc.hide();
                 }
-
+                videoView.pause();
             }
 
             @Override
@@ -148,7 +165,7 @@ public class TourPageVideo extends Fragment{
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                videoView.pause();
+
             }
         });
 

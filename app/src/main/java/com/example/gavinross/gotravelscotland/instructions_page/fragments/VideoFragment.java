@@ -10,10 +10,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
@@ -37,28 +39,7 @@ public class VideoFragment extends Fragment{
     private boolean fullscreen;
     private InkPageIndicator inkPageIndicator;
     InstructionsPage instructionsPage;
-
-    OnHeadlineSelectedListener mCallback;
-
-    // Container Activity must implement this interface
-    public interface OnHeadlineSelectedListener {
-        public void onArticleSelected(int position);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (OnHeadlineSelectedListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
-    }
-
+    ViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,8 +82,18 @@ public class VideoFragment extends Fragment{
                         mc.setAnchorView(videoView);
 
                         fullscreen = false;
+                        // show the swipe dots
+                        instructionsPage.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+                        if (inkPageIndicator != null){
+                            inkPageIndicator.setVisibility(View.INVISIBLE);
+                        }
+                        // stops the fake dragging to get the swipe going again if it was stopped
+                        if (viewPager.isFakeDragging()) {
+                            viewPager.endFakeDrag();
+                        }
                     }
                 });
+
 
             }
         });
@@ -111,7 +102,6 @@ public class VideoFragment extends Fragment{
             public void onPrepared(MediaPlayer mediaPlayer) {
                 // remove the action bar!!!
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-
 
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
@@ -123,15 +113,18 @@ public class VideoFragment extends Fragment{
                         mc.show(5); // how long controls are displayed
 
                         fullscreen = true;
+                        // hides the swipe dots
                         instructionsPage.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
                         if (inkPageIndicator != null){
                             inkPageIndicator.setVisibility(View.INVISIBLE);
                         }
+                        // stops the dragging
+                        viewPager.beginFakeDrag();
                     }
                 });
+
             }
         });
-
 
 
         largePlayButton.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +139,7 @@ public class VideoFragment extends Fragment{
 
 
         // get a reference to the activity hosting this fragment and find the item index num
-        final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         fragAdaptPos = viewPager.getCurrentItem();
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -155,7 +148,7 @@ public class VideoFragment extends Fragment{
                 if (mc != null) {
                     mc.hide();
                 }
-
+                videoView.pause();
             }
 
             @Override

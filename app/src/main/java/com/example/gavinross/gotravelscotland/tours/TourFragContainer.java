@@ -9,6 +9,7 @@ import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.tours.Adapters.IntoTheHighlandsAdapter;
 import com.example.gavinross.gotravelscotland.tours.Adapters.JourneyHomeAdapter;
 import com.example.gavinross.gotravelscotland.tours.Adapters.StartHereAdapter;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 /**
  * Created by gavinross on 13/12/2017.
@@ -18,11 +19,14 @@ import com.example.gavinross.gotravelscotland.tours.Adapters.StartHereAdapter;
 
 public class TourFragContainer extends AppCompatActivity{
 
+    private InkPageIndicator inkPageIndicator;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_container);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+
 
         // get the intent sent by TourHomePage which is the index number stating which adapter
         // to use in this container.
@@ -50,8 +54,8 @@ public class TourFragContainer extends AppCompatActivity{
         }
 
 
-
-
+        inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator.setViewPager(viewPager);
 
 
 
