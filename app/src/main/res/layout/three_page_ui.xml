@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     style="@style/slideTheme">
 
+
+
     <TextView
         android:id="@+id/heading_one"
         style="@style/headingText"

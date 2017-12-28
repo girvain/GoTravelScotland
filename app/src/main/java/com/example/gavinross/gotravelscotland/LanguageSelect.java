@@ -19,7 +19,10 @@ public class LanguageSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.three_page_ui);
 
-
+        // sets the actionBar up
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(R.layout.actionbar_layout);
 
         setButtonText("English", "French", "Spanish");
 

@@ -14,12 +14,10 @@ import android.widget.Button;
  * > get multi language support
  * > set to permently in landscape
  * > add all the content
- * > top graphic logo
  * > apply text styles
  * > put flags on buttons
- * > scroll dot things
  * > update images
- *
+ * > add new or fix button animation
  */
 
 public class MainActivity extends AppCompatActivity {

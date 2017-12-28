@@ -24,6 +24,10 @@ public class TourFragContainer extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_container);
+        // sets the actionBar up
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(R.layout.actionbar_layout);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 

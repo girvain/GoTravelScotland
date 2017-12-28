@@ -37,6 +37,10 @@ public class InstructionsPage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_container);
+        // sets the actionBar up
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(R.layout.actionbar_layout);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);

@@ -6,6 +6,7 @@
         <item name="colorPrimary">#212121</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#ffffff</item>
+        <item name="android:windowTitleSize">5dp</item>
     </style>
 
 
