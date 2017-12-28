@@ -33,10 +33,9 @@
         android:text="Let's Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.808" />
 
     <TextView
         android:id="@+id/textView"
@@ -45,7 +44,7 @@
         android:layout_height="46dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:text="GO TRAVEL SCOTLAND"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,14 +53,58 @@
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/paragraphTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:text="BEGIN YOUR JOURNEY ON THE LOCH NESS TOUR"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <LinearLayout
+        android:layout_width="421dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767">
+
+        <ImageButton
+            android:id="@+id/germanButton"
+            android:layout_width="6dp"
+            android:layout_height="77dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/german"
+            tools:layout_editor_absoluteX="358dp"
+            tools:layout_editor_absoluteY="99dp" />
+
+        <ImageButton
+            android:id="@+id/frenchButton"
+            android:layout_width="20dp"
+            android:layout_height="71dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/french"
+            tools:layout_editor_absoluteX="164dp"
+            tools:layout_editor_absoluteY="99dp" />
+
+        <ImageButton
+            android:id="@+id/englishButton"
+            android:layout_width="5dp"
+            android:layout_height="79dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/english"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="256dp" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

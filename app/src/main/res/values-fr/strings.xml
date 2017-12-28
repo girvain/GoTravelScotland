@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Go Travel Scotland</string>
+    <string name="instructions_msg_one">Branchez vos écouteurs</string>
+    <string name="instructions_msg_two">S’asseoir confortablement</string>
+    <string name="instructions_msg_three">Commencer votre expérience de tour très propre</string>
+    <string name="lets_begin">Permet de commencer</string>
+</resources>

@@ -21,7 +21,7 @@ public class MessageFragmentOne extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.message_fragment, container, false);
 
-        TextView textView = new TextView(getActivity());
+        TextView textView = (TextView)rootView.findViewById(R.id.msg_fragment_text);
         textView.setText(R.string.instructions_msg_one);
         return rootView;
     }
