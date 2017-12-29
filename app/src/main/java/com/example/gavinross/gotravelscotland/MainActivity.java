@@ -13,18 +13,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.gavinross.gotravelscotland.instructions_page.InstructionsPage;
+
 import java.util.Locale;
 
 /**
  * To do list:
- * > try and make the main classes use only one three button class with intents and
- *   use this.finish() to close current activity while moving to the next
- * > set to permently in landscape
- * > add all the content
+ * > add all the content: images, text and other language text
  * > apply text styles
- * > put flags on buttons
- * > update images
- * > add new or fix button animation
+ * >
+ * > extra stuff to add:
+ * >    button animation
+ * >    pressed in look from the flag buttons when selected
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -55,24 +55,31 @@ public class MainActivity extends AppCompatActivity {
         TextView heading2 = (TextView)findViewById(R.id.textView2);
         heading2.setText(R.string.main_paragraph);
 
+        // third heading textView
+        TextView heading3 = (TextView)findViewById(R.id.textView3);
+        heading3.setText(R.string.language_select);
+
         // get the ref to the button
         Button letsStart = (Button) findViewById(R.id.lets_start_button);
+        letsStart.setText(R.string.start);
         letsStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent languageIntent = new Intent(MainActivity.this, LanguageSelect.class);
+                Intent languageIntent = new Intent(MainActivity.this, InstructionsPage.class);
                 startActivity(languageIntent);
             }
         });
 
         // language Buttons
-        ImageButton english = (ImageButton) findViewById(R.id.englishButton);
+        final ImageButton english = (ImageButton) findViewById(R.id.englishButton);
+
         ImageButton french = (ImageButton) findViewById(R.id.frenchButton);
         ImageButton german= (ImageButton)findViewById(R.id.germanButton);
         english.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 restartInLanguage("en");
+
             }
         });
         french.setOnClickListener(new View.OnClickListener() {

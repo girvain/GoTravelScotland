@@ -14,7 +14,7 @@
         android:layout_height="166dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,6 @@
         android:layout_height="46dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:text="GO TRAVEL SCOTLAND"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="BEGIN YOUR JOURNEY ON THE LOCH NESS TOUR"
         android:textColor="@android:color/white"
         android:textSize="14sp"
@@ -67,8 +66,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <LinearLayout
-        android:layout_width="421dp"
-        android:layout_height="40dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="384dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -78,33 +78,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.767">
-
-        <ImageButton
-            android:id="@+id/germanButton"
-            android:layout_width="6dp"
-            android:layout_height="77dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/german"
-            tools:layout_editor_absoluteX="358dp"
-            tools:layout_editor_absoluteY="99dp" />
-
-        <ImageButton
-            android:id="@+id/frenchButton"
-            android:layout_width="20dp"
-            android:layout_height="71dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/french"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="99dp" />
+        app:layout_constraintVertical_bias="0.783">
 
         <ImageButton
             android:id="@+id/englishButton"
-            android:layout_width="5dp"
-            android:layout_height="79dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/english"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="256dp" />
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/uk"
+            tools:layout_editor_absoluteX="367dp"
+            tools:layout_editor_absoluteY="307dp" />
+
+        <ImageButton
+            android:id="@+id/frenchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/france"
+            tools:layout_editor_absoluteX="625dp"
+            tools:layout_editor_absoluteY="310dp" />
+
+        <ImageButton
+            android:id="@+id/germanButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/germany"
+            tools:layout_editor_absoluteX="479dp"
+            tools:layout_editor_absoluteY="310dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/paragraphText"
+        android:layout_width="304dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0" />
+
 </android.support.constraint.ConstraintLayout>

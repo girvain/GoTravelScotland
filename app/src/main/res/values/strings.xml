@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Go Travel Scotland</string>
     <string name="main_paragraph">BEGIN YOUR JOURNEY ON THE LOCH NESS TOUR</string>
+    <string name="language_select">Select language then press start</string>
+    <string name="start">start</string>
     <string name="instructions_msg_one">Plug in your headphones</string>
     <string name="instructions_msg_two">Sit comfortably</string>
     <string name="instructions_msg_three">Begin your very own tour experience</string>
