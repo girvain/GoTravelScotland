@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -20,7 +21,7 @@ import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
  * Created by gavinross on 13/12/2017.
  */
 
-public class TourPageVideo extends Fragment{
+public class TourPageAd extends Fragment{
 
     private VideoView videoView;
     private FullScreenMediaController mc;
@@ -35,16 +36,16 @@ public class TourPageVideo extends Fragment{
     private TextView mHeadingTextView;
     private TextView mParagraphView;
     private VideoView fullscreenVideoView;
-    private ImageButton largePlayButton;
+    private Button startPartTwoButton;
 
-    public static TourPageVideo newInstance(String headingText, String paragraphText, int resId) {
+    public static TourPageAd newInstance(String headingText, String paragraphText, int resId) {
 
         Bundle bundle = new Bundle();
         bundle.putString("heading", headingText);
         bundle.putString("paragraph", paragraphText);
         bundle.putInt("resId", resId);
 
-        TourPageVideo fragment = new TourPageVideo();
+        TourPageAd fragment = new TourPageAd();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -63,7 +64,7 @@ public class TourPageVideo extends Fragment{
                              Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.tour_slide_page, container, false);
+        View rootView = inflater.inflate(R.layout.tour_slide_ad, container, false);
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
@@ -72,7 +73,7 @@ public class TourPageVideo extends Fragment{
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
-        largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
+        startPartTwoButton = (Button)rootView.findViewById(R.id.startPartTwoButton);
         mHeadingTextView.setText(headingText);
         mParagraphView.setText(paragraphText);
         // ref to the parent activity
@@ -87,6 +88,8 @@ public class TourPageVideo extends Fragment{
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
+
+
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -116,8 +119,23 @@ public class TourPageVideo extends Fragment{
                     }
                 });
 
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        videoView.clearFocus();
+                        videoView.setVisibility(View.INVISIBLE);
+
+                        //adPlayed = true;
+                        startPartTwoButton.setVisibility(View.VISIBLE); //show button after video
+
+
+
+                    }
+                });
+
             }
         });
+
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
@@ -140,6 +158,29 @@ public class TourPageVideo extends Fragment{
                         viewPager.beginFakeDrag();
                     }
                 });
+
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        fullscreenVideoView.setVisibility(View.INVISIBLE);
+
+                        //adPlayed = true;
+                        startPartTwoButton.setVisibility(View.VISIBLE); //show button after video
+
+                        fullscreenVideoView.clearFocus();
+
+
+                        // show the swipe dots
+                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+                        // stops the fake dragging to get the swipe going again if it was stopped
+                        if (viewPager.isFakeDragging()) {
+                            viewPager.endFakeDrag();
+                        }
+
+                    }
+                });
+
+
             }
         });
 
@@ -168,36 +209,112 @@ public class TourPageVideo extends Fragment{
             }
         });
 
-        largePlayButton.setOnClickListener(new View.OnClickListener() {
+        startPartTwoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                largePlayButton.setVisibility(View.INVISIBLE);
-                videoView.seekTo(0);
-                videoView.start();
+            public void onClick(View v) {
+
+                startPartTwoButton.setVisibility(View.INVISIBLE); // hide button after click
+                fullscreenVideoView.setVisibility(View.VISIBLE);
+                fullscreenVideoView.start();
+
             }
         });
-
-
-
-//        videoView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                if (videoView.isPlaying()) {
-//                    videoView.pause();
-//                }
-//                else if (!videoView.hasFocus()) {
-//                    videoView.pause();
-//                }
-//                else if (!videoView.isShown()){
-//                    videoView.pause();
-//                }
-//                else
-//                    videoView.start();
-//
-//                return false;
-//            }
-//        });
 
         return rootView;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//
+//
+//        final View rootView = inflater.inflate(R.layout.tour_slide_ad, container, false);
+//
+//        readBundle(getArguments()); // get data from bundle and put it in fields
+//
+//        String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+//                resId;
+//
+//        // ref to the parent activity
+//        tourFragContainer = (TourFragContainer)this.getActivity();
+//
+//
+//        fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
+//        fullscreenVideoView.setVideoPath(videoFilePath);
+//
+//
+//        mc = new FullScreenMediaController(getContext(), fullscreenVideoView);
+//        mc.show(5); // how long controls are displayed
+//
+//        // button listener for  part2Button
+//        final Button part2Button = (Button) rootView.findViewById(R.id.part2Button);
+//        part2Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (!adPlayed) {
+//                    //fullscreenVideoView.setVisibility(View.VISIBLE);
+//                    part2Button.setVisibility(View.INVISIBLE);
+//                    fullscreenVideoView.start();
+//
+//                }
+//            }
+//        });
+//
+//        fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mediaPlayer) {
+//                // remove the action bar!!!
+//                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+//
+//                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+//                    @Override
+//                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
+//                        //videoView.clearFocus();
+//                        fullscreenVideoView.requestFocus();
+//                        fullscreenVideoView.setMediaController(mc);
+//                        mc.setAnchorView(fullscreenVideoView);
+//                        mc.show(5); // how long controls are displayed
+//
+//                        // hides the swipe dots
+//                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
+//                        // stops the dragging
+//                        viewPager.beginFakeDrag();
+//                    }
+//                });
+//
+//                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                    @Override
+//                    public void onCompletion(MediaPlayer mp) {
+//                        fullscreenVideoView.clearFocus();
+//                        fullscreenVideoView.setVisibility(View.GONE);
+//
+//                        adPlayed = true;
+//                        part2Button.setVisibility(View.VISIBLE);
+//
+//                        // hides the swipe dots
+//                        //tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+//                        // show the action bar again
+//                        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+//                        viewPager.beginFakeDrag();
+//                    }
+//                });
+//
+//
+//            }
+//
+//        });

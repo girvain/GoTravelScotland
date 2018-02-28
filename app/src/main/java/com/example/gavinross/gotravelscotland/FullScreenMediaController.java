@@ -38,6 +38,12 @@ public class FullScreenMediaController extends MediaController {
         this.videoView = videoView;
     }
 
+    // secondry constructor for use of just one full screen video
+    public FullScreenMediaController(Context context, VideoView fullscreenVideo) {
+        super(context);
+        this.fullscreenVideo = fullscreenVideo;
+    }
+
     @Override
     public void setAnchorView(View view) {
 
@@ -99,5 +105,9 @@ public class FullScreenMediaController extends MediaController {
 
     public int getFileId() {
         return fileId;
+    }
+
+    public ImageButton getFullScreen() {
+        return fullScreen;
     }
 }

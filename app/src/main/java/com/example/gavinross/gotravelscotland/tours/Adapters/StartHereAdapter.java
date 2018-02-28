@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
+import com.example.gavinross.gotravelscotland.tours.fragments.TourPageAd;
 import com.example.gavinross.gotravelscotland.tours.fragments.TourPageImage;
 import com.example.gavinross.gotravelscotland.tours.fragments.TourPageVideo;
 
@@ -47,6 +48,10 @@ public class StartHereAdapter extends FragmentPagerAdapter {
             Fragment fragFour = TourPageImage.newInstance(context.getString(R.string.the_departure),
                     context.getString(R.string.place_holder_para), R.drawable.dragon);
             return fragFour;
+        } else if (position == 4) {
+            Fragment fragFive = TourPageAd.newInstance(context.getString(R.string.the_departure),
+                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+            return fragFive;
         }
 
         else
@@ -55,6 +60,6 @@ public class StartHereAdapter extends FragmentPagerAdapter {
 
 
     public int getCount() {
-        return 4;
+        return 5;
     }
 }
