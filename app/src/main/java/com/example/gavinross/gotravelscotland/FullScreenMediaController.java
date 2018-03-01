@@ -42,9 +42,10 @@ public class FullScreenMediaController extends MediaController {
 
     // secondry constructor for use of just one full screen video, takes
     // boolean for fullscreen mode
-    public FullScreenMediaController(Context context, VideoView fullscreenVideo) {
+    public FullScreenMediaController(Context context, VideoView fullscreenVideo, boolean fullscreenMode) {
         super(context);
         this.fullscreenVideo = fullscreenVideo;
+        this.fullscreenMode = fullscreenMode;
     }
 
     @Override
@@ -52,58 +53,62 @@ public class FullScreenMediaController extends MediaController {
 
         super.setAnchorView(view);
 
-
-        //image button for full screen to be added to media controller
-        fullScreen = new ImageButton (super.getContext());
-        fullScreen.isOpaque();
-        fullScreen.setBackgroundColor(getSolidColor());
-
         FrameLayout.LayoutParams params =
                 new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                         LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.RIGHT;
         params.rightMargin = 70;
         params.topMargin = 5;
-        addView(fullScreen, params);
-        fullScreen.bringToFront();
 
-        if(isFullScreen){
-            fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
-
-        }else{
-            fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
-        }
+        // check the state of fullscreen mode to see if it is intended to be used by the host
+        if (fullscreenMode) {
+            //image button for full screen to be added to media controller
+            fullScreen = new ImageButton (super.getContext());
+            fullScreen.isOpaque();
+            fullScreen.setBackgroundColor(getSolidColor());
 
 
-        //add listener to image button to handle full screen and exit full screen events
-        fullScreen.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isFullScreen){
-                    int current = fullscreenVideo.getCurrentPosition();
-                    fullscreenVideo.clearFocus();
-                    fullscreenVideo.setVisibility(View.GONE);
-                    videoView.setVisibility(View.VISIBLE);
+            addView(fullScreen, params);
+            fullScreen.bringToFront();
 
-                    videoView.seekTo(current);
-                    videoView.start();
-                    isFullScreen = false;
-                }else{
-                    //fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
-                    int current = videoView.getCurrentPosition();
-                    videoView.clearFocus();
-                    videoView.setVisibility(View.GONE);
-                    fullscreenVideo.setVisibility(View.VISIBLE);
+            if(isFullScreen){
+                fullScreen.setImageResource(R.drawable.ic_fullscreen_exit_white_24dp);
 
-                    fullscreenVideo.seekTo(current);
-                    fullscreenVideo.start();
-                    isFullScreen = true;
-                }
-
-
-
+            }else{
+                fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
             }
-        });
+
+
+            //add listener to image button to handle full screen and exit full screen events
+            fullScreen.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isFullScreen){
+                        int current = fullscreenVideo.getCurrentPosition();
+                        fullscreenVideo.clearFocus();
+                        fullscreenVideo.setVisibility(View.GONE);
+                        videoView.setVisibility(View.VISIBLE);
+
+                        videoView.seekTo(current);
+                        videoView.start();
+                        isFullScreen = false;
+                    }else{
+                        //fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
+                        int current = videoView.getCurrentPosition();
+                        videoView.clearFocus();
+                        videoView.setVisibility(View.GONE);
+                        fullscreenVideo.setVisibility(View.VISIBLE);
+
+                        fullscreenVideo.seekTo(current);
+                        fullscreenVideo.start();
+                        isFullScreen = true;
+                    }
+
+
+
+                }
+            });
+        }
     }
 
     public int getFileId() {

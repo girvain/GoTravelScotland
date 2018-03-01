@@ -76,10 +76,8 @@ public class TourPageAd extends Fragment{
         fullscreenVideoView.setVideoPath(videoFilePath);
         //videoView.seekTo(2000);
 
-        mc = new FullScreenMediaController(getContext(), fullscreenVideoView);
+        mc = new FullScreenMediaController(getContext(), fullscreenVideoView, false);
         mc.show(5); // how long controls are displayed
-
-
 
 
 
