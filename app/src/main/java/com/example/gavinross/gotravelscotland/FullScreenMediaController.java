@@ -40,12 +40,18 @@ public class FullScreenMediaController extends MediaController {
         this.videoView = videoView;
     }
 
-    // secondry constructor for use of just one full screen video, takes
-    // boolean for fullscreen mode
-    public FullScreenMediaController(Context context, VideoView fullscreenVideo, boolean fullscreenMode) {
+    /**
+     * Secondry constructor for use when only a fullscreen video is required. If one videoView is
+     * inserted then it will assume you want a full screen video and remove the button by setting
+     * the mode to true.
+     *
+     * @param context
+     * @param fullscreenVideo
+     */
+    public FullScreenMediaController(Context context, VideoView fullscreenVideo) {
         super(context);
         this.fullscreenVideo = fullscreenVideo;
-        this.fullscreenMode = fullscreenMode;
+        this.fullscreenMode = true;
     }
 
     @Override
@@ -59,6 +65,8 @@ public class FullScreenMediaController extends MediaController {
         params.gravity = Gravity.RIGHT;
         params.rightMargin = 70;
         params.topMargin = 5;
+
+
 
         // check the state of fullscreen mode to see if it is intended to be used by the host
         if (fullscreenMode) {
@@ -114,5 +122,6 @@ public class FullScreenMediaController extends MediaController {
     public int getFileId() {
         return fileId;
     }
+
 
 }

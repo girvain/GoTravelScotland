@@ -33,6 +33,7 @@ public class TourPageAd extends Fragment{
     private VideoView fullscreenVideoView;
     private Button startPartTwoButton;
     private boolean adPlayed;
+    private MediaPlayer mp;
 
     public static TourPageAd newInstance(int resId) {
 
@@ -76,9 +77,8 @@ public class TourPageAd extends Fragment{
         fullscreenVideoView.setVideoPath(videoFilePath);
         //videoView.seekTo(2000);
 
-        mc = new FullScreenMediaController(getContext(), fullscreenVideoView, false);
+        mc = new FullScreenMediaController(getContext(), fullscreenVideoView);
         mc.show(5); // how long controls are displayed
-
 
 
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -91,9 +91,14 @@ public class TourPageAd extends Fragment{
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
                         fullscreenVideoView.requestFocus();
+
+                        /* Fuck it, just hide the whole media controler until i can control the
+                            moving of the seek bar
+
                         fullscreenVideoView.setMediaController(mc);
                         mc.setAnchorView(fullscreenVideoView);
                         mc.show(5); // how long controls are displayed
+                        */
 
                         // hides the swipe dots
                         tourFragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
