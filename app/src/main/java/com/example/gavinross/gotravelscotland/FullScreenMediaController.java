@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
@@ -29,6 +30,7 @@ public class FullScreenMediaController extends MediaController {
     private int fileId;
     private VideoView fullscreenVideo;
     private VideoView videoView;
+    private boolean fullscreenMode;
 
     public FullScreenMediaController(Context context, VideoView videoView,
                                      VideoView fullscreenVideo) {
@@ -38,7 +40,8 @@ public class FullScreenMediaController extends MediaController {
         this.videoView = videoView;
     }
 
-    // secondry constructor for use of just one full screen video
+    // secondry constructor for use of just one full screen video, takes
+    // boolean for fullscreen mode
     public FullScreenMediaController(Context context, VideoView fullscreenVideo) {
         super(context);
         this.fullscreenVideo = fullscreenVideo;
@@ -107,7 +110,4 @@ public class FullScreenMediaController extends MediaController {
         return fileId;
     }
 
-    public ImageButton getFullScreen() {
-        return fullScreen;
-    }
 }

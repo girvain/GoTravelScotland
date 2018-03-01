@@ -49,8 +49,7 @@ public class StartHereAdapter extends FragmentPagerAdapter {
                     context.getString(R.string.place_holder_para), R.drawable.dragon);
             return fragFour;
         } else if (position == 4) {
-            Fragment fragFive = TourPageAd.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+            Fragment fragFive = TourPageAd.newInstance(R.raw.intro_tour);
             return fragFive;
         }
 

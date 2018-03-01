@@ -29,20 +29,15 @@ public class TourPageAd extends Fragment{
     private TourFragContainer tourFragContainer;
     private ViewPager viewPager;
 
-    private String headingText; // for holding text from newInstance to bundle
-    private String paragraphText; // to then be passed to textViews
     private int resId;
-
-    private TextView mHeadingTextView;
-    private TextView mParagraphView;
     private VideoView fullscreenVideoView;
     private Button startPartTwoButton;
+    private boolean adPlayed;
 
-    public static TourPageAd newInstance(String headingText, String paragraphText, int resId) {
+    public static TourPageAd newInstance(int resId) {
 
         Bundle bundle = new Bundle();
-        bundle.putString("heading", headingText);
-        bundle.putString("paragraph", paragraphText);
+
         bundle.putInt("resId", resId);
 
         TourPageAd fragment = new TourPageAd();
@@ -52,8 +47,6 @@ public class TourPageAd extends Fragment{
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            headingText = bundle.getString("heading");
-            paragraphText = bundle.getString("paragraph");
             resId = bundle.getInt("resId");
 
         }
@@ -71,70 +64,24 @@ public class TourPageAd extends Fragment{
         String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
                 resId;
 
-        mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
-        mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
+
         startPartTwoButton = (Button)rootView.findViewById(R.id.startPartTwoButton);
-        mHeadingTextView.setText(headingText);
-        mParagraphView.setText(paragraphText);
+
         // ref to the parent activity
         tourFragContainer = (TourFragContainer)this.getActivity();
 
 
-        videoView =(VideoView) rootView.findViewById(R.id.videoView);
-        videoView.setVideoPath(videoFilePath);
+
         fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);
-        videoView.seekTo(2000);
+        //videoView.seekTo(2000);
 
-        mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+        mc = new FullScreenMediaController(getContext(), fullscreenVideoView);
         mc.show(5); // how long controls are displayed
 
 
 
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                /*
-                This has been put before the size change listener (which was not actually nessesary)
-                so that the getActivity.getSupportActionBar().show() can act first which solves the
-                media controller displaying above the video.
-                 */
-                ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-                //mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
 
-                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
-                        fullscreenVideoView.clearFocus();
-                        videoView.requestFocus();
-                        videoView.setMediaController(mc);
-                        mc.setAnchorView(videoView);
-
-                        // show the swipe dots
-                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
-                        // stops the fake dragging to get the swipe going again if it was stopped
-                        if (viewPager.isFakeDragging()) {
-                            viewPager.endFakeDrag();
-                        }
-                    }
-                });
-
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        videoView.clearFocus();
-                        videoView.setVisibility(View.INVISIBLE);
-
-                        //adPlayed = true;
-                        startPartTwoButton.setVisibility(View.VISIBLE); //show button after video
-
-
-
-                    }
-                });
-
-            }
-        });
 
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -142,11 +89,10 @@ public class TourPageAd extends Fragment{
                 // remove the action bar!!!
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-
+                mc.disableFullscreen();
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
-                        videoView.clearFocus();
                         fullscreenVideoView.requestFocus();
                         fullscreenVideoView.setMediaController(mc);
                         mc.setAnchorView(fullscreenVideoView);
@@ -163,12 +109,11 @@ public class TourPageAd extends Fragment{
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         fullscreenVideoView.setVisibility(View.INVISIBLE);
-
-                        //adPlayed = true;
+                        adPlayed = true; // set state to true coz ad is now played
                         startPartTwoButton.setVisibility(View.VISIBLE); //show button after video
 
+                        // This is what broke it i think
                         fullscreenVideoView.clearFocus();
-
 
                         // show the swipe dots
                         tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
@@ -177,6 +122,8 @@ public class TourPageAd extends Fragment{
                             viewPager.endFakeDrag();
                         }
 
+                        // show the action bar again
+                        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
                     }
                 });
 
@@ -195,7 +142,7 @@ public class TourPageAd extends Fragment{
                 if (mc != null) {
                     mc.hide();
                 }
-                videoView.pause();
+                //videoView.pause();
             }
 
             @Override
@@ -214,9 +161,13 @@ public class TourPageAd extends Fragment{
             public void onClick(View v) {
 
                 startPartTwoButton.setVisibility(View.INVISIBLE); // hide button after click
-                fullscreenVideoView.setVisibility(View.VISIBLE);
-                fullscreenVideoView.start();
+                fullscreenVideoView.setVisibility(View.VISIBLE); // show the video
 
+                if (!adPlayed) {
+                    fullscreenVideoView.start();
+                }
+
+                mc.disableFullscreen();
             }
         });
 
