@@ -89,7 +89,6 @@ public class TourPageAd extends Fragment{
                 // remove the action bar!!!
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-                mc.disableFullscreen();
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
@@ -167,7 +166,6 @@ public class TourPageAd extends Fragment{
                     fullscreenVideoView.start();
                 }
 
-                mc.disableFullscreen();
             }
         });
 
