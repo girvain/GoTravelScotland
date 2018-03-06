@@ -1,17 +1,22 @@
 package com.example.gavinross.gotravelscotland;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gavinross.gotravelscotland.instructions_page.InstructionsPage;
 
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String APP_SHARED_PREFS = "com.example.test";
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
+    private CheckBox tAndCbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +65,28 @@ public class MainActivity extends AppCompatActivity {
         TextView heading3 = (TextView)findViewById(R.id.textView3);
         heading3.setText(R.string.language_select);
 
+        // checkbox Ref
+        tAndCbox = (CheckBox) findViewById(R.id.t_and_c_box);
+        tAndCbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialogTandC();
+            }
+        });
+
         // get the ref to the button
         Button letsStart = (Button) findViewById(R.id.lets_start_button);
         letsStart.setText(R.string.start);
         letsStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent languageIntent = new Intent(MainActivity.this, InstructionsPage.class);
-                startActivity(languageIntent);
+                if (tAndCbox.isChecked()){
+                    Intent languageIntent = new Intent(MainActivity.this, InstructionsPage.class);
+                    startActivity(languageIntent);
+                } else {
+                    openDialogNoTick();
+                }
+
             }
         });
 
@@ -94,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
                 restartInLanguage("ge"); // this might be wrong
             }
         });
+
+        /* Dialog */
+
+
     }
 
     public void restartInLanguage(String lang) {
@@ -103,5 +127,72 @@ public class MainActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
+    public void openDialogTandC() {
+//        final Dialog dialog = new Dialog(this); // Context, this, etc.
+//        dialog.setContentView(R.layout.terms_and_con);
+//        dialog.setTitle("Terms and Conditions");
+//        dialog.setCancelable(true);
+//        dialog.show();
+
+        // Buttons in the dialog
+//        Button agree = (Button) findViewById(R.id.agree_button);
+//        agree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tAndCbox.setChecked(true); // automatically check the checkbox
+//            }
+//        });
+//
+//        Button disagree = (Button) findViewById(R.id.disagree_button);
+//        disagree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel(); // close the dialog
+//            }
+//        });
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Terms and Conditions")
+                .setMessage(R.string.terms_and_conditions)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                //.setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+    }
+
+    public void openDialogNoTick() {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Terms and Conditions box not checked!")
+                .setMessage("You must agree to the terms and conditions to use the app")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+
 
 }

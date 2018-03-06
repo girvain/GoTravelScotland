@@ -1,13 +1,14 @@
 package com.example.gavinross.gotravelscotland;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+
 
 /**
  * Created by gavinross on 13/12/2017.
@@ -34,6 +35,7 @@ public class HomePage extends AppCompatActivity{
                 startActivity(HomePageIntent);
             }
         });
+
 
     }
 
