@@ -1,13 +1,35 @@
 <resources>
+    <!-- main page -->
     <string name="app_name">Go Travel Scotland</string>
     <string name="main_paragraph">BEGIN YOUR JOURNEY ON THE LOCH NESS TOUR</string>
     <string name="language_select">Select language then press start</string>
     <string name="start">start</string>
+
+    <!-- instructions fragments-->
     <string name="instructions_msg_one">Plug in your headphones</string>
     <string name="instructions_msg_two">Sit comfortably</string>
     <string name="instructions_msg_three">Begin your very own tour experience</string>
     <string name="lets_begin">Lets Begin</string>
+
     <string name="the_departure">The Departure</string>
+
+    <!-- homepage -->
+    <string name="homepage_title">What would you like to do?</string>
+    <string name="homepage_para">You have the power to create the experience you want</string>
+    <string name="video_tour_button_text">video tour</string>
+    <string name="children_button_text">children</string>
+    <string name="extras_button_text">extras</string>
+
+    <!-- tour home page -->
+    <string name="tour_home_page_title">Lets Start!</string>
+    <string name="tour_home_page_para">Select the section that corresponds to where you are
+    on your journey. To have the best experience we do not recommend skipping ahead!</string>
+    <string name="start_here_button_text">start here</string>
+    <string name="towards_loch_ness_button_text">towards loch ness</string>
+    <string name="highlands_and_lochs_button_text">Highlands and Lochs</string>
+    <string name="heros_and_freedom_button_text">Heros and Freedom</string>
+
+
     <string name="place_holder_para">This is some text that has been typed up to give an example
     of the type of stuff that will be going into this app. It has become very complicated to so this
     and I have lost the desire to ever become an app developer so Android can suck my balls.</string>

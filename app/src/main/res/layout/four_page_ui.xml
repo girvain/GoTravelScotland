@@ -43,7 +43,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="752dp"
+        android:layout_width="949dp"
         android:layout_height="57dp"
         android:layout_marginBottom="140dp"
         android:layout_marginEnd="8dp"
@@ -55,26 +55,34 @@
 
         <Button
             android:id="@+id/button_one"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button"
-            style="@style/CustomButtonStyle"/>
+            android:text="Button" />
 
         <Button
             android:id="@+id/button_two"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button"
-            style="@style/CustomButtonStyle"/>
+            android:text="Button" />
 
         <Button
             android:id="@+id/button_three"
+            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button"
-            style="@style/CustomButtonStyle"/>
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button_four"
+            style="@style/CustomButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
