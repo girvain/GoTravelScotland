@@ -29,10 +29,25 @@
     <string name="highlands_and_lochs_button_text">Highlands and Lochs</string>
     <string name="heros_and_freedom_button_text">Heros and Freedom</string>
 
+    <!-- extra page -->
+    <string name="extra_page_title">Relax</string>
+    <string name="extra_page_para">We have a selection of onboard entertainment options you
+    can choose from. Please note wifi is restricted to certain parts of our journey due to
+    network coverage in the Scottish highlands</string>
+    <string name="extra_button_text">extra</string>
+    <string name="whatson_button_text">what\'s on</string>
+    <string name="shop_button_text">shop</string>
+    <string name="web_button_text">web</string>
+
+    <!-- whats on -->
+    <string name="whatson_page_title">What\'s On</string>
+
 
     <string name="place_holder_para">This is some text that has been typed up to give an example
     of the type of stuff that will be going into this app. It has become very complicated to so this
     and I have lost the desire to ever become an app developer so Android can suck my balls.</string>
+
+    <!-- Terms and Conditions -->
     <string name="terms_and_conditions">Terms and Conditions
 General Site Usage
 Last Revised: December 16, 2013

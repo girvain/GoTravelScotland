@@ -31,13 +31,21 @@
             android:screenOrientation="landscape"
             android:label="@string/app_name"
             android:parentActivityName=".HomePage">
-
         </activity>
         <activity android:name=".tours.TourFragContainer"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
             android:parentActivityName=".TourHomePage">
-
+        </activity>
+        <activity android:name=".Extra"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".TourHomePage">
+        </activity>
+        <activity android:name=".WhatsOn"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".Extra">
         </activity>
         
 

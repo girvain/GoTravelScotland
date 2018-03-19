@@ -35,11 +35,13 @@ public class TourHomePage extends AppCompatActivity {
 
         // set the button text
         Button buttonOneRef = (Button) findViewById(R.id.button_one);
-        buttonOneRef.setText(R.string.video_tour_button_text);
+        buttonOneRef.setText(R.string.start_here_button_text);
         Button buttonOneRef2 = (Button) findViewById(R.id.button_two);
-        buttonOneRef2.setText(R.string.children_button_text);
+        buttonOneRef2.setText(R.string.towards_loch_ness_button_text);
         Button buttonOneRef3 = (Button) findViewById(R.id.button_three);
-        buttonOneRef3.setText(R.string.extras_button_text);
+        buttonOneRef3.setText(R.string.highlands_and_lochs_button_text);
+        Button buttonOneRef4 = (Button) findViewById(R.id.button_four);
+        buttonOneRef4.setText(R.string.heros_and_freedom_button_text);
 
         // button listener for Start Here button
         Button startTour = (Button) findViewById(R.id.button_one);
