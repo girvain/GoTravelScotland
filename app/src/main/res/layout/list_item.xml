@@ -24,7 +24,7 @@
         android:paddingLeft="16dp">
 
         <TextView
-            android:id="@+id/miwok_text_view"
+            android:id="@+id/ad_title_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -36,7 +36,7 @@
             tools:text="lutti" />
 
         <TextView
-            android:id="@+id/default_text_view"
+            android:id="@+id/ad_para_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

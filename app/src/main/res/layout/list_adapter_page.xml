@@ -20,20 +20,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="896dp"
-        android:layout_height="376dp"
+        android:layout_height="356dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heading_two"
+        android:drawSelectorOnTop="true"/>
+
+    <TextView
+        android:id="@+id/heading_two"
+        style="@style/paragraphText"
+        android:layout_width="668dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading_one"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.059" />
 
 </android.support.constraint.ConstraintLayout>

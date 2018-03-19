@@ -1,21 +1,26 @@
 package com.example.gavinross.gotravelscotland;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gavinross.gotravelscotland.custom_array_adapter_content.BasicItem;
 import com.example.gavinross.gotravelscotland.custom_array_adapter_content.ListItemArrayAdapter;
+import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
 
 import java.util.ArrayList;
 
 /**
- * Created by gavin on 18/03/18.
+ * Created by gavin on 19/03/18.
  */
 
-public class WhatsOn extends AppCompatActivity {
-
+public class Children extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_adapter_page);
@@ -25,13 +30,15 @@ public class WhatsOn extends AppCompatActivity {
         actionBar.setCustomView(R.layout.actionbar_layout);
 
         TextView headingOne = (TextView) findViewById(R.id.heading_one);
-        headingOne.setText(R.string.whatson_page_title);
+        headingOne.setText(R.string.children_page_title);
+        TextView headingTwo = (TextView) findViewById(R.id.heading_two);
+        headingTwo.setText(R.string.children_page_para);
 
         ArrayList<BasicItem> basicItems = new ArrayList<BasicItem>();
         basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
                 "aaah ya know wee sell dragons and various other ancient materials. We " +
                         "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
+                        "the first original sex toy known to man. Massive!", true));
         basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
                 "aaah ya know wee sell dragons and various other ancient materials. We " +
                         "also have a dildo that is over a thousand years old and rumoured to be" +
@@ -49,12 +56,25 @@ public class WhatsOn extends AppCompatActivity {
                         "also have a dildo that is over a thousand years old and rumoured to be" +
                         "the first original sex toy known to man. Massive!"));
 
-        ListItemArrayAdapter adapter = new ListItemArrayAdapter(this, basicItems);
+        final ListItemArrayAdapter adapter = new ListItemArrayAdapter(this, basicItems);
 
-        ListView listView = (ListView) findViewById(R.id.list);
+        final ListView listView = (ListView) findViewById(R.id.list);
 
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                if (adapter.getItem(position).hasActivity()) {
+                    Intent i = new Intent(Children.this, TourFragContainer.class);
+                    //If you wanna send any data to nextActicity.class you can use
+                    //i.putExtra(String key, value.get(position));
+                    i.putExtra("adapterTourOption", 1);
+                    startActivity(i);
+
+                }
+                Toast.makeText(getApplicationContext(),"Hello Javatpoint", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

@@ -37,6 +37,11 @@
             android:label="@string/app_name"
             android:parentActivityName=".TourHomePage">
         </activity>
+        <activity android:name=".Children"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".TourHomePage">
+        </activity>
         <activity android:name=".Extra"
             android:screenOrientation="landscape"
             android:label="@string/app_name"

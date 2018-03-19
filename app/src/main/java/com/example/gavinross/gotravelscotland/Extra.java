@@ -34,6 +34,8 @@ public class Extra extends AppCompatActivity{
         buttonOneRef2.setText(R.string.whatson_button_text);
         Button buttonOneRef3 = (Button) findViewById(R.id.button_three);
         buttonOneRef3.setText(R.string.shop_button_text);
+        Button buttonOneRef4 = (Button) findViewById(R.id.button_four);
+        buttonOneRef4.setText(R.string.web_button_text);
 
         // button listener for extras button
         Button extrasButton = (Button) findViewById(R.id.button_two);

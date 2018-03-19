@@ -39,8 +39,13 @@
     <string name="shop_button_text">shop</string>
     <string name="web_button_text">web</string>
 
-    <!-- whats on -->
+    <!-- whats on page -->
     <string name="whatson_page_title">What\'s On</string>
+
+    <!-- children page -->
+    <string name="children_page_title">Childrens Area</string>
+    <string name="children_page_para">We have lots of fun things for you to enjoy on your
+    adventure around Scotland!</string>
 
 
     <string name="place_holder_para">This is some text that has been typed up to give an example

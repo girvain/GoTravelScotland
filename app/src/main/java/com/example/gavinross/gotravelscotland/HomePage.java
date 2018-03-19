@@ -50,6 +50,16 @@ public class HomePage extends AppCompatActivity{
         });
 
         // button listener for extras button
+        Button childrenButton = (Button) findViewById(R.id.button_two);
+        childrenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ChildrenPageIntent = new Intent(HomePage.this, Children.class);
+                startActivity(ChildrenPageIntent);
+            }
+        });
+
+        // button listener for extras button
         Button extrasButton = (Button) findViewById(R.id.button_three);
         extrasButton.setOnClickListener(new View.OnClickListener() {
             @Override
