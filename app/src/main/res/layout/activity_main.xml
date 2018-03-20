@@ -67,7 +67,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="384dp"
+        android:layout_width="595dp"
         android:layout_height="38dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -109,6 +109,22 @@
             app:srcCompat="@drawable/germany"
             tools:layout_editor_absoluteX="479dp"
             tools:layout_editor_absoluteY="310dp" />
+
+        <ImageButton
+            android:id="@+id/italianButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/italy" />
+
+        <ImageButton
+            android:id="@+id/spanishButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/spain" />
     </LinearLayout>
 
     <TextView

@@ -92,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
 
         // language Buttons
         final ImageButton english = (ImageButton) findViewById(R.id.englishButton);
-
         ImageButton french = (ImageButton) findViewById(R.id.frenchButton);
         ImageButton german= (ImageButton)findViewById(R.id.germanButton);
+        ImageButton spanish = (ImageButton) findViewById(R.id.spanishButton);
+        ImageButton italian = (ImageButton) findViewById(R.id.italianButton);
         english.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 restartInLanguage("en");
-
             }
         });
         french.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +112,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 restartInLanguage("ge"); // this might be wrong
+            }
+        });
+        spanish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restartInLanguage("es"); // this might be wrong
+            }
+        });
+        italian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restartInLanguage("it"); // this might be wrong
             }
         });
 
@@ -129,29 +141,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openDialogTandC() {
-//        final Dialog dialog = new Dialog(this); // Context, this, etc.
-//        dialog.setContentView(R.layout.terms_and_con);
-//        dialog.setTitle("Terms and Conditions");
-//        dialog.setCancelable(true);
-//        dialog.show();
-
-        // Buttons in the dialog
-//        Button agree = (Button) findViewById(R.id.agree_button);
-//        agree.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tAndCbox.setChecked(true); // automatically check the checkbox
-//            }
-//        });
-//
-//        Button disagree = (Button) findViewById(R.id.disagree_button);
-//        disagree.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.cancel(); // close the dialog
-//            }
-//        });
-
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
@@ -174,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
                 })
                 //.setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
-
     }
 
     public void openDialogNoTick() {
