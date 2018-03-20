@@ -65,7 +65,11 @@ public class Children extends AppCompatActivity {
         Listener for each item in the arrayAdapter list. Checks to see if the object is intended
         to launch an activity.
 
-        NOTE: This needs to be updated when there is more options for the childrens section.
+        NOTE: This needs to be updated when there is more options for the childrens section. If
+                the BasicItem class is indexed with numbers on what type of object to create i.e
+                fragmentContainer, then it can call a method like getType that will return the
+                number index and create the next Activity with a collection of if (getType == 2) etc
+                then create new Intent(something... .class) etc.
 
          */
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

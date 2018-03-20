@@ -14,8 +14,16 @@ import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 /**
  * Created by gavinross on 13/12/2017.
- * This is a container class that will take different custom made pagerAdapters for what ever tour
- * the adapter is programed for.
+ * This is a container class that will take different custom made pagerAdapters for what ever part
+ * of the program requires a pagerAdapter of fragments. When using the container an argument number
+ * must be put in to tell the program what adapter you intend to use. For example:
+ *
+ *      Intent i = new Intent(Children.this, FragContainer.class);
+ *      i.putExtra("adapterTourOption", 4);
+ *      startActivity(i);
+ *
+ * It also used a third party library from git hub to create the dot animation between slides. It's
+ * called InkPageIndicator and is in the project folder.
  */
 
 public class FragContainer extends AppCompatActivity{
@@ -67,15 +75,5 @@ public class FragContainer extends AppCompatActivity{
         inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(viewPager);
 
-
-
-//        Button startTour = (Button) findViewById(R.id.start_tour_button);
-//        startTour.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent HomePageIntent = new Intent(FragContainer.this, HomePage.class);
-//                startActivity(HomePageIntent);
-//            }
-//        });
     }
 }
