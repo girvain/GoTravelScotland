@@ -158,16 +158,18 @@ public class MainActivity extends AppCompatActivity {
         } else {
             builder = new AlertDialog.Builder(this);
         }
-        builder.setTitle("Terms and Conditions")
+        builder.setTitle(R.string.terms_and_conditions_title)
                 .setMessage(R.string.terms_and_conditions)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
+                        // sets box ticked when the ok button is clicked
+                        tAndCbox.setChecked(true);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
+                        // sets box not ticked when the cancel button is clicked
+                        tAndCbox.setChecked(false);
                     }
                 })
                 //.setIcon(android.R.drawable.ic_dialog_alert)

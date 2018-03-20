@@ -28,6 +28,8 @@ public class Children extends AppCompatActivity {
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.actionbar_layout);
 
+        Toast.makeText(getApplicationContext(),"Select an option", Toast.LENGTH_SHORT).show();
+
         TextView headingOne = (TextView) findViewById(R.id.heading_one);
         headingOne.setText(R.string.children_page_title);
         TextView headingTwo = (TextView) findViewById(R.id.heading_two);
@@ -79,7 +81,6 @@ public class Children extends AppCompatActivity {
                     i.putExtra("adapterTourOption", 4);
                     startActivity(i);
                 }
-                Toast.makeText(getApplicationContext(),"Hello Javatpoint", Toast.LENGTH_SHORT).show();
             }
         });
     }
