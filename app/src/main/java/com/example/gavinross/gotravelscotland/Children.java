@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gavinross.gotravelscotland.custom_array_adapter_content.BasicItem;
 import com.example.gavinross.gotravelscotland.custom_array_adapter_content.ListItemArrayAdapter;
-import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
+import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 import java.util.ArrayList;
 
@@ -62,15 +61,19 @@ public class Children extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        /*
+        Listener for each item in the arrayAdapter list. Checks to see if the object is intended
+        to launch an activity.
+
+        NOTE: This needs to be updated when there is more options for the childrens section.
+
+         */
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 if (adapter.getItem(position).hasActivity()) {
-                    Intent i = new Intent(Children.this, TourFragContainer.class);
-                    //If you wanna send any data to nextActicity.class you can use
-                    //i.putExtra(String key, value.get(position));
-                    i.putExtra("adapterTourOption", 1);
+                    Intent i = new Intent(Children.this, FragContainer.class);
+                    i.putExtra("adapterTourOption", 4);
                     startActivity(i);
-
                 }
                 Toast.makeText(getApplicationContext(),"Hello Javatpoint", Toast.LENGTH_SHORT).show();
             }

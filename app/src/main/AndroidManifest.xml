@@ -32,7 +32,7 @@
             android:label="@string/app_name"
             android:parentActivityName=".HomePage">
         </activity>
-        <activity android:name=".tours.TourFragContainer"
+        <activity android:name=".viewpager_content.FragContainer"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
             android:parentActivityName=".TourHomePage">

@@ -1,30 +1,26 @@
-package com.example.gavinross.gotravelscotland.tours.Adapters;
+package com.example.gavinross.gotravelscotland.viewpager_content.Adapters;
 
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
-import com.example.gavinross.gotravelscotland.tours.fragments.TourPageAd;
-import com.example.gavinross.gotravelscotland.tours.fragments.TourPageImage;
-import com.example.gavinross.gotravelscotland.tours.fragments.TourPageVideo;
+import com.example.gavinross.gotravelscotland.viewpager_content.fragments.TourPageImage;
+import com.example.gavinross.gotravelscotland.viewpager_content.fragments.TourPageVideo;
 
 /**
- * Created by gavinross on 13/12/2017.
+ * Created by gavinross on 15/12/2017.
  */
 
-public class StartHereAdapter extends FragmentPagerAdapter {
-
+public class JourneyHomeAdapter extends FragmentPagerAdapter {
     private Context context; // set from the constructor
 
     /*
         Uses a Context obejct to pass in the activity using it. This is so the getString() will work
      */
-    public StartHereAdapter(FragmentManager fm, Context context) {
+    public JourneyHomeAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
@@ -48,17 +44,12 @@ public class StartHereAdapter extends FragmentPagerAdapter {
             Fragment fragFour = TourPageImage.newInstance(context.getString(R.string.the_departure),
                     context.getString(R.string.place_holder_para), R.drawable.dragon);
             return fragFour;
-        } else if (position == 4) {
-            Fragment fragFive = TourPageAd.newInstance(R.raw.intro_tour);
-            return fragFive;
-        }
-
-        else
+        } else
             return new VideoFragment();
     }
 
-
     public int getCount() {
-        return 5;
+        return 4;
     }
+
 }

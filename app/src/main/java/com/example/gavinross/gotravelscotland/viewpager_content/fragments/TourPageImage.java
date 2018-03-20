@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tours.fragments;
+package com.example.gavinross.gotravelscotland.viewpager_content.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tours.fragments;
+package com.example.gavinross.gotravelscotland.viewpager_content.fragments;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
-import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
+import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
@@ -25,7 +25,7 @@ public class TourPageVideo extends Fragment{
     private VideoView videoView;
     private FullScreenMediaController mc;
     private View rootView;
-    private TourFragContainer tourFragContainer;
+    private FragContainer fragContainer;
     private ViewPager viewPager;
 
     private String headingText; // for holding text from newInstance to bundle
@@ -76,7 +76,7 @@ public class TourPageVideo extends Fragment{
         mHeadingTextView.setText(headingText);
         mParagraphView.setText(paragraphText);
         // ref to the parent activity
-        tourFragContainer = (TourFragContainer)this.getActivity();
+        fragContainer = (FragContainer)this.getActivity();
 
 
         videoView =(VideoView) rootView.findViewById(R.id.videoView);
@@ -108,7 +108,7 @@ public class TourPageVideo extends Fragment{
                         mc.setAnchorView(videoView);
 
                         // show the swipe dots
-                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+                        fragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
                         // stops the fake dragging to get the swipe going again if it was stopped
                         if (viewPager.isFakeDragging()) {
                             viewPager.endFakeDrag();
@@ -135,7 +135,7 @@ public class TourPageVideo extends Fragment{
                         mc.show(5); // how long controls are displayed
 
                         // hides the swipe dots
-                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
+                        fragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
                         // stops the dragging
                         viewPager.beginFakeDrag();
                     }

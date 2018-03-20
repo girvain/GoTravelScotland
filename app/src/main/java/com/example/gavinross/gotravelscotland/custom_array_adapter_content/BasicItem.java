@@ -1,12 +1,6 @@
 package com.example.gavinross.gotravelscotland.custom_array_adapter_content;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-
-import com.example.gavinross.gotravelscotland.Children;
-import com.example.gavinross.gotravelscotland.HomePage;
-import com.example.gavinross.gotravelscotland.TourHomePage;
-import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
 
 /**
  * Created by gavin on 18/03/18.

@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/heading"
         style="@style/headingText"
-        android:layout_width="245dp"
+        android:layout_width="520dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/paragraph"
         style="@style/paragraphText"
-        android:layout_width="wrap_content"
+        android:layout_width="522dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"

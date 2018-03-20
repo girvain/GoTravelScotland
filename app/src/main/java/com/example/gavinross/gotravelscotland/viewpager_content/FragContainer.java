@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tours;
+package com.example.gavinross.gotravelscotland.viewpager_content;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.gavinross.gotravelscotland.R;
-import com.example.gavinross.gotravelscotland.tours.Adapters.IntoTheHighlandsAdapter;
-import com.example.gavinross.gotravelscotland.tours.Adapters.JourneyHomeAdapter;
-import com.example.gavinross.gotravelscotland.tours.Adapters.StartHereAdapter;
+import com.example.gavinross.gotravelscotland.viewpager_content.Adapters.ChildrensEpisodesAdapter;
+import com.example.gavinross.gotravelscotland.viewpager_content.Adapters.IntoTheHighlandsAdapter;
+import com.example.gavinross.gotravelscotland.viewpager_content.Adapters.JourneyHomeAdapter;
+import com.example.gavinross.gotravelscotland.viewpager_content.Adapters.StartHereAdapter;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 /**
@@ -17,7 +18,7 @@ import com.pixelcan.inkpageindicator.InkPageIndicator;
  * the adapter is programed for.
  */
 
-public class TourFragContainer extends AppCompatActivity{
+public class FragContainer extends AppCompatActivity{
 
     private InkPageIndicator inkPageIndicator;
 
@@ -56,6 +57,11 @@ public class TourFragContainer extends AppCompatActivity{
                     this);
             viewPager.setAdapter(adapter);
         }
+        else if (adapterTourOption == 4) {
+            ChildrensEpisodesAdapter adapter = new ChildrensEpisodesAdapter(getSupportFragmentManager(),
+                    this);
+            viewPager.setAdapter(adapter);
+        }
 
 
         inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
@@ -67,7 +73,7 @@ public class TourFragContainer extends AppCompatActivity{
 //        startTour.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent HomePageIntent = new Intent(TourFragContainer.this, HomePage.class);
+//                Intent HomePageIntent = new Intent(FragContainer.this, HomePage.class);
 //                startActivity(HomePageIntent);
 //            }
 //        });

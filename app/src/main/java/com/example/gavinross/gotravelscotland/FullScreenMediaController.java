@@ -51,7 +51,7 @@ public class FullScreenMediaController extends MediaController {
     public FullScreenMediaController(Context context, VideoView fullscreenVideo) {
         super(context);
         this.fullscreenVideo = fullscreenVideo;
-        this.fullscreenMode = true;
+
     }
 
     @Override
@@ -66,8 +66,6 @@ public class FullScreenMediaController extends MediaController {
         params.rightMargin = 70;
         params.topMargin = 5;
 
-        // check the state of fullscreen mode to see if it is intended to be used by the host
-        if (fullscreenMode) {
             //image button for full screen to be added to media controller
             fullScreen = new ImageButton (super.getContext());
             fullScreen.isOpaque();
@@ -112,7 +110,7 @@ public class FullScreenMediaController extends MediaController {
 
                 }
             });
-        }
+
     }
 
     public int getFileId() {

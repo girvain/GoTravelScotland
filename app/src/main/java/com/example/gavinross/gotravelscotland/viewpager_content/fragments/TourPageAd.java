@@ -1,4 +1,4 @@
-package com.example.gavinross.gotravelscotland.tours.fragments;
+package com.example.gavinross.gotravelscotland.viewpager_content.fragments;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,13 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
-import com.example.gavinross.gotravelscotland.tours.TourFragContainer;
+import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
@@ -26,7 +24,7 @@ public class TourPageAd extends Fragment{
     private VideoView videoView;
     private FullScreenMediaController mc;
     private View rootView;
-    private TourFragContainer tourFragContainer;
+    private FragContainer fragContainer;
     private ViewPager viewPager;
 
     private int resId;
@@ -69,7 +67,7 @@ public class TourPageAd extends Fragment{
         startPartTwoButton = (Button)rootView.findViewById(R.id.startPartTwoButton);
 
         // ref to the parent activity
-        tourFragContainer = (TourFragContainer)this.getActivity();
+        fragContainer = (FragContainer)this.getActivity();
 
 
 
@@ -101,7 +99,7 @@ public class TourPageAd extends Fragment{
                         */
 
                         // hides the swipe dots
-                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
+                        fragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
                         // stops the dragging
                         viewPager.beginFakeDrag();
                     }
@@ -118,7 +116,7 @@ public class TourPageAd extends Fragment{
                         fullscreenVideoView.clearFocus();
 
                         // show the swipe dots
-                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+                        fragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
                         // stops the fake dragging to get the swipe going again if it was stopped
                         if (viewPager.isFakeDragging()) {
                             viewPager.endFakeDrag();
@@ -203,7 +201,7 @@ public class TourPageAd extends Fragment{
 //                resId;
 //
 //        // ref to the parent activity
-//        tourFragContainer = (TourFragContainer)this.getActivity();
+//        fragContainer = (FragContainer)this.getActivity();
 //
 //
 //        fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
@@ -243,7 +241,7 @@ public class TourPageAd extends Fragment{
 //                        mc.show(5); // how long controls are displayed
 //
 //                        // hides the swipe dots
-//                        tourFragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
+//                        fragContainer.findViewById(R.id.indicator).setVisibility(View.INVISIBLE);
 //                        // stops the dragging
 //                        viewPager.beginFakeDrag();
 //                    }
@@ -259,7 +257,7 @@ public class TourPageAd extends Fragment{
 //                        part2Button.setVisibility(View.VISIBLE);
 //
 //                        // hides the swipe dots
-//                        //tourFragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+//                        //fragContainer.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
 //                        // show the action bar again
 //                        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 //                        viewPager.beginFakeDrag();
