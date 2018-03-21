@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.gavinross.gotravelscotland.AudioLangSelector;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.instructions_page.fragments.VideoFragment;
 import com.example.gavinross.gotravelscotland.viewpager_content.fragments.TourPageAd;
@@ -35,12 +36,25 @@ public class StartHereAdapter extends FragmentPagerAdapter {
                     context.getString(R.string.place_holder_para), R.drawable.dragon);
             return fragOne;
         } else if (position == 1) {
+            // set up the audio file object
+            AudioLangSelector audioLangSelector = new AudioLangSelector();
+            audioLangSelector.setEnglishAudio(R.raw.the_sea);
+            audioLangSelector.setFrenchAudio(R.raw.synth);
+            int audioFile = audioLangSelector.getCurrentLangAudio(); // returns the right audio
+
             Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+                    context.getString(R.string.place_holder_para), R.raw.gts_edinburgh_english, audioFile);
             return fragTwo;
         } else if (position == 2) {
+            // set up the audio file object
+            AudioLangSelector audioLangSelector = new AudioLangSelector();
+            audioLangSelector.setEnglishAudio(R.raw.the_sea);
+            audioLangSelector.setFrenchAudio(R.raw.synth);
+            int audioFile = audioLangSelector.getCurrentLangAudio(); // returns the right audio
+
             Fragment fragThree = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+                    context.getString(R.string.place_holder_para), R.raw.intro_tour,
+                    audioFile);
             return fragThree;
         } else if (position == 3) {
             Fragment fragFour = TourPageImage.newInstance(context.getString(R.string.the_departure),

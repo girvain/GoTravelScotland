@@ -6,18 +6,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.gavinross.gotravelscotland.AudioLangSelector;
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
+ *
+ * This class used the AudioLangSelector class to identify the right audio for the video.
  */
 
 public class TourPageVideo extends Fragment{
@@ -37,6 +42,31 @@ public class TourPageVideo extends Fragment{
     private VideoView fullscreenVideoView;
     private ImageButton largePlayButton;
 
+    private int currentAudioFile;
+    private MediaPlayer audioMP;
+
+    /*
+    New instance for use with an audio file res id input. Intended to be be used with the
+    AudioLangSelector class to get the right audio file to input.
+     */
+    public static TourPageVideo newInstance(String headingText, String paragraphText, int resId,
+                                            int currentAudioFile) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("heading", headingText);
+        bundle.putString("paragraph", paragraphText);
+        bundle.putInt("resId", resId);
+        bundle.putInt("currentAudioFile", currentAudioFile);
+
+        TourPageVideo fragment = new TourPageVideo();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+    /*
+    New instance with no audio file resource input. This is for video fragments with hardcoded audio
+     */
     public static TourPageVideo newInstance(String headingText, String paragraphText, int resId) {
 
         Bundle bundle = new Bundle();
@@ -46,6 +76,7 @@ public class TourPageVideo extends Fragment{
 
         TourPageVideo fragment = new TourPageVideo();
         fragment.setArguments(bundle);
+
         return fragment;
     }
 
@@ -54,7 +85,7 @@ public class TourPageVideo extends Fragment{
             headingText = bundle.getString("heading");
             paragraphText = bundle.getString("paragraph");
             resId = bundle.getInt("resId");
-
+            currentAudioFile = bundle.getInt("currentAudioFile");
         }
     }
 
@@ -62,22 +93,12 @@ public class TourPageVideo extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         View rootView = inflater.inflate(R.layout.tour_slide_page, container, false);
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
         String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
                 resId;
-
-
-
-        // AUDIO FILE TEMP
-
-        final String audioFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
-                "/raw/the_sea";
-
-
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
@@ -87,19 +108,16 @@ public class TourPageVideo extends Fragment{
         // ref to the parent activity
         fragContainer = (FragContainer)this.getActivity();
 
-
         videoView =(VideoView) rootView.findViewById(R.id.videoView);
         videoView.setVideoPath(videoFilePath);
         fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);
 
-        // temp trial code
-
-
         videoView.seekTo(2000);
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
+
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -111,6 +129,14 @@ public class TourPageVideo extends Fragment{
                  */
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
                 //mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+
+                // create the audio media player
+                audioMP = MediaPlayer.create(getContext(), currentAudioFile);
+
+                // mute the video if there is an audio file
+                if (currentAudioFile > 0) {
+                    mediaPlayer.setVolume(0, 0);
+                }
 
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
@@ -137,6 +163,10 @@ public class TourPageVideo extends Fragment{
                 // remove the action bar!!!
                 ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
+                // mute the video if there is an audio file
+                if (currentAudioFile > 0) {
+                    mediaPlayer.setVolume(0, 0);
+                }
 
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
@@ -188,35 +218,14 @@ public class TourPageVideo extends Fragment{
                 videoView.seekTo(0);
                 videoView.start();
 
-                MediaPlayer mp = new MediaPlayer();
-                try {
-
-                } catch (Exception e) {}
-
-                mp.start();
+                // play the audio with the video part
+                //MediaPlayer mp = MediaPlayer.create(getContext(), currentAudioFile);
+                audioMP.start();
             }
         });
 
 
 
-//        videoView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                if (videoView.isPlaying()) {
-//                    videoView.pause();
-//                }
-//                else if (!videoView.hasFocus()) {
-//                    videoView.pause();
-//                }
-//                else if (!videoView.isShown()){
-//                    videoView.pause();
-//                }
-//                else
-//                    videoView.start();
-//
-//                return false;
-//            }
-//        });
 
         return rootView;
     }
