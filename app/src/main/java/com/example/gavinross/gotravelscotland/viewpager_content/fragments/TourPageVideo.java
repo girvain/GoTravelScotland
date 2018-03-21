@@ -70,6 +70,15 @@ public class TourPageVideo extends Fragment{
         String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
                 resId;
 
+
+
+        // AUDIO FILE TEMP
+
+        final String audioFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+                "/raw/the_sea";
+
+
+
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
@@ -83,6 +92,10 @@ public class TourPageVideo extends Fragment{
         videoView.setVideoPath(videoFilePath);
         fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);
+
+        // temp trial code
+
+
         videoView.seekTo(2000);
 
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
@@ -174,6 +187,13 @@ public class TourPageVideo extends Fragment{
                 largePlayButton.setVisibility(View.INVISIBLE);
                 videoView.seekTo(0);
                 videoView.start();
+
+                MediaPlayer mp = new MediaPlayer();
+                try {
+
+                } catch (Exception e) {}
+
+                mp.start();
             }
         });
 
