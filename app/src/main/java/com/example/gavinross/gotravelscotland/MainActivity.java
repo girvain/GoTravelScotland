@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         german.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restartInLanguage("ge"); // this might be wrong
+                restartInLanguage("de"); // this might be wrong
             }
         });
         spanish.setOnClickListener(new View.OnClickListener() {
