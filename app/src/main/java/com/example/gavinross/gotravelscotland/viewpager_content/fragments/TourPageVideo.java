@@ -130,14 +130,6 @@ public class TourPageVideo extends Fragment{
                 ((AppCompatActivity) getActivity()).getSupportActionBar().show();
                 //mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
 
-                // create the audio media player
-                audioMP = MediaPlayer.create(getContext(), currentAudioFile);
-
-                // mute the video if there is an audio file
-                if (currentAudioFile > 0) {
-                    mediaPlayer.setVolume(0, 0);
-                }
-
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
@@ -217,10 +209,6 @@ public class TourPageVideo extends Fragment{
                 largePlayButton.setVisibility(View.INVISIBLE);
                 videoView.seekTo(0);
                 videoView.start();
-
-                // play the audio with the video part
-                //MediaPlayer mp = MediaPlayer.create(getContext(), currentAudioFile);
-                audioMP.start();
             }
         });
 
