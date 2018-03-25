@@ -16,6 +16,8 @@ import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
+import java.util.Locale;
+
 /**
  * Created by gavinross on 13/12/2017.
  */
@@ -113,6 +115,24 @@ public class TourPageVideo extends Fragment{
                         if (viewPager.isFakeDragging()) {
                             viewPager.endFakeDrag();
                         }
+                    }
+                });
+
+
+                mediaPlayer.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+                    @Override
+                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                        MediaPlayer.TrackInfo[] trackInfoArray = mp.getTrackInfo();
+                        for (int i = 0; i < trackInfoArray.length; i++) {
+                            // you can switch out the language comparison logic to whatever works for you
+                            if (trackInfoArray[i].getTrackType() == MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_AUDIO
+                                    && trackInfoArray[i].getLanguage().equals(Locale.getDefault().getISO3Language())) {
+                                mp.selectTrack(i);
+                                break;
+                            }
+
+                        }
+                        return true;
                     }
                 });
 

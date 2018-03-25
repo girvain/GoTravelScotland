@@ -127,9 +127,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /* Dialog */
-
-
     }
 
     public void restartInLanguage(String lang) {
