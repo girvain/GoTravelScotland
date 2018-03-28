@@ -34,7 +34,7 @@ public class IntoTheHighlandsAdapter extends FragmentPagerAdapter{
             return fragOne;
         } else if (position == 1) {
             Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+                    context.getString(R.string.place_holder_para), R.raw.intro_tour, R.raw.intro_tour);
             return fragTwo;
         } else if (position == 2) {
             Fragment fragThree = TourPageVideo.newInstance(context.getString(R.string.the_departure),

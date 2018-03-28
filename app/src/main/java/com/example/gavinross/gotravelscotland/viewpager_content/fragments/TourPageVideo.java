@@ -32,19 +32,39 @@ public class TourPageVideo extends Fragment{
 
     private String headingText; // for holding text from newInstance to bundle
     private String paragraphText; // to then be passed to textViews
-    private int resId;
+    private int videoId;
+    private int videoAdId;
+    private boolean adPlayed;
 
     private TextView mHeadingTextView;
     private TextView mParagraphView;
     private VideoView fullscreenVideoView;
     private ImageButton largePlayButton;
 
-    public static TourPageVideo newInstance(String headingText, String paragraphText, int resId) {
+    String videoFilePath;
+    String videoAdFilePath;
+
+
+    public static TourPageVideo newInstance(String headingText, String paragraphText, int videoId) {
 
         Bundle bundle = new Bundle();
         bundle.putString("heading", headingText);
         bundle.putString("paragraph", paragraphText);
-        bundle.putInt("resId", resId);
+        bundle.putInt("videoId", videoId);
+
+        TourPageVideo fragment = new TourPageVideo();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    public static TourPageVideo newInstance(String headingText, String paragraphText, int videoId,
+                                            int videoAdId) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("heading", headingText);
+        bundle.putString("paragraph", paragraphText);
+        bundle.putInt("videoId", videoId);
+        bundle.putInt("videoAdId", videoAdId);
 
         TourPageVideo fragment = new TourPageVideo();
         fragment.setArguments(bundle);
@@ -55,8 +75,8 @@ public class TourPageVideo extends Fragment{
         if (bundle != null) {
             headingText = bundle.getString("heading");
             paragraphText = bundle.getString("paragraph");
-            resId = bundle.getInt("resId");
-
+            videoId = bundle.getInt("videoId");
+            videoAdId = bundle.getInt("videoAdId");
         }
     }
 
@@ -65,12 +85,15 @@ public class TourPageVideo extends Fragment{
                              Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.tour_slide_page, container, false);
+        rootView = inflater.inflate(R.layout.tour_slide_page, container, false);
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
-        String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
-                resId;
+        videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+                videoId;
+
+        videoAdFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+                videoAdId;
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
@@ -83,12 +106,16 @@ public class TourPageVideo extends Fragment{
 
         videoView =(VideoView) rootView.findViewById(R.id.videoView);
         videoView.setVideoPath(videoFilePath);
-        fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
-        fullscreenVideoView.setVideoPath(videoFilePath);
-        videoView.seekTo(2000);
 
-        mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
-        mc.show(5); // how long controls are displayed
+        fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
+        fullscreenVideoView.setVideoPath(videoAdFilePath);
+
+//        fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
+//        fullscreenVideoView.setVideoPath(videoFilePath);
+//        videoView.seekTo(2000);
+//
+//        mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+//        mc.show(5); // how long controls are displayed
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -179,7 +206,13 @@ public class TourPageVideo extends Fragment{
 
             @Override
             public void onPageSelected(int position) {
+                if (!adPlayed) {
+                    videoView.setVisibility(View.INVISIBLE);
+                    fullscreenVideoView.setVisibility(View.VISIBLE);
 
+
+                    fullscreenVideoView.start();
+                }
             }
 
             @Override
@@ -194,6 +227,24 @@ public class TourPageVideo extends Fragment{
                 largePlayButton.setVisibility(View.INVISIBLE);
                 videoView.seekTo(0);
                 videoView.start();
+            }
+        });
+
+
+        /*
+        COmpletion listener for finishing the advert
+         */
+        fullscreenVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                if (!adPlayed) {
+                    fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
+                    fullscreenVideoView.setVideoPath(videoFilePath);
+                    videoView.seekTo(2000);
+
+                    mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
+                    mc.show(5); // how long controls are displayed
+                }
             }
         });
 
@@ -217,6 +268,10 @@ public class TourPageVideo extends Fragment{
 //                return false;
 //            }
 //        });
+
+
+
+        fullscreenVideoView.start();
 
         return rootView;
     }

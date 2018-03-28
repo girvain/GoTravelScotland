@@ -36,7 +36,7 @@ public class StartHereAdapter extends FragmentPagerAdapter {
             return fragOne;
         } else if (position == 1) {
             Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.output101);
+                    context.getString(R.string.place_holder_para), R.raw.output101, R.raw.output101);
             return fragTwo;
         } else if (position == 2) {
             Fragment fragThree = TourPageVideo.newInstance(context.getString(R.string.the_departure),
@@ -47,7 +47,7 @@ public class StartHereAdapter extends FragmentPagerAdapter {
                     context.getString(R.string.place_holder_para), R.drawable.dragon);
             return fragFour;
         } else if (position == 4) {
-            Fragment fragFive = TourPageAd.newInstance(R.raw.intro_tour);
+            Fragment fragFive = TourPageAd.newInstance(R.raw.intro_tour, 2, false);
             return fragFive;
         }
 

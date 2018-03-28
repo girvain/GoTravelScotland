@@ -1,5 +1,6 @@
 package com.example.gavinross.gotravelscotland.viewpager_content.fragments;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,10 +14,17 @@ import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.TourHomePage;
 import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 /**
  * Created by gavinross on 13/12/2017.
+ *
+ * Similar class fragment to the Tour page Video but simpler. Takes a resource
+ * id as input which is the link to the video file. The class used a nextTourId
+ * to select what the next tour to be launched at the end of the slides. This
+ * also requires a boolean to indicate if the ad is an at the end add or not.
+ *
  */
 
 public class TourPageAd extends Fragment{
@@ -33,21 +41,27 @@ public class TourPageAd extends Fragment{
     private boolean adPlayed;
     private MediaPlayer mp;
 
-    public static TourPageAd newInstance(int resId) {
+    private int nextTourId;
+    private boolean end;
+
+    public static TourPageAd newInstance(int resId, int nextTourId, boolean end) {
 
         Bundle bundle = new Bundle();
 
-        bundle.putInt("resId", resId);
+        bundle.putInt("resId", resId); // put the args into the bundle
+        bundle.putInt("nextTourId", nextTourId);
+        bundle.putBoolean("end", end);
 
         TourPageAd fragment = new TourPageAd();
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    private void readBundle(Bundle bundle) {
+    private void readBundle(Bundle bundle) { // system reads this and sets the vars in frag
         if (bundle != null) {
             resId = bundle.getInt("resId");
-
+            nextTourId = bundle.getInt("nextTourId");
+            end = bundle.getBoolean("end");
         }
     }
 
@@ -145,9 +159,17 @@ public class TourPageAd extends Fragment{
                 //videoView.pause();
             }
 
+            /*
+            If the ad has not been played, make the button invisable and play the video
+            The on complete listener will reset the button to being visable again.
+             */
             @Override
             public void onPageSelected(int position) {
-
+                if (!adPlayed) {
+                    fullscreenVideoView.setVisibility(View.VISIBLE); // show the video
+                    startPartTwoButton.setVisibility(View.INVISIBLE);
+                    fullscreenVideoView.start();
+                }
             }
 
             @Override
@@ -156,6 +178,7 @@ public class TourPageAd extends Fragment{
             }
         });
 
+        // listener for the button that starts the ad and then launches part two
         startPartTwoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,12 +186,18 @@ public class TourPageAd extends Fragment{
                 startPartTwoButton.setVisibility(View.INVISIBLE); // hide button after click
                 fullscreenVideoView.setVisibility(View.VISIBLE); // show the video
 
-                if (!adPlayed) {
-                    fullscreenVideoView.start();
+                if (!end) {
+
+                    //switch
+
+                } else {
+
                 }
 
             }
         });
+
+
 
         return rootView;
     }
