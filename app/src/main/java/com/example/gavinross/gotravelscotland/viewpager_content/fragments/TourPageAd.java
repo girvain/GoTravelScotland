@@ -1,5 +1,6 @@
 package com.example.gavinross.gotravelscotland.viewpager_content.fragments;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.TourHomePage;
 import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 /**
@@ -28,6 +30,7 @@ public class TourPageAd extends Fragment{
     private ViewPager viewPager;
 
     private int resId;
+    private int nextActivity;
     private VideoView fullscreenVideoView;
     private Button startPartTwoButton;
     private boolean adPlayed;
@@ -47,7 +50,6 @@ public class TourPageAd extends Fragment{
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
             resId = bundle.getInt("resId");
-
         }
     }
 
@@ -65,6 +67,7 @@ public class TourPageAd extends Fragment{
 
 
         startPartTwoButton = (Button)rootView.findViewById(R.id.startPartTwoButton);
+        startPartTwoButton.setText(R.string.start_next_tour_button_text);
 
         // ref to the parent activity
         fragContainer = (FragContainer)this.getActivity();
@@ -147,7 +150,11 @@ public class TourPageAd extends Fragment{
 
             @Override
             public void onPageSelected(int position) {
-
+                if (!adPlayed) {
+                    startPartTwoButton.setVisibility(View.INVISIBLE); // hide button after click
+                    fullscreenVideoView.setVisibility(View.VISIBLE); // show the video
+                    fullscreenVideoView.start();
+                }
             }
 
             @Override
@@ -156,16 +163,21 @@ public class TourPageAd extends Fragment{
             }
         });
 
+        // This sets the visability of video and button after the ad has played
+        fullscreenVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                startPartTwoButton.setVisibility(View.VISIBLE); // hide video
+                fullscreenVideoView.setVisibility(View.INVISIBLE); // show the button
+            }
+        });
+
         startPartTwoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startPartTwoButton.setVisibility(View.INVISIBLE); // hide button after click
-                fullscreenVideoView.setVisibility(View.VISIBLE); // show the video
-
-                if (!adPlayed) {
-                    fullscreenVideoView.start();
-                }
+                Intent intent = new Intent(getContext(), TourHomePage.class);
+                startActivity(intent);
 
             }
         });
