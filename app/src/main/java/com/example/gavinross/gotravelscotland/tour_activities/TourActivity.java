@@ -26,16 +26,11 @@ public class TourActivity extends AppCompatActivity{
     private FullScreenMediaController mc;
 
     private String videoFilePath;
-
     private TextView mHeadingTextView;
     private TextView mParagraphView;
-//    private VideoView fullscreenVideoView;
+    private VideoView fullscreenVideoView;
     private ImageButton largePlayButton;
     private ImageButton nextActivity;
-
-
-
-
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -46,23 +41,25 @@ public class TourActivity extends AppCompatActivity{
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.actionbar_layout);
 
-        videoFilePath = "android.resource://" + getPackageName() + "/" +
-                R.raw.gts_commando_memorial_multi;
-
         mHeadingTextView = (TextView) findViewById(R.id.heading);
         mParagraphView = (TextView) findViewById(R.id.paragraph);
         largePlayButton = (ImageButton)findViewById(R.id.largePlayButton);
         nextActivity = (ImageButton) findViewById(R.id.nextSlideButton);
 
 
+        /*
+        This is the part that needs override when inheriting this class
+         */
+        videoFilePath = "android.resource://" + getPackageName() + "/" +
+                R.raw.gts_commando_memorial_multi;
         mHeadingTextView.setText(R.string.edinburgh_title);
         mParagraphView.setText(R.string.edinburgh_para);
 
 
         videoView =(VideoView) findViewById(R.id.videoView);
         videoView.setVideoPath(videoFilePath);
-//        fullscreenVideoView  = (VideoView) findViewById(R.id.fullscreenVideoView);
-//        fullscreenVideoView.setVideoPath(videoFilePath);
+        fullscreenVideoView  = (VideoView) findViewById(R.id.fullscreenVideoView);
+        fullscreenVideoView.setVideoPath(videoFilePath);
         videoView.seekTo(2000);
 
         mc = new FullScreenMediaController(this, videoView);
@@ -83,7 +80,7 @@ public class TourActivity extends AppCompatActivity{
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
                     public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
-//                        fullscreenVideoView.clearFocus();
+                        fullscreenVideoView.clearFocus();
                         videoView.requestFocus();
                         videoView.setMediaController(mc);
                         mc.setAnchorView(videoView);
@@ -111,25 +108,25 @@ public class TourActivity extends AppCompatActivity{
             }
         });
 
-//        fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mediaPlayer) {
-//                // remove the action bar!!!
-//                getSupportActionBar().hide();
-//
-//
-//                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-//                    @Override
-//                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
-//                        videoView.clearFocus();
-//                        fullscreenVideoView.requestFocus();
-//                        fullscreenVideoView.setMediaController(mc);
-////                        mc.setAnchorView(fullscreenVideoView);
-////                        mc.show(5); // how long controls are displayed
-//                    }
-//                });
-//            }
-//        });
+        fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                // remove the action bar!!!
+                getSupportActionBar().hide();
+
+
+                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
+                        videoView.clearFocus();
+                        fullscreenVideoView.requestFocus();
+                        fullscreenVideoView.setMediaController(mc);
+                        mc.setAnchorView(fullscreenVideoView);
+                        mc.show(5); // how long controls are displayed
+                    }
+                });
+            }
+        });
 
         largePlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,29 +144,21 @@ public class TourActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 videoView.clearFocus();
-//                fullscreenVideoView.clearFocus();
-                //mc.removeAllViews();
-                videoView.stopPlayback();
+                fullscreenVideoView.clearFocus();
 
                 Intent intent = new Intent(TourActivity.this, TourActivityTwo.class);
-                //intent.putExtra("adapterTourOption", 1);
                 startActivity(intent);
 
             }
         });
 
-
-
     }
 
-    public void onBackPressed() {
-
-        //super.onBackPressed();
-        //if (videoView != null) {
-            videoView.stopPlayback();
-        //}
-        android.widget.Toast.makeText(getApplicationContext(),"Hello Javatpoint",android.widget.Toast.LENGTH_SHORT).show();
-        super.onBackPressed();
+    public void onPause() {
+        super.onPause();
+        videoView.stopPlayback();
+        fullscreenVideoView.stopPlayback();
     }
+
 
 }

@@ -16,4 +16,19 @@ import java.util.Locale;
 public class TourActivityTwo extends TourActivity {
 
 
+    public void onCreate(Bundle savedInstanceBundle) {
+        super.onCreate(savedInstanceBundle);
+
+        TextView mHeadingTextView = (TextView) findViewById(R.id.heading);
+        TextView mParagraphView = (TextView) findViewById(R.id.paragraph);
+        ImageButton largePlayButton = (ImageButton)findViewById(R.id.largePlayButton);
+        ImageButton nextActivity = (ImageButton) findViewById(R.id.nextSlideButton);
+
+        String videoFilePath = "android.resource://" + getPackageName() + "/" +
+                R.raw.gts_commando_memorial_multi;
+        mHeadingTextView.setText(R.string.edinburgh_title);
+        mParagraphView.setText(R.string.edinburgh_para);
+    }
+
+
 }

@@ -107,10 +107,10 @@
     <string name="loch_leven_para">The wonderful Loch Leven</string>
 
     <string name="perth_title">Perth</string>
-    <stirng name="perth_para">The ancient capital of the Highlands</stirng>
+    <string name="perth_para">The ancient capital of the Highlands</string>
 
     <string name="dunkeld_title">Dunkeld</string>
-    <stirng name="dunkeld_para">Watch this video once we have left Perth</stirng>
+    <string name="dunkeld_para">Watch this video once we have left Perth</string>
 
     <string name="pitlochry_title">Pitlochry</string>
     <string name="pitlochry_para">The town of Pitlochry is our first stop of today.
@@ -119,8 +119,22 @@ Please speak to the driver about tickets for Cruise Loch Ness.</string>
     <string name="departure_towards_loch_ness_title">Leaving Pitlochry</string>
     <string name="departure_towards_loch_ness_para">Make sure you have booked and paid for your
         tickets for Cruise Loch Ness! We now leave Pitlochry and travel towards Loch Ness.
-</string>
+    </string>
 
+    <string name="killiecrankie_title">Killiecrankie</string>
+    <string name="killiecrankie_para">The famous battle of Killiecrankie and the Soldiers Leap.</string>
+
+    <string name="blair_atholl_title">Blair Atholl</string>
+    <string name="blair_atholl_para">Learn about the Blair Atholl estate</string>
+
+    <string name="cairgorms_title">Cairgorms</string>
+    <string name="cairgorms_para">Scotlands National Parks</string>
+
+    <string name="loch_laggan_title">Loch Laggan</string>
+    <string name="loch_laggen_para"></string>
+
+    <string name="whiskey_title">Whiskey</string>
+    <string name="whiskey_para">A brief background on Scottish Whisky</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
