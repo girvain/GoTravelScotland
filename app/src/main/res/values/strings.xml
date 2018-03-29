@@ -48,7 +48,7 @@
     adventure around Scotland!</string>
     <string name="children_page_ep1_title">1. Nessie goes to School</string>
     <string name="children_page_ep1_para">Join nessie as he goes to school for the first
-    time. School can be a scary place for the first time but luckily, he's got a massive
+    time. School can be a scary place for the first time but luckily, he\'s got a massive
     cock so he is full of confedence</string>
 
     <!-- tour Ad slide -->
@@ -80,6 +80,15 @@
         By using Go Travel Scotland equipment you are agreeing to the terms and conditions of
         booking listed above and you accept that you are fully responsible for any and all damage or
         loss to the equipment in your booking.</string>
+
+
+    <!-- ======= Tours ====== -->
+    <!-- start here -->
+    <string name="edinburgh_title">Edinburgh</string>
+    <string name="edinburgh_para">We depart the city on Edinburgh and head towards the Highlands and
+    Pitlochry. There are many sights and interesting facts to learn along the way. Once you\'ve
+    watched the videos check out the extra facts on some of the topics covered</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

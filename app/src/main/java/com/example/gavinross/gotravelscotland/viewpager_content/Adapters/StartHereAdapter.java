@@ -36,11 +36,11 @@ public class StartHereAdapter extends FragmentPagerAdapter {
             return fragOne;
         } else if (position == 1) {
             Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.output101);
+                    context.getString(R.string.place_holder_para), R.raw.gts_commando_memorial_multi);
             return fragTwo;
         } else if (position == 2) {
             Fragment fragThree = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+                    context.getString(R.string.place_holder_para), R.raw.gts_commando_memorial_multi);
             return fragThree;
         } else if (position == 3) {
             Fragment fragFour = TourPageImage.newInstance(context.getString(R.string.the_departure),

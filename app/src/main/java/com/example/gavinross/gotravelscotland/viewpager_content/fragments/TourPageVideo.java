@@ -26,13 +26,14 @@ public class TourPageVideo extends Fragment{
 
     private VideoView videoView;
     private FullScreenMediaController mc;
-    private View rootView;
+    private  View rootView;
     private FragContainer fragContainer;
     private ViewPager viewPager;
 
     private String headingText; // for holding text from newInstance to bundle
     private String paragraphText; // to then be passed to textViews
     private int resId;
+    private String videoFilePath;
 
     private TextView mHeadingTextView;
     private TextView mParagraphView;
@@ -69,7 +70,7 @@ public class TourPageVideo extends Fragment{
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
-        String videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
+        videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
                 resId;
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
@@ -138,6 +139,8 @@ public class TourPageVideo extends Fragment{
 
             }
         });
+
+
         fullscreenVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
@@ -164,6 +167,8 @@ public class TourPageVideo extends Fragment{
         });
 
 
+
+
         // get a reference to the activity hosting this fragment and find the item index num
         viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         //fragAdaptPos = viewPager.getCurrentItem();
@@ -175,6 +180,7 @@ public class TourPageVideo extends Fragment{
                     mc.hide();
                 }
                 videoView.pause();
+
             }
 
             @Override
@@ -188,12 +194,17 @@ public class TourPageVideo extends Fragment{
             }
         });
 
+
+
         largePlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // What this listener used to be exclusively for
                 largePlayButton.setVisibility(View.INVISIBLE);
                 videoView.seekTo(0);
                 videoView.start();
+
             }
         });
 
