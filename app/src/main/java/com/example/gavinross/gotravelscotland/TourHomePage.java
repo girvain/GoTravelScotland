@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gavinross.gotravelscotland.tour_activities.StartHereDeparturePage;
 import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
 import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
@@ -49,7 +50,7 @@ public class TourHomePage extends AppCompatActivity {
         startTour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TourHomePage.this, TourActivity.class);
+                Intent intent = new Intent(TourHomePage.this, StartHereDeparturePage.class);
                 //intent.putExtra("adapterTourOption", 1);
                 startActivity(intent);
             }

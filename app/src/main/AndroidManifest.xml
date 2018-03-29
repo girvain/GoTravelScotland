@@ -32,16 +32,56 @@
             android:label="@string/app_name"
             android:parentActivityName=".HomePage">
         </activity>
-        <activity android:name=".tour_activities.TourActivity"
+
+
+        <activity android:name=".tour_activities.StartHereDeparturePage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
             android:parentActivityName=".TourHomePage">
         </activity>
-        <activity android:name=".tour_activities.TourActivityTwo"
+        <activity android:name=".tour_activities.EdinburghPage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.TourActivity">
+            android:parentActivityName=".tour_activities.StartHereDeparturePage">
         </activity>
+        <activity android:name=".tour_activities.ScottishHeritagePage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.EdinburghPage">
+        </activity>
+        <activity android:name=".tour_activities.StartHereAdOne"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.ScottishHeritagePage">
+        </activity>
+        <activity android:name=".tour_activities.KingdomOfFife"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.StartHereAdOne">
+        </activity>
+        <activity android:name=".tour_activities.LochLevenPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.KingdomOfFife">
+        </activity>
+        <activity android:name=".tour_activities.DunkeldPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.LochLevenPage">
+        </activity>
+        <activity android:name=".tour_activities.PitlochryPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.DunkeldPage">
+        </activity>
+        <activity android:name=".tour_activities.AdvertPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.PitlochryPage">
+        </activity>
+
+
+
         <activity android:name=".Children"
             android:screenOrientation="landscape"
             android:label="@string/app_name"

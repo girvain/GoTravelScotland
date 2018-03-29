@@ -3,20 +3,14 @@ package com.example.gavinross.gotravelscotland.tour_activities;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
-import com.example.gavinross.gotravelscotland.TourHomePage;
-import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
-import com.example.gavinross.gotravelscotland.viewpager_content.fragments.TourPageVideo;
 
 import java.util.Locale;
 
@@ -59,7 +53,7 @@ public class TourActivity extends AppCompatActivity{
         videoView.setVideoPath(videoFilePath);
         fullscreenVideoView  = (VideoView) findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);
-        videoView.seekTo(2000);
+        videoView.seekTo(10000);
 
         mc = new FullScreenMediaController(this, videoView);
         mc.show(5); // how long controls are displayed
@@ -145,7 +139,7 @@ public class TourActivity extends AppCompatActivity{
                 videoView.clearFocus();
                 fullscreenVideoView.clearFocus();
 
-                Intent intent = new Intent(TourActivity.this, TourActivityTwo.class);
+                Intent intent = new Intent(TourActivity.this, EdinburghPage.class);
                 startActivity(intent);
 
             }

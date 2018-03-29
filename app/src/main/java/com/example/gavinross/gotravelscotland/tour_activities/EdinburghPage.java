@@ -1,19 +1,14 @@
 package com.example.gavinross.gotravelscotland.tour_activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
 
-import java.util.Locale;
-
-public class TourActivityTwo extends TourActivity {
+public class EdinburghPage extends TourActivity {
 
 
     public void onCreate(Bundle savedInstanceBundle) {
@@ -28,6 +23,17 @@ public class TourActivityTwo extends TourActivity {
                 R.raw.gts_commando_memorial_multi;
         mHeadingTextView.setText(R.string.edinburgh_title);
         mParagraphView.setText(R.string.edinburgh_para);
+
+
+        // Pass in the next activity it's going to
+        nextActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EdinburghPage.this, ScottishHeritagePage.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 
