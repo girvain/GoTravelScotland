@@ -46,7 +46,6 @@ public class TourActivity extends AppCompatActivity{
         largePlayButton = (ImageButton)findViewById(R.id.largePlayButton);
         nextActivity = (ImageButton) findViewById(R.id.nextSlideButton);
 
-
         /*
         This is the part that needs override when inheriting this class
          */
