@@ -83,11 +83,44 @@
 
 
     <!-- ======= Tours ====== -->
-    <!-- start here -->
+    <!-- start here slides -->
+    <!-- edinburgh -->
     <string name="edinburgh_title">Edinburgh</string>
     <string name="edinburgh_para">We depart the city on Edinburgh and head towards the Highlands and
     Pitlochry. There are many sights and interesting facts to learn along the way. Once you\'ve
     watched the videos check out the extra facts on some of the topics covered</string>
+
+    <!-- departure slide -->
+    <string name="departure_start_here_title">Departure</string>
+    <string name="departure_start_here_para">The first part of our video tour guide will follow the route we take from
+        Edinburgh to Pitlochry. These videos are designed to give you a taste of Scottish history
+        before we reach our destinations.</string>
+
+    <string name="scottish_world_heritage_title">Scottish World Heritage</string>
+    <string name="scottish_world_heritage_para">We will shortly be crossing over the Firth of Forth.</string>
+
+    <string name="kingdom_of_fife_title">Kingdom of Fife</string>
+    <string name="the_kingdome_of_fife_para">Once we have crossed over the Firth of Forth we are now entering The Kingdom of Fife.
+\“Beggars mantel fringed with Gold\”</string>
+
+    <string name="loch_leven_title">Loch Leven</string>
+    <string name="loch_leven_para">The wonderful Loch Leven</string>
+
+    <string name="perth_title">Perth</string>
+    <stirng name="perth_para">The ancient capital of the Highlands</stirng>
+
+    <string name="dunkeld_title">Dunkeld</string>
+    <stirng name="dunkeld_para">Watch this video once we have left Perth</stirng>
+
+    <string name="pitlochry_title">Pitlochry</string>
+    <string name="pitlochry_para">The town of Pitlochry is our first stop of today.
+Please speak to the driver about tickets for Cruise Loch Ness.</string>
+
+    <string name="departure_towards_loch_ness_title">Leaving Pitlochry</string>
+    <string name="departure_towards_loch_ness_para">Make sure you have booked and paid for your
+        tickets for Cruise Loch Ness! We now leave Pitlochry and travel towards Loch Ness.
+</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
