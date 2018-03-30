@@ -24,12 +24,11 @@ import java.util.Locale;
 
 /**
  * To do list:
- * > add all the content: images, text and other language text
- * > apply text styles
- * >
- * > extra stuff to add:
- * >    button animation
- * >    pressed in look from the flag buttons when selected
+ * fix language bug
+ * fullscreen bug
+ * strings
+ * other 3 tours
+ * languages on videos
  */
 
 public class MainActivity extends AppCompatActivity {

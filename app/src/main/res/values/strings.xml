@@ -137,6 +137,71 @@ Please speak to the driver about tickets for Cruise Loch Ness.</string>
     <string name="whiskey_title">Whiskey</string>
     <string name="whiskey_para">A brief background on Scottish Whisky</string>
 
+    <!-- leaving pitlochry slides -->
+    <string name="departure_highlands_and_lochs_title">Leaving Loch Ness</string> <!-- FIX THIS -->
+    <string name="departure_highlands_and_lochs_para">Make sure you have booked and paid for your
+        tickets for Cruise Loch Ness! We now leave Loch Ness and travel towards Fort Augustus.
+    </string>
+
+    <string name="fort_augustus_title">Fort Augustus</string>
+    <string name="fort_augustus_para">We will be visiting Fort Augustus for almost 2 hours.
+        Please be back at the coach at the time the driver requests.</string>
+    <string name="loch_ness_title">Loch Ness</string>
+    <string name="loch_ness_para">The mystery of Loch Ness and the famous Nessie monster.</string>
+
+    <string name="commando_memorial_title">Commando Memorial</string>
+    <string name="commando_memorial_para">Quick photo stop at a statue to honour war heroes.</string>
+
+    <string name="fort_william_title">Fort William</string>
+    <string name="fort_william_para">Largest west coast town at the base of Ben Nevis</string>
+
+    <string name="loch_linhe_title">Loch Linhe</string>
+    <string name="loch_linhe_para">Seafood farming in Loch Linhe</string>
+
+    <string name="mountains_and_geology_title">Mountains and Geology</string>
+    <string name="mountains_and_geology_para">Scotland’s landscape contains every type of rock found on earth.</string>
+
+    <string name="glen_co_massacre_title">Glencoe Massacre</string>
+    <string name="glen_co_massacre_para">The sad and vindictive tale of the massacre of the MacDonald clan at Glencoe.</string>
+
+    <string name="rannoch_moor_title">Rannoch Moor</string>
+    <string name="rannoch_moor_para">The barren wasteland of Rannoch Moore</string>
+
+    <string name="the_trossachs_title">The Trossachs</string>
+    <string name="the_trossachs_para">Scotland’s beautiful landscapes create idyllic walks and hikes. </string>
+
+    <string name="callander_title">Callander</string>
+    <string name="callander_para">You are welcome to purchase food at the quaint town of Callander
+        and bring it on the coach to enjoy on our return journey to Edinburgh.</string>
+
+
+    <string name="departure_heros_and_freedom_title">Leaving Callander</string>
+    <string name="departure_heros_and_freedom_para">Make sure you have booked and paid for your
+        tickets for Cruise Loch Ness! We now leave Callander and travel home.
+    </string>
+
+    <string name="doune_castle_title">Doune Castle</string>
+    <string name="doune_castle_para">This castle was used in the filming of Outlander, Monty Python and Game of Thrones.</string>
+
+    <string name="rob_roy_title">Rob Roy</string>
+    <string name="rob_roy_para">The true story of a daring Scottish rogue.</string>
+
+    <string name="stirling_castle_title">Stirling Castle</string>
+    <string name="stirling_castle_para">Why not join us on our 1 day tour of Stirling Castle, Loch Lomond and a whisky distillery?</string>
+
+    <string name="wallace_monument_title">Wallace Monument</string>
+    <string name="wallace_monument_para">The true story of the great Scottish freedom fighter.</string>
+
+    <string name="battle_of_bannockburn_title">Battle of Bannockburn</string>
+    <string name="battle_of_bannockburn_para">A famous battle where the Scottish defeated the English
+        over 700 years ago.</string>
+
+    <string name="the_reco_of_scot_indep_title">The recognition of Scottish Independence</string>
+    <string name="the_reco_of_scot_indep_para">King Robert the Bruce and the 1320 Declaration of Arbroath</string>
+
+
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
