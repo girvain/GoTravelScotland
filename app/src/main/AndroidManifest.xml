@@ -34,51 +34,192 @@
             android:parentActivityName=".HomePage">
         </activity>
 
-
-        <activity android:name=".tour_activities.StartHereDeparturePage"
+        <!-- Start Here Tour -->
+        <activity android:name=".tour_activities.start_here_tour.DepartureStartHere"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
             android:parentActivityName=".TourHomePage">
         </activity>
-        <activity android:name=".tour_activities.EdinburghPage"
+        <activity android:name=".tour_activities.start_here_tour.EdinburghPage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.StartHereDeparturePage">
+            android:parentActivityName=".tour_activities.start_here_tour.DepartureStartHere">
         </activity>
-        <activity android:name=".tour_activities.ScottishHeritagePage"
+        <activity android:name=".tour_activities.start_here_tour.ScottishHeritagePage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.EdinburghPage">
+            android:parentActivityName=".tour_activities.start_here_tour.EdinburghPage">
         </activity>
-        <activity android:name=".tour_activities.StartHereAdOne"
+        <activity android:name=".tour_activities.start_here_tour.StartHereAdOne"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.ScottishHeritagePage">
+            android:parentActivityName=".tour_activities.start_here_tour.ScottishHeritagePage">
         </activity>
-        <activity android:name=".tour_activities.KingdomOfFife"
+        <activity android:name=".tour_activities.start_here_tour.KingdomOfFife"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.StartHereAdOne">
+            android:parentActivityName=".tour_activities.start_here_tour.StartHereAdOne">
         </activity>
-        <activity android:name=".tour_activities.LochLevenPage"
+        <activity android:name=".tour_activities.start_here_tour.LochLevenPage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.KingdomOfFife">
+            android:parentActivityName=".tour_activities.start_here_tour.KingdomOfFife">
         </activity>
-        <activity android:name=".tour_activities.DunkeldPage"
+        <activity android:name=".tour_activities.start_here_tour.DunkeldPage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.LochLevenPage">
+            android:parentActivityName=".tour_activities.start_here_tour.LochLevenPage">
         </activity>
-        <activity android:name=".tour_activities.PitlochryPage"
+        <activity android:name=".tour_activities.start_here_tour.PitlochryPage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.DunkeldPage">
+            android:parentActivityName=".tour_activities.start_here_tour.DunkeldPage">
         </activity>
-        <activity android:name=".tour_activities.AdvertPage"
+        <activity android:name=".tour_activities.start_here_tour.AdvertPage"
             android:screenOrientation="landscape"
             android:label="@string/app_name"
-            android:parentActivityName=".tour_activities.PitlochryPage">
+            android:parentActivityName=".tour_activities.start_here_tour.PitlochryPage">
+        </activity>
+
+        <!-- Towards loch ness tour -->
+        <activity android:name=".tour_activities.towards_loch_ness_tour.DepartureTowardsLochNess"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".TourHomePage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.KilliecrankiePage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.DepartureTowardsLochNess">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.BlairAthollPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.KilliecrankiePage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.CairngormsPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.BlairAthollPage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.LochLagganPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.CairngormsPage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.WhiskyPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.LochLagganPage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.FortAugustusPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.WhiskyPage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.LochNessPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.FortAugustusPage">
+        </activity>
+        <activity android:name=".tour_activities.towards_loch_ness_tour.EndOfTourAd"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.towards_loch_ness_tour.LochNessPage">
+        </activity>
+
+        <!-- Highlands and lochs tour -->
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.DepartureHighlandsAndLochs"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".TourHomePage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.CommandoMemorialPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.DepartureHighlandsAndLochs">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.FortWilliamPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.CommandoMemorialPage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.LochLinhePage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.CommandoMemorialPage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.MountainsAndGeologyPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.LochLinhePage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.GlencoeMassacrePage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.MountainsAndGeologyPage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.RannochMoorPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.GlencoeMassacrePage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.TheTrossachsPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.RannochMoorPage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.CallanderPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.TheTrossachsPage">
+        </activity>
+        <activity android:name=".tour_activities.highlands_and_lochs_tour.EndOfTourAdThree"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.highlands_and_lochs_tour.CallanderPage">
+        </activity>
+
+        <!-- Heros and ..-->
+        <activity android:name=".tour_activities.heros_and_freedom.DepartureHerosAndFreedom"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".TourHomePage">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.DouneCastlePage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.DepartureHerosAndFreedom">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.RobRoyPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.DouneCastlePage">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.StirlingCastlePage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.RobRoyPage">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.WallaceMonumentPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.StirlingCastlePage">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.BattleOfBannockbunPage"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.WallaceMonumentPage">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.RecognitionOfScotInde"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.BattleOfBannockbunPage">
+        </activity>
+        <activity android:name=".tour_activities.heros_and_freedom.EndOfTourAdFour"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name"
+            android:parentActivityName=".tour_activities.heros_and_freedom.RecognitionOfScotInde">
         </activity>
 
 

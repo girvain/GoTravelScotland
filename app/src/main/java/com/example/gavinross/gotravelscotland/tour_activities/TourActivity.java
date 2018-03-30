@@ -11,6 +11,7 @@ import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
+import com.example.gavinross.gotravelscotland.tour_activities.start_here_tour.EdinburghPage;
 
 import java.util.Locale;
 

@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.gavinross.gotravelscotland.tour_activities.StartHereDeparturePage;
-import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
+import com.example.gavinross.gotravelscotland.tour_activities.heros_and_freedom.DepartureHerosAndFreedom;
+import com.example.gavinross.gotravelscotland.tour_activities.highlands_and_lochs_tour.DepartureHighlandsAndLochs;
+import com.example.gavinross.gotravelscotland.tour_activities.start_here_tour.DepartureStartHere;
+import com.example.gavinross.gotravelscotland.tour_activities.towards_loch_ness_tour.DepartureTowardsLochNess;
 import com.example.gavinross.gotravelscotland.viewpager_content.FragContainer;
 
 /**
@@ -50,8 +52,7 @@ public class TourHomePage extends AppCompatActivity {
         startTour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TourHomePage.this, StartHereDeparturePage.class);
-                //intent.putExtra("adapterTourOption", 1);
+                Intent intent = new Intent(TourHomePage.this, DepartureStartHere.class);
                 startActivity(intent);
             }
         });
@@ -61,25 +62,30 @@ public class TourHomePage extends AppCompatActivity {
         intoTheHighlands.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TourHomePage.this, FragContainer.class);
-                intent.putExtra("adapterTourOption", 2);
+                Intent intent = new Intent(TourHomePage.this, DepartureTowardsLochNess.class);
                 startActivity(intent);
             }
         });
 
         // button listener for Start Here button
-        Button tourHomePage = (Button) findViewById(R.id.button_three);
-        tourHomePage.setOnClickListener(new View.OnClickListener() {
+        Button HighlandsAndLochs = (Button) findViewById(R.id.button_three);
+        HighlandsAndLochs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TourHomePage.this, FragContainer.class);
-                intent.putExtra("adapterTourOption", 3);
+                Intent intent = new Intent(TourHomePage.this, DepartureHighlandsAndLochs.class);
                 startActivity(intent);
             }
         });
 
         //button listener for heros and freedom
-
+        Button HerosAndFreedom = (Button) findViewById(R.id.button_four);
+        HerosAndFreedom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TourHomePage.this, DepartureHerosAndFreedom.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
