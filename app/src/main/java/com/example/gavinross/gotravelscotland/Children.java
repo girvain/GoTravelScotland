@@ -36,26 +36,12 @@ public class Children extends AppCompatActivity {
         headingTwo.setText(R.string.children_page_para);
 
         ArrayList<BasicItem> basicItems = new ArrayList<BasicItem>();
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!", true));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+
 
         final ListItemArrayAdapter adapter = new ListItemArrayAdapter(this, basicItems);
 

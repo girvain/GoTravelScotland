@@ -6,7 +6,7 @@ package com.example.gavinross.gotravelscotland.custom_array_adapter_content;
 
 public class ItemWithActivity extends BasicItem {
 
-    public ItemWithActivity(int imageId, String name, String description) {
+    public ItemWithActivity(int imageId, int name, int description) {
         super(imageId, name, description);
 
     }

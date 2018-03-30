@@ -26,28 +26,16 @@ public class WhatsOn extends AppCompatActivity {
 
         TextView headingOne = (TextView) findViewById(R.id.heading_one);
         headingOne.setText(R.string.whatson_page_title);
+        TextView headingTwo = (TextView) findViewById(R.id.heading_two);
+        headingTwo.setText(R.string.whatson_page_para);
 
         ArrayList<BasicItem> basicItems = new ArrayList<BasicItem>();
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
-        basicItems.add(new BasicItem(R.drawable.dragon, "Dragon Shop",
-                "aaah ya know wee sell dragons and various other ancient materials. We " +
-                        "also have a dildo that is over a thousand years old and rumoured to be" +
-                        "the first original sex toy known to man. Massive!"));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+        basicItems.add(new BasicItem(R.drawable.dragon, R.string.childrens_page_item_name,  R.string.childrens_page_list_item_text));
+
 
         ListItemArrayAdapter adapter = new ListItemArrayAdapter(this, basicItems);
 

@@ -41,6 +41,7 @@
 
     <!-- whats on page -->
     <string name="whatson_page_title">What\'s On</string>
+    <string name="whatson_page_para">Check out whats happening around Scotland</string>
 
     <!-- children page -->
     <string name="children_page_title">Childrens Area</string>
@@ -49,6 +50,9 @@
     <string name="children_page_ep1_title">1. Nessie goes to School</string>
     <string name="children_page_ep1_para">Join nessie as he goes to school for the first
     time. School can be a scary place for the first time but luckily, he\'s a fierce Monster</string>
+    <string name="childrens_page_list_item_text">Content Coming Soon</string>
+    <string name="childrens_page_item_name">Content Coming Soon</string>
+
 
     <!-- tour Ad slide -->
     <string name="start_next_tour_button_text">Start Next Tour</string>
