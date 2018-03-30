@@ -6,20 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
-import com.example.gavinross.gotravelscotland.FullScreenMediaControllerActv;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
 
 import java.util.Locale;
 
+/**
+ * Extended class of the MediaController to add a fullscreen button to it. Takes three arguments,
+ * A context (for fragments) or an Activity (for activities), a video view (for reg screen) and
+ * another video view for the fullscreen.
+ */
 public class EdinburghPage extends TourActivity {
 
     private VideoView videoView;
-    private FullScreenMediaControllerActv mc;
+    private FullScreenMediaController mc;
 
     private String videoFilePath;
     private TextView mHeadingTextView;
@@ -57,7 +60,7 @@ public class EdinburghPage extends TourActivity {
         fullscreenVideoView.setVideoPath(videoFilePath);
         videoView.seekTo(10000);
 
-        mc = new FullScreenMediaControllerActv(this, videoView, fullscreenVideoView);
+        mc = new FullScreenMediaController(this, videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

@@ -56,7 +56,7 @@ public class TourActivity extends AppCompatActivity{
         fullscreenVideoView.setVideoPath(videoFilePath);
         videoView.seekTo(10000);
 
-        mc = new FullScreenMediaController(this, videoView);
+        mc = new FullScreenMediaController(this, videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

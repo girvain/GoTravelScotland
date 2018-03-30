@@ -2,6 +2,10 @@ package com.example.gavinross.gotravelscotland;
 
 /**
  * Created by gavinross on 16/12/2017.
+ *
+ * Extended class from the android MediaController. Has three constructors. One takes and activity and
+ * two videoViews, one takes a getContext() method for use with fragments. And the last is for full
+ * screen only.
  */
 
 import android.app.ActionBar;
@@ -52,6 +56,12 @@ public class FullScreenMediaController extends MediaController {
         super(context);
         this.fullscreenVideo = fullscreenVideo;
 
+    }
+
+    public FullScreenMediaController(Activity activity, VideoView videoView, VideoView fullscreenVideo) {
+        super(activity);
+        this.fullscreenVideo = fullscreenVideo;
+        this.videoView = videoView;
     }
 
     @Override
