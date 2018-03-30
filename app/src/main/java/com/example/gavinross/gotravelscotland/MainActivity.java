@@ -25,9 +25,7 @@ import java.util.Locale;
 /**
  * To do list:
  * fix language bug
- * fullscreen bug
  * strings
- * other 3 tours
  * languages on videos
  */
 
