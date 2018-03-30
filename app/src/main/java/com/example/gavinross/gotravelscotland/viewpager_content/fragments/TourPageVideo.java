@@ -88,6 +88,7 @@ public class TourPageVideo extends Fragment{
         fullscreenVideoView.setVideoPath(videoFilePath);
         videoView.seekTo(2000);
 
+
         mc = new FullScreenMediaController(getContext(), videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
 

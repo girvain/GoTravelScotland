@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
+import com.example.gavinross.gotravelscotland.FullScreenMediaControllerActv;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
 
@@ -17,11 +18,8 @@ import java.util.Locale;
 
 public class EdinburghPage extends TourActivity {
 
-
-
-
     private VideoView videoView;
-    private FullScreenMediaController mc;
+    private FullScreenMediaControllerActv mc;
 
     private String videoFilePath;
     private TextView mHeadingTextView;
@@ -59,7 +57,7 @@ public class EdinburghPage extends TourActivity {
         fullscreenVideoView.setVideoPath(videoFilePath);
         videoView.seekTo(10000);
 
-        mc = new FullScreenMediaController(this, videoView);
+        mc = new FullScreenMediaControllerActv(this, videoView, fullscreenVideoView);
         mc.show(5); // how long controls are displayed
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
