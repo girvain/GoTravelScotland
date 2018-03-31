@@ -24,10 +24,12 @@ import java.util.Locale;
 
 /**
  * To do list:
- * fix language bug on buttons at start
+ * edinburgh video need re done
  * paste othere language into strings
- * languages on videos
  * add commando video to sd card
+ *
+ * LATER ON STUFF
+ * All the mp4 tracks need re done with the right iso3 codes, french = fra, germany = deu.
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -46,10 +48,11 @@ public class MainActivity extends AppCompatActivity {
         editor=settings.edit();
 
         Locale locale = new Locale(settings.getString("lang", "default-lang"));
-        Locale.setDefault(locale);
+
         Configuration config = new Configuration();
         config.locale = locale;
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        Locale.setDefault(locale);
         // end of Language change content
 
         // hide the action bar on the first page

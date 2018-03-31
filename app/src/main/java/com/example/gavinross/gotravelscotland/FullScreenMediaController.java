@@ -99,6 +99,7 @@ public class FullScreenMediaController extends MediaController {
                 public void onClick(View v) {
                     if(isFullScreen){
                         int current = fullscreenVideo.getCurrentPosition();
+                        fullscreenVideo.pause(); // this is critical for audio overlap in language tracks
                         fullscreenVideo.clearFocus();
                         fullscreenVideo.setVisibility(View.GONE);
                         videoView.setVisibility(View.VISIBLE);
@@ -109,6 +110,7 @@ public class FullScreenMediaController extends MediaController {
                     }else{
                         //fullScreen.setImageResource(R.drawable.ic_fullscreen_white_24dp);
                         int current = videoView.getCurrentPosition();
+                        videoView.pause(); // this is critical for audio overlap in language tracks
                         videoView.clearFocus();
                         videoView.setVisibility(View.GONE);
                         fullscreenVideo.setVisibility(View.VISIBLE);
