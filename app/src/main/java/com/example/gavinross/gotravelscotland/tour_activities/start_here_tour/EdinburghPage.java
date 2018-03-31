@@ -3,15 +3,18 @@ package com.example.gavinross.gotravelscotland.tour_activities.start_here_tour;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.FullScreenMediaController;
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
 
+import java.io.File;
 import java.util.Locale;
 
 /**
@@ -48,8 +51,12 @@ public class EdinburghPage extends TourActivity {
         /*
         This is the part that needs override when inheriting this class
          */
-        videoFilePath = "android.resource://" + getPackageName() + "/" +
-                R.raw.gts_commando_memorial_multi;
+//        videoFilePath = "android.resource://" + getPackageName() + "/" +
+//                R.raw.gts_commando_memorial_multi;
+
+        videoFilePath = "/mnt/extSdCard/gts_fort_augustus_multi.mp4";
+
+        //videoFilePath = "/Card/gts_battle_of_bannochburn_multi.mp4";
         mHeadingTextView.setText(R.string.edinburgh_title);
         mParagraphView.setText(R.string.edinburgh_para);
 

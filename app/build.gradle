@@ -30,6 +30,12 @@ android {
     }
     productFlavors {
     }
+
+    lintOptions {
+
+        checkReleaseBuilds false
+
+    }
 }
 
 dependencies {
@@ -42,3 +48,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.pacioianu.david:ink-page-indicator:1.2.0'
 }
+
+

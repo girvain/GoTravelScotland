@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
@@ -22,10 +23,15 @@ public class ScottishHeritagePage extends TourActivity {
         ImageButton largePlayButton = (ImageButton)findViewById(R.id.largePlayButton);
         ImageButton nextActivity = (ImageButton) findViewById(R.id.nextSlideButton);
 
-        String videoFilePath = "android.resource://" + getPackageName() + "/" +
-                R.raw.gts_commando_memorial_multi;
+
+        String videoFilePath = "/mnt/extSdCard/gts_scottish_world_heritage_multi.mp4";
         mHeadingTextView.setText(R.string.scottish_world_heritage_title);
         mParagraphView.setText(R.string.scottish_world_heritage_para);
+
+        VideoView videoView =(VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath(videoFilePath);
+        VideoView fullscreenVideoView  = (VideoView) findViewById(R.id.fullscreenVideoView);
+        fullscreenVideoView.setVideoPath(videoFilePath);
 
 
         // Pass in the next activity it's going to
