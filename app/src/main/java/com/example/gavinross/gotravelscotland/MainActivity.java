@@ -24,7 +24,7 @@ import java.util.Locale;
 
 /**
  * To do list:
- * edinburgh video need re done
+ * edinburgh video need re done (have changed the switch round for a temp fix)
  * paste othere language into strings
  * add commando video to sd card
  *

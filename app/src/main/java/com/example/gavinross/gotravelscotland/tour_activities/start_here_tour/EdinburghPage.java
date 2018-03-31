@@ -95,9 +95,8 @@ public class EdinburghPage extends TourActivity {
 //
 //                        }
 
-                // This way only works with the custom audio tracks that I have made because
-                // of the wrong codes I selected for french and german while making the mp4s.
-                // This will NOT work for other multi-language files
+                // This required custom altering coz the edinburgh mp4 is not in the same order as
+                // the rest the tracks.
                 for (int i = 0; i < trackInfoArray.length; i++) {
                     String currentLang = Locale.getDefault().getISO3Language();
                     switch (currentLang) {
@@ -128,8 +127,6 @@ public class EdinburghPage extends TourActivity {
 
                 // This might need to go back in but was causing  a crash!!
                 getSupportActionBar().show();
-
-
 
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override
