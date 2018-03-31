@@ -103,13 +103,13 @@ public class EdinburghPage extends TourActivity {
                     switch (currentLang) {
                         case "eng" : mp.selectTrack(1);
                             break;
-                        case "fra" : mp.selectTrack(2);
+                        case "ita" : mp.selectTrack(2);
                             break;
-                        case "deu" : mp.selectTrack(3);
+                        case "fra" : mp.selectTrack(5);
                             break;
-                        case "ita" : mp.selectTrack(4);
+                        case "deu" : mp.selectTrack(4);
                             break;
-                        case "spa" : mp.selectTrack(5);
+                        case "spa" : mp.selectTrack(3);
                             break;
                     }
                 }
