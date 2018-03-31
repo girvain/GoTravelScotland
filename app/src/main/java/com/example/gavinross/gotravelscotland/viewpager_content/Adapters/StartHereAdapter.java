@@ -34,21 +34,21 @@ public class StartHereAdapter extends FragmentPagerAdapter {
             Fragment fragOne = TourPageImage.newInstance(context.getString(R.string.the_departure),
                     context.getString(R.string.place_holder_para), R.drawable.dragon);
             return fragOne;
-        } else if (position == 1) {
-            Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.gts_commando_memorial_multi);
-            return fragTwo;
-        } else if (position == 2) {
-            Fragment fragThree = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.gts_commando_memorial_multi);
-            return fragThree;
-        } else if (position == 3) {
-            Fragment fragFour = TourPageImage.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.drawable.dragon);
-            return fragFour;
-        } else if (position == 4) {
-            Fragment fragFive = TourPageAd.newInstance(R.raw.intro_tour);
-            return fragFive;
+//        } else if (position == 1) {
+//            Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
+//                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+//            return fragTwo;
+//        } else if (position == 2) {
+//            Fragment fragThree = TourPageVideo.newInstance(context.getString(R.string.the_departure),
+//                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+//            return fragThree;
+//        } else if (position == 3) {
+//            Fragment fragFour = TourPageImage.newInstance(context.getString(R.string.the_departure),
+//                    context.getString(R.string.place_holder_para), R.drawable.dragon);
+//            return fragFour;
+//        } else if (position == 4) {
+//            Fragment fragFive = TourPageAd.newInstance(R.raw.intro_tour);
+//            return fragFive;
         }
 
         else

@@ -51,8 +51,7 @@ public class VideoFragment extends Fragment{
         largePlayButton = (ImageButton)rootView.findViewById(R.id.largePlayButton);
         fullscreenVideoView = (VideoView) rootView.findViewById(R.id.videoView5);
 
-        filePath = "android.resource://" + getActivity().getPackageName() + "/" +
-                R.raw.intro_tour;
+        filePath = "mnt/extSdCard/intro_tour.mp4";
         videoView.setVideoPath(filePath);
         fullscreenVideoView.setVideoPath(filePath);
         videoView.seekTo(2000);

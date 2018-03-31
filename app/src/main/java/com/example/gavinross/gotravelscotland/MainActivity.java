@@ -24,9 +24,10 @@ import java.util.Locale;
 
 /**
  * To do list:
- * fix language bug
- * strings
+ * fix language bug on buttons at start
+ * paste othere language into strings
  * languages on videos
+ * add commando video to sd card
  */
 
 public class MainActivity extends AppCompatActivity {

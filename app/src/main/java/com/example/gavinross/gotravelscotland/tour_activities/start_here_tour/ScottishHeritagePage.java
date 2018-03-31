@@ -32,6 +32,7 @@ public class ScottishHeritagePage extends TourActivity {
         videoView.setVideoPath(videoFilePath);
         VideoView fullscreenVideoView  = (VideoView) findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);
+        videoView.seekTo(10000);
 
 
         // Pass in the next activity it's going to

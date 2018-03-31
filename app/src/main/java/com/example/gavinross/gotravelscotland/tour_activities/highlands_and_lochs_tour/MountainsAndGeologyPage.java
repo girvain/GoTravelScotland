@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.gavinross.gotravelscotland.R;
 import com.example.gavinross.gotravelscotland.tour_activities.TourActivity;
@@ -20,11 +21,15 @@ public class MountainsAndGeologyPage extends TourActivity {
         ImageButton largePlayButton = (ImageButton)findViewById(R.id.largePlayButton);
         ImageButton nextActivity = (ImageButton) findViewById(R.id.nextSlideButton);
 
-        String videoFilePath = "android.resource://" + getPackageName() + "/" +
-                R.raw.gts_commando_memorial_multi;
+        String videoFilePath = "/mnt/extSdCard/gts_mountains_geology_multi.mp4";
         mHeadingTextView.setText(R.string.mountains_and_geology_title);
         mParagraphView.setText(R.string.mountains_and_geology_para);
 
+        VideoView videoView =(VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath(videoFilePath);
+        VideoView fullscreenVideoView  = (VideoView) findViewById(R.id.fullscreenVideoView);
+        fullscreenVideoView.setVideoPath(videoFilePath);
+        videoView.seekTo(10000);
 
         // Pass in the next activity it's going to
         nextActivity.setOnClickListener(new View.OnClickListener() {

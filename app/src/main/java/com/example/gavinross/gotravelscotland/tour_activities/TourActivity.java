@@ -44,8 +44,7 @@ public class TourActivity extends AppCompatActivity{
         /*
         This is the part that needs override when inheriting this class
          */
-        videoFilePath = "android.resource://" + getPackageName() + "/" +
-                R.raw.gts_commando_memorial_multi;
+        videoFilePath = "/mnt/extSdCard/intro_tour.mp4";
         mHeadingTextView.setText(R.string.edinburgh_title);
         mParagraphView.setText(R.string.edinburgh_para);
 

@@ -32,7 +32,7 @@ public class TourPageVideo extends Fragment{
 
     private String headingText; // for holding text from newInstance to bundle
     private String paragraphText; // to then be passed to textViews
-    private int resId;
+    private String videoPath;
     private String videoFilePath;
 
     private TextView mHeadingTextView;
@@ -40,12 +40,12 @@ public class TourPageVideo extends Fragment{
     private VideoView fullscreenVideoView;
     private ImageButton largePlayButton;
 
-    public static TourPageVideo newInstance(String headingText, String paragraphText, int resId) {
+    public static TourPageVideo newInstance(String headingText, String paragraphText, String videoPath) {
 
         Bundle bundle = new Bundle();
         bundle.putString("heading", headingText);
         bundle.putString("paragraph", paragraphText);
-        bundle.putInt("resId", resId);
+        bundle.putString("videoPath", videoPath);
 
         TourPageVideo fragment = new TourPageVideo();
         fragment.setArguments(bundle);
@@ -56,7 +56,7 @@ public class TourPageVideo extends Fragment{
         if (bundle != null) {
             headingText = bundle.getString("heading");
             paragraphText = bundle.getString("paragraph");
-            resId = bundle.getInt("resId");
+            videoPath = bundle.getString("videoPath");
 
         }
     }
@@ -70,8 +70,7 @@ public class TourPageVideo extends Fragment{
 
         readBundle(getArguments()); // get data from bundle and put it in fields
 
-        videoFilePath = "android.resource://" + getActivity().getPackageName() + "/" +
-                resId;
+        //videoFilePath = videoPath;
 
         mHeadingTextView = (TextView) rootView.findViewById(R.id.heading);
         mParagraphView = (TextView) rootView.findViewById(R.id.paragraph);
@@ -83,9 +82,9 @@ public class TourPageVideo extends Fragment{
 
 
         videoView =(VideoView) rootView.findViewById(R.id.videoView);
-        videoView.setVideoPath(videoFilePath);
+        videoView.setVideoPath(videoPath);
         fullscreenVideoView  = (VideoView) rootView.findViewById(R.id.fullscreenVideoView);
-        fullscreenVideoView.setVideoPath(videoFilePath);
+        fullscreenVideoView.setVideoPath(videoPath);
         videoView.seekTo(2000);
 
 

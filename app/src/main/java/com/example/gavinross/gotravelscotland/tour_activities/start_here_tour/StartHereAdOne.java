@@ -36,7 +36,7 @@ public class StartHereAdOne extends AdvertPage {
         nextPartButton = (Button) findViewById(R.id.startPartTwoButton);
         // enter button data and ad video here ...
         nextPartButton.setText(R.string.contiune_ad_text);
-        final String videoFilePath = "android.resource://" + getPackageName() + "/" + R.raw.intro_tour;
+        final String videoFilePath = "mnt/extSdCard/intro_tour.mp4";
 
         fullscreenVideoView = (VideoView) findViewById(R.id.fullscreenVideoView);
         fullscreenVideoView.setVideoPath(videoFilePath);

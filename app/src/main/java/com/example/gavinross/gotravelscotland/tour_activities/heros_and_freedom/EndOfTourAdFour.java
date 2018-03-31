@@ -31,8 +31,7 @@ public class EndOfTourAdFour extends AppCompatActivity {
         OVERRIDE SECTION FOR MAKING THE ADS
         ALSO MUST OVERRIDE THE LISTENER FOR NextPartButton
          */
-        final String videoFilePath = "android.resource://" + getPackageName() + "/" +
-                R.raw.intro_tour;
+        final String videoFilePath = "mnt/extSdCard/intro_tour.mp4";
         nextPartButton = (Button) findViewById(R.id.startPartTwoButton);
         nextPartButton.setText(R.string.start_next_tour_button_text);
         fullscreenVideoView = (VideoView) findViewById(R.id.fullscreenVideoView);

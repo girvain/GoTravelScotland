@@ -29,11 +29,12 @@ public class ChildrensEpisodesAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if (position == 0) {
             Fragment fragOne = TourPageVideo.newInstance(context.getString(R.string.children_page_ep1_title),
-                    context.getString(R.string.children_page_ep1_para), R.raw.intro_tour);
+                    context.getString(R.string.children_page_ep1_para),
+                    "mnt/extSdCard/intro_tour.mp4");
             return fragOne;
         } else if (position == 1) {
             Fragment fragTwo = TourPageVideo.newInstance(context.getString(R.string.the_departure),
-                    context.getString(R.string.place_holder_para), R.raw.intro_tour);
+                    context.getString(R.string.place_holder_para), "mnt/extSdCard/intro_tour.mp4");
             return fragTwo;
         } else
             return new VideoFragment(); //?
