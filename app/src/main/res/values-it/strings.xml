@@ -1,4 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Go Travel Scotland</string>
+    <string name="departure_start_here_title">Partenza</string>
+    <string name="departure_start_here_para">La prima parte della nostra guida di video tour seguirà il percorso che prendiamo da Edimburgo a Pitlochry. Questi video sono progettati per darti un assaggio della storia scozzese prima di raggiungere le nostre destinazioni.</string>
+    <string name="edinburgh_title">Edimburgo</string>
+    <string name="edinburgh_para">Partiamo dalla trafficata City of Edinburgh e ci dirigiamo verso le Highlands e Pitlochry. Ci sono molte attrazioni e fatti interessanti da apprendere lungo il percorso. Ricorda per la migliore esperienza non saltare in avanti!</string>
+    <string name="scottish_world_heritage_title">Patrimonio mondiale scozzese</string>
+    <string name="scottish_world_heritage_para">Tra poco attraverseremo il Firth of Forth.</string>
+    <string name="kingdom_of_fife_title">Regno di Fife</string>
+    <string name="the_kingdome_of_fife_para">Una volta attraversato il Firth of Forth, stiamo entrando in The Kingdom of Fife. \"Mensola dei mendicanti orlati di oro\"</string>
+    <string name="loch_leven_para">Il meraviglioso Loch Leven.</string>
+    <string name="perth_para">L\'antica capitale delle Highlands</string>
+    <string name="dunkeld_para">Guarda questo video una volta che abbiamo lasciato Perth</string>
+    <string name="pitlochry_para">La città di Pitlochry è la nostra prima tappa di oggi. Si prega di parlare con l\'autista di biglietti per Cruise Loch Ness.</string>
+    <string name="departure_towards_loch_ness_title">Lasciando Pitlochry</string>
+    <string name="departure_towards_loch_ness_para">Assicurati di aver prenotato e pagato i tuoi biglietti per Cruise Loch Ness! Ora lasciamo Pitlochry e andiamo verso Loch Ness.</string>
+    <string name="killiecrankie_para">"La famosa battaglia di Killiecrankie e il Salto dei Soldati. "</string>
+    <string name="blair_atholl_para">Scopri la tenuta di Atholl</string>
+    <string name="whiskey_para">Un breve resumen sobre el whisky escocés</string>
+    <string name="fort_augustus_para">"Visiteremo Fort Augustus per quasi 2 ore. Si prega di tornare in pullman al momento in cui l'autista richiede.  "</string>
+    <string name="loch_ness_para">Il mistero di Loch Ness e il famoso mostro di Nessie.</string>
+    <string name="commando_memorial_para">Una foto veloce si ferma su una statua per onorare gli eroi di guerra.</string>
+    <string name="fort_william_para">La più grande città della costa occidentale alla base del Ben Nevis</string>
+    <string name="loch_linhe_para">Allevamento di frutti di mare a Loch Linhe</string>
+    <string name="glen_co_massacre_title">Massacro di Glencoe</string>
+    <string name="glen_co_massacre_para">Il racconto triste e vendicativo del massacro del clan MacDonald a Glencoe.</string>
+    <string name="rannoch_moor_para">L\'arida terra desolata di Rannoch Moore</string>
+    <string name="the_trossachs_title">"I Trossachs "</string>
+    <string name="the_trossachs_para">I meravigliosi paesaggi della Scozia creano passeggiate ed escursioni idilliache.</string>
+    <string name="callander_para">Siete invitati a comprare cibo nella pittoresca città di Callander e portarlo sull\'autobus per godervi il nostro viaggio di ritorno a Edimburgo.</string>
+    <string name="doune_castle_title">Castello di Doune</string>
+    <string name="doune_castle_para">Questo castello è stato utilizzato nelle riprese di Outlander, Monty Python e Game of Thrones.</string>
+    <string name="rob_roy_para">La vera storia di un\'audace canaglia scozzese.</string>
+    <string name="stirling_castle_para">Perché non unirti a noi nel nostro tour di 1 giorno di Stirling Castle, Loch Lomond e una distilleria di whisky?</string>
+    <string name="wallace_monument_para">La vera storia del grande combattente per la libertà scozzese.</string>
+    <string name="battle_of_bannockburn_title">"Battaglia di Bannockburn "</string>
+    <string name="battle_of_bannockburn_para">Una famosa battaglia in cui gli scozzesi sconfissero gli inglesi oltre 700 anni fa.</string>
+    <string name="the_reco_of_scot_indep_title">"Il riconoscimento dell'indipendenza scozzese "</string>
+    <string name="the_reco_of_scot_indep_para">Re Robert the Bruce e la Dichiarazione del 1320 di Arbroath</string>
+    <string name="start">inizio</string>
+    <string name="instructions_msg_one">"Collega le cuffie "</string>
+    <string name="instructions_msg_two">"Sit comodamente "</string>
+    <string name="instructions_msg_three">Inizia la tua esperienza di tour</string>
+    <string name="lets_begin">Cominciamo</string>
 </resources>
